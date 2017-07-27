@@ -1,8 +1,8 @@
 /*
  *  TextManager.h
- *  Subtitles Syphon 
+ *  Jimmy Choo Shop Window
  *
- *  Created by Imanol Gomez on 27/06/17.
+ *  Created by Imanol Gomez on 27/07/17.
  *
  */
 

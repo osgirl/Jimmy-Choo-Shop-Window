@@ -41,13 +41,14 @@ void LayoutManager::setup()
 	Manager::setup();
     
     
-    this->createTextVisuals();
-    this->createSvgVisuals();
-    this->createImageVisuals();
+   
     
     this->setupFbo();
     this->setupWindowFrames();
     
+    this->createTextVisuals();
+    this->createSvgVisuals();
+    this->createImageVisuals();
     //this->addVisuals();
     
     ofLogNotice() <<"LayoutManager::initialized";
@@ -240,7 +241,7 @@ void LayoutManager::draw()
     
     this->drawFbos();
     this->drawText();
-    this->drawRectangles();
+    //this->drawRectangles();
 }
 
 
