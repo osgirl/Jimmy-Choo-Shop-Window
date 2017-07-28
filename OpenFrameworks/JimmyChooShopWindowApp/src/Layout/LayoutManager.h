@@ -49,9 +49,6 @@ public:
     
     void windowResized(int w, int h);
     
-    void onSyphonToggle(bool value) {m_syphonToggle = value;}
-    
-    void onSyphonEnable(bool value);
 
 private:
 
@@ -74,19 +71,15 @@ private:
     
     void setupFbo();
     
-    void resetWindowRects();
+    void resetWindowRect();
     
-    void resetWindowFrames();
+    void resetWindowFrame();
     
-    void resetWindowTitles();
+    void resetWindowTitle();
     
-    void setupWindowFrames();
+    void setupWindowFrame();
     
-    void drawFbos();
-    
-    void drawCurrentFbo();
-    
-    void drawPreviewFbo();
+    void drawFbo();
     
     void drawRectangles();
     
@@ -103,17 +96,9 @@ private:
     TextMap             m_textVisuals;             ///< map storing the text visuals attached to a name
     SvgMap              m_svgVisuals;              ///< map storing the svg visuals attached to a name
     ImageMap            m_imageVisuals;            ///< map storing the image visuals attached to a name
-    ofRectangle         m_currentWindowRect;
-    ofRectangle         m_previewWindowRect;
-    RectangleVisual     m_liveRectangle;
-    RectangleVisual     m_currentWindowFrame;
-    RectangleVisual     m_previewWindowFrame;
-    
-    ofFbo               m_currentFbo;
-    ofFbo               m_previewFbo;
-    
-    bool                m_syphonToggle;
-    bool                m_syphonEnable;
+    ofRectangle         m_windowRect;
+    RectangleVisual     m_windowFrame;
+    ofFbo               m_fbo;
 
 };
 

@@ -62,8 +62,8 @@ public:
     //! Returns the GUI manager
     GuiManager&   getGuiManager() { return m_guiManager; }
     
-    //! Returns the  text manager
-    TextManager&  getTextManager() { return m_textManager; }
+    //! Returns the  scene manager
+    SceneManager&  getSceneManager() { return m_sceneManager; }
     
     //==========================================================================
     
@@ -103,9 +103,8 @@ private:
     VisualEffectsManager     m_visualEffectsManager;     ///< Manages visual effects
     LayoutManager            m_layoutManager;            ///< Manages the layout
     KeyboardManager          m_keyboardManager;          ///< Manages the keyboard
-    MouseManager             m_mouseManager;             ///< Manages the mouse
     GuiManager               m_guiManager;               ///< Manages the graphical user interface
-    TextManager              m_textManager;              ///< Manages the text to be rendered
+    SceneManager             m_sceneManager;             ///< Manages the scenes
     bool                     m_debugMode;
 };
 

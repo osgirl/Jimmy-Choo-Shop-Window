@@ -55,9 +55,9 @@ void AppManager::setupOF()
     ofSetLogLevel(OF_LOG_NOTICE);
     ofSetVerticalSync(true);
     ofSetEscapeQuitsApp(false);
-    ofEnableAntiAliasing();
     ofSetBackgroundAuto(true);
-    ofEnableDataPath();
+    ofDisableSmoothing();
+    ofDisableAntiAliasing();
 }
 
 
@@ -69,8 +69,7 @@ void AppManager::setupManagers()
     m_visualEffectsManager.setup();
     m_layoutManager.setup();
     m_keyboardManager.setup();
-    m_mouseManager.setup();
-    m_textManager.setup();
+    m_sceneManager.setup();
     m_guiManager.setup();
     
 }
@@ -82,8 +81,8 @@ void AppManager::update()
     
     m_visualEffectsManager.update();
     m_viewManager.update();
+    m_sceneManager.update();
     m_layoutManager.update();
-    m_textManager.update();
     m_guiManager.update();
 }
 

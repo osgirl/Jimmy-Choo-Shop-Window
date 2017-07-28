@@ -9,12 +9,12 @@
 #include "ofMain.h"
 
 #include "AppManager.h"
-
 #include "GuiManager.h"
+#include "GuiTheme.h"
 
 
 const string GuiManager::GUI_SETTINGS_FILE_NAME = "xmls/GuiSettings.xml";
-const string GuiManager::GUI_SETTINGS_NAME = "HeroDress";
+const string GuiManager::GUI_SETTINGS_NAME = "JIMMY CHOO GUI";
 const int GuiManager::GUI_WIDTH = 350;
 
 
@@ -40,9 +40,11 @@ void GuiManager::setup()
 
 
     this->setupGuiParameters();
+    this->setupScenesGui();
     this->setupDmxLightGui();
     this->setupDmxMotorGui();
     this->setupNeonLight();
+    this->setupGuiEvents();
     this->loadGuiValues();
     
     ofLogNotice() <<"GuiManager::initialized";
@@ -51,42 +53,92 @@ void GuiManager::setup()
 
 void GuiManager::setupGuiParameters()
 {
-    m_gui.setDefaultWidth(GUI_WIDTH);
-    m_gui.setup(GUI_SETTINGS_NAME, GUI_SETTINGS_FILE_NAME);
-    //m_gui.setPosition(ofGetWidth() - GUI_WIDTH - 20, 40);
-    m_gui.setPosition(20, 20);
-    m_gui.add(m_guiFPS.set("FPS", 0, 0, 60));
-    ofxGuiSetFont( "fonts/open-sans/OpenSans-Semibold.ttf", 9 );
+    m_gui.setPosition(ofxDatGuiAnchor::TOP_LEFT);
+    //m_gui.setAssetPath(ofToDataPath("fonts/"));
+    m_gui.setTheme(new GuiTheme());
+    
+    
+    int margin =  LayoutManager::MARGIN;
+    m_gui.setAutoDraw(false);
+    auto pos = m_gui.getPosition();
+    m_gui.setPosition(pos.x + margin, pos.y + margin);
+    m_gui.addHeader(GUI_SETTINGS_NAME, true);
+    
+    // add some components //
+    //m_gui.addLabel("PrimaveraSound GUI");
+    
+    m_gui.addFRM();
+    m_gui.addToggle("Fullscreen");
+    auto toggle = m_gui.getToggle("Fullscreen");
+    toggle->setChecked(true);
+    m_gui.addButton("* Save GUI");
+    
+    m_gui.addBreak();
 
+}
+
+void GuiManager::setupScenesGui()
+{
+    auto sceneManager = &AppManager::getInstance().getSceneManager();
+    vector<string> opts;
+    
+    for(int i = 0; i < sceneManager->getNumberScenes(); i++)
+    {
+        opts.push_back(sceneManager->getSceneName(i));
+    }
+    
+    string label = "SCENES";
+    
+    m_gui.addDropdown(label, opts);
+    auto menu = m_gui.getDropdown(label);
+    //menu->expand(); //let's have it open by default
+    menu->setStripeColor(ofColor::pink);
+    for (int i=0; i<menu->size(); i++) menu->getChildAt(i)->setStripeColor(ofColor::pink);
+    m_gui.addBreak();
+    
 }
 
 void GuiManager::setupDmxLightGui()
 {
+    // add a folder to group a few components together //
+    ofxDatGuiFolder* folder = m_gui.addFolder("DMX Lights", ofColor::cyan);
     
-    m_parametersDmxLights.setName("DMX Lights");
-    
-    
-    m_gui.add(m_parametersDmxLights);
+    m_gui.addBreak();
 }
 
+void GuiManager::update()
+{
+    m_gui.update();
+}
 
 
 void GuiManager::setupDmxMotorGui()
 {
 
-    m_parametersDmxMotor.setName("DMX Motor");
+    // add a folder to group a few components together //
+    ofxDatGuiFolder* folder = m_gui.addFolder("DMX Motor", ofColor::cyan);
     
-    m_gui.add(m_parametersDmxMotor);
+    m_gui.addBreak();
+    
 }
 
 void GuiManager::setupNeonLight()
 {
     
-    m_parametersNeonLights.setName("Neon :ights");
+    ofxDatGuiFolder* folder = m_gui.addFolder("Neon Light", ofColor::cyan);
     
-    m_gui.add(m_parametersNeonLights);
+    m_gui.addBreak();
 }
 
+
+void GuiManager::setupGuiEvents()
+{
+    m_gui.onDropdownEvent(this, &GuiManager::onDropdownEvent);
+    m_gui.onColorPickerEvent(this, &GuiManager::onColorPickerEvent);
+    m_gui.onButtonEvent(this, &GuiManager::onButtonEvent);
+    m_gui.onToggleEvent(this, &GuiManager::onToggleEvent);
+    m_gui.onMatrixEvent(this, &GuiManager::onMatrixEvent);
+}
 
 
 void GuiManager::draw()
@@ -96,20 +148,26 @@ void GuiManager::draw()
     
     this->drawRectangle();
     
-    m_guiFPS = ofGetFrameRate();
-    m_gui.draw();
+    ofEnableSmoothing();
+    ofEnableAlphaBlending();
+        m_gui.draw();
+    ofDisableAlphaBlending();
+    ofDisableSmoothing();
     
 }
 
 
 void GuiManager::saveGuiValues()
 {
-    m_gui.saveToFile(GUI_SETTINGS_FILE_NAME);
+    ofXml xml;
+    xml.serialize(m_parameters);
+    xml.save(GUI_SETTINGS_FILE_NAME);
 }
 
 void GuiManager::loadGuiValues()
 {
-    m_gui.loadFromFile(GUI_SETTINGS_FILE_NAME);
+    ofXml xml(GUI_SETTINGS_FILE_NAME);
+    xml.deserialize(m_parameters);
 }
 
 
@@ -120,11 +178,84 @@ void GuiManager::toggleGui()
 
 void GuiManager::drawRectangle()
 {
+    int margin =  LayoutManager::MARGIN;
     ofPushStyle();
-    ofSetColor(ofColor::black);
-    ofRect( m_gui.getPosition().x - 20, 0, GUI_WIDTH + 60, ofGetHeight());
+    ofSetColor(15);
+    ofDrawRectangle( m_gui.getPosition().x - margin, 0, m_gui.getWidth() + 2*margin, ofGetHeight());
     ofPopStyle();
 }
 
 
+void GuiManager::onSceneChange(const string &sceneName)
+{
+    int index = AppManager::getInstance().getSceneManager().getIndex(sceneName);
+    this->onSceneChange(index);
+}
+
+void GuiManager::onSceneChange(int sceneIndex)
+{
+    string dropBoxName = "SCENES";
+    auto menu = m_gui.getDropdown(dropBoxName);
+    menu->select(sceneIndex);
+    string label =  menu->getChildAt(sceneIndex)->getLabel();
+    menu->setLabel(dropBoxName + ":" + label);
+    AppManager::getInstance().getSceneManager().changeScene(sceneIndex);
+}
+
+
+
+void GuiManager::onDropdownEvent(ofxDatGuiDropdownEvent e)
+{
+    cout << "onDropdownEvent: " << e.target->getName() << " Selected" << endl;
+    
+    if(e.target->getName() == "SCENES")
+    {
+        AppManager::getInstance().getSceneManager().changeScene(e.child);
+        //m_gui.getDropdown(e.target->getName())->expand();
+        m_gui.getDropdown(e.target->getName())->setLabel("SCENES:" + e.target->getLabel());
+    }
+    
+}
+
+void GuiManager::onColorPickerEvent(ofxDatGuiColorPickerEvent e)
+{
+    cout << "onColorPickerEvent: " << e.target->getName() << " Selected" << endl;
+    
+    if (e.target->getName() == "COLOR MODE"){
+        
+    }
+    
+}
+
+void GuiManager::onButtonEvent(ofxDatGuiButtonEvent e)
+{
+    cout << "onButtonEvent: " << e.target->getName() << " Selected" << endl;
+    
+    if(e.target->getName() == "* Next Video")
+    {
+        //AppManager::getInstance().getVideoManager().onNextVideoChange();
+    }
+ 
+
+}
+void GuiManager::onToggleEvent(ofxDatGuiToggleEvent e)
+{
+    cout << "onToggleEvent: " << e.target->getName() << " Selected" << endl;
+    
+    if(e.target->getName() == "Fullscreen")
+    {
+        AppManager::getInstance().getLayoutManager().onFullScreenChange(e.target->getChecked());
+    }
+    
+}
+
+void GuiManager::onMatrixEvent(ofxDatGuiMatrixEvent e)
+{
+    //cout << "onMatrixEvent " << e.child << " : " << e.enabled << endl;
+    //cout << "onMatrixEvent " << e.target->getLabel() << " : " << e.target->getSelected().size() << endl;
+    if(e.target->getLabel() == "Types")
+    {
+        //AppManager::getInstance().getAnimationsManager().onSetSelectedAnimations( e.target->getSelected());
+    }
+}
 

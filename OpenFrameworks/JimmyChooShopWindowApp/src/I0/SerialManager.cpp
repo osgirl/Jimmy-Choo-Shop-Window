@@ -45,7 +45,6 @@ void SerialManager::setupSerial()
     int baud = 9600;
     m_serial.setup(0, baud); //open the first device
     
-    ofColor color = ofColor::cyan;
 }
 
 void SerialManager::update()

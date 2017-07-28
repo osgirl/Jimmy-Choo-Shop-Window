@@ -9,7 +9,7 @@
 #pragma once
 
 #include "Manager.h"
-#include "ofxGui.h"
+#include "ofxDatGui.h"
 //========================== class GuiManager ==============================
 //============================================================================
 /** \class GuiManager GuiManager.h
@@ -35,6 +35,9 @@ public:
     //! Set-up the gui
     void setup();
     
+    //! Update the gui
+    void update();
+    
     //! Draw the gui
     void draw();
     
@@ -52,9 +55,25 @@ public:
     
     ofPoint  getPosition() {return m_gui.getPosition();}
     
+    void onSceneChange(const string& sceneName);
+    
+    void onSceneChange(int sceneIndex);
+    
+    void onDropdownEvent(ofxDatGuiDropdownEvent e);
+    
+    void onColorPickerEvent(ofxDatGuiColorPickerEvent e);
+    
+    void onButtonEvent(ofxDatGuiButtonEvent e);
+    
+    void onToggleEvent(ofxDatGuiToggleEvent e);
+    
+    void onMatrixEvent(ofxDatGuiMatrixEvent e);
+    
 private:
     
     void setupGuiParameters();
+    
+    void setupScenesGui();
     
     void setupDmxLightGui();
     
@@ -64,10 +83,12 @@ private:
     
     void drawRectangle();
 
+    void setupGuiEvents();
+    
 private:
     
-    // Fluid GUI
-    ofxPanel			m_gui;
+    ofxDatGui			m_gui;
+    ofParameterGroup        m_parameters;
     
     ofParameter<float>	m_guiFPS;
     
@@ -75,6 +96,7 @@ private:
     ofParameterGroup    m_parametersDmxLights;
     ofParameterGroup    m_parametersDmxMotor;
     ofParameterGroup    m_parametersNeonLights;
+    ofParameterGroup    m_parametersAudio;
     
    
     bool        m_showGui;  //It defines the whether the gui should be shown or not

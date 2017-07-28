@@ -21,7 +21,7 @@ const int LayoutManager::FRAME_MARGIN = 2;
 const string LayoutManager::LAYOUT_FONT =  "fonts/open-sans/OpenSans-Semibold.ttf";
 const string LayoutManager::LAYOUT_FONT_LIGHT =  "fonts/open-sans/OpenSans-Light.ttf";
 
-LayoutManager::LayoutManager(): Manager(), m_syphonToggle(true), m_syphonEnable(true)
+LayoutManager::LayoutManager(): Manager()
 {
 	//Intentionally left empty
 }
@@ -44,7 +44,7 @@ void LayoutManager::setup()
    
     
     this->setupFbo();
-    this->setupWindowFrames();
+    this->setupWindowFrame();
     
     this->createTextVisuals();
     this->createSvgVisuals();
@@ -64,78 +64,43 @@ void LayoutManager::setupFbo()
     float height  = AppManager::getInstance().getSettingsManager().getAppHeight();
     
     
-    m_currentFbo.allocate(width, height, GL_RGBA);
-    m_currentFbo.begin(); ofClear(0); m_currentFbo.end();
+    m_fbo.allocate(width, height, GL_RGBA);
+    m_fbo.begin(); ofClear(0); m_fbo.end();
     
-    m_previewFbo.allocate(width, height, GL_RGBA);
-    m_previewFbo.begin(); ofClear(0); m_previewFbo.end();
- 
 }
 
-void LayoutManager::resetWindowRects()
+void LayoutManager::resetWindowRect()
 {
     float width = AppManager::getInstance().getSettingsManager().getAppWidth();
     float height  = AppManager::getInstance().getSettingsManager().getAppHeight();
     float ratio = width/ height;
     float frame_width = ofGetWidth() - AppManager::getInstance().getGuiManager().getWidth() - 2*MARGIN;
     
-    if(frame_width >= ofGetHeight())
-    {
-        m_currentWindowRect.width = 3*frame_width/5 - 2*MARGIN;
-        m_currentWindowRect.height =  m_currentWindowRect.width / ratio;
-        
-        m_previewWindowRect.width = 2*frame_width/5 - 2*MARGIN;
-        m_previewWindowRect.height = m_previewWindowRect.width / ratio;
-        
-        m_currentWindowRect.x = AppManager::getInstance().getGuiManager().getWidth()  + 3*MARGIN;
-        m_currentWindowRect.y = ofGetHeight()*0.5 - m_currentWindowRect.height/2;
-        
-        m_previewWindowRect.x = m_currentWindowRect.x + 2*MARGIN + m_currentWindowRect.width;
-        m_previewWindowRect.y =  ofGetHeight()*0.5 - m_previewWindowRect.height/2;
-    }
-    else
-    {
-        m_currentWindowRect.width = frame_width - 2*MARGIN;
-        m_currentWindowRect.height =  m_currentWindowRect.width / ratio;
-        
-        m_previewWindowRect.width = 3*m_currentWindowRect.width/4;
-        m_previewWindowRect.height = m_previewWindowRect.width / ratio;
-        
-        m_currentWindowRect.x = AppManager::getInstance().getGuiManager().getWidth()  + 3*MARGIN;
-        m_currentWindowRect.y = m_liveRectangle.getHeight() + 2*MARGIN + m_textVisuals["CurrentSubtitle"]->getHeight();
-        
-        m_previewWindowRect.x = m_currentWindowRect.x;
-        m_previewWindowRect.y = m_currentWindowRect.y + m_currentWindowRect.height + 2*MARGIN  + m_textVisuals["NextSubtitle"]->getHeight();
-    }
-
+    m_windowRect.width = frame_width- 4*MARGIN;
+    m_windowRect.height =  m_windowRect.width / ratio;
+    
+    m_windowRect.x = AppManager::getInstance().getGuiManager().getWidth()  + 4*MARGIN;
+    m_windowRect.y = ofGetHeight()*0.5 - m_windowRect.height/2;
 }
-void LayoutManager::setupWindowFrames()
+void LayoutManager::setupWindowFrame()
 {
-    this->resetWindowRects();
-    this->resetWindowFrames();
+    this->resetWindowRect();
+    this->resetWindowFrame();
     
     float width = ofGetScreenWidth();
     float height = ofGetScreenHeight()/80;
     
-    m_liveRectangle.setWidth(width); m_liveRectangle.setHeight(height);
     
-    auto color = AppManager::getInstance().getSettingsManager().getColor("LiveRectangle");
-    m_liveRectangle.setColor(color);
+    ofColor color = AppManager::getInstance().getSettingsManager().getColor("FrameRectangle");
+    m_windowFrame.setColor(color);
     
-    color = AppManager::getInstance().getSettingsManager().getColor("FrameRectangle");
-    m_currentWindowFrame.setColor(color);  m_previewWindowFrame.setColor(color);
-    
-    
-  
 }
 
-void LayoutManager::resetWindowFrames()
+void LayoutManager::resetWindowFrame()
 {
-    m_currentWindowFrame.setPosition(ofPoint( m_currentWindowRect.x - FRAME_MARGIN, m_currentWindowRect.y - FRAME_MARGIN, 0));
-    m_currentWindowFrame.setWidth(m_currentWindowRect.width + 2*FRAME_MARGIN); m_currentWindowFrame.setHeight(m_currentWindowRect.height + 2*FRAME_MARGIN);
-    
-    m_previewWindowFrame.setPosition(ofPoint( m_previewWindowRect.x - FRAME_MARGIN, m_previewWindowRect.y - FRAME_MARGIN, 0));
-    m_previewWindowFrame.setWidth(m_previewWindowRect.width + 2*FRAME_MARGIN); m_previewWindowFrame.setHeight(m_previewWindowRect.height + 2*FRAME_MARGIN);
+    m_windowFrame.setPosition(ofPoint( m_windowRect.x - FRAME_MARGIN, m_windowRect.y - FRAME_MARGIN, 0));
+    m_windowFrame.setWidth(m_windowRect.width + 2*FRAME_MARGIN); m_windowFrame.setHeight(m_windowRect.height + 2*FRAME_MARGIN);
+
 }
 
 void LayoutManager::update()
@@ -149,42 +114,28 @@ void LayoutManager::update()
 void LayoutManager::createTextVisuals()
 {
     float size = 20;
-    float w = m_currentWindowRect.width;
+    float w = m_windowRect.width;
     float h = size;
-    float x =  m_currentWindowRect.x + m_currentWindowRect.getWidth()*0.5;
-    float y =  m_currentWindowRect.y - h - 2*MARGIN;
+    float x =  m_windowRect.x + m_windowRect.getWidth()*0.5;
+    float y =  m_windowRect.y - h - 2*MARGIN;
     ofPoint pos = ofPoint(x, y);
-    string text = "Current Subtitle";
+    string text = "Current Scene";
     string fontName = LAYOUT_FONT_LIGHT;
     
 
     auto textVisual = ofPtr<TextVisual>(new TextVisual(pos,w,h,true));
     textVisual->setText(text, fontName, size, ofColor::white);
-    m_textVisuals["CurrentSubtitle"] = textVisual;
-    
-    
-    w = m_previewWindowRect.width;
-    x =  m_previewWindowRect.x + m_previewWindowRect.getWidth()*0.5;
-    y =  m_previewWindowRect.y - h - 2*MARGIN;
-    text = "Next Subtitle";
-    textVisual = ofPtr<TextVisual>(new TextVisual(pos,w,h,true));
-    textVisual->setText(text, fontName, size, ofColor::white);
-    m_textVisuals["NextSubtitle"] = textVisual;
+    m_textVisuals["SceneName"] = textVisual;
     
 }
 
 
-void LayoutManager::resetWindowTitles()
+void LayoutManager::resetWindowTitle()
 {
-    float x =  m_currentWindowRect.x + m_currentWindowRect.getWidth()*0.5;
-    float y =  m_currentWindowRect.y -  m_textVisuals["CurrentSubtitle"]->getHeight()*0.5 - MARGIN;
+    float x =  m_windowRect.x + m_windowRect.getWidth()*0.5;
+    float y =  m_windowRect.y -  m_textVisuals["SceneName"]->getHeight()*0.5 - MARGIN;
     ofPoint pos = ofPoint(x, y);
-    m_textVisuals["CurrentSubtitle"]->setPosition(pos);
-    
-    
-    pos.x =  m_previewWindowRect.x + m_previewWindowRect.getWidth()*0.5;
-    pos.y =  m_previewWindowRect.y - m_textVisuals["NextSubtitle"]->getHeight()*0.5  - MARGIN;
-    m_textVisuals["NextSubtitle"]->setPosition(pos);
+    m_textVisuals["SceneName"]->setPosition(pos);
 }
 
 
@@ -239,7 +190,7 @@ void LayoutManager::draw()
     if(!m_initialized)
         return;
     
-    this->drawFbos();
+    this->drawFbo();
     this->drawText();
     //this->drawRectangles();
 }
@@ -252,59 +203,22 @@ void LayoutManager::drawText()
     }
 }
 
-void LayoutManager::drawRectangles()
-{
-    if(m_syphonEnable){
-        m_liveRectangle.draw();
-    }
-}
 
-
-void LayoutManager::drawFbos()
-{
-    
-    this->drawCurrentFbo();
-    this->drawPreviewFbo();
-    
-
-}
-
-void LayoutManager::drawCurrentFbo()
+void LayoutManager::drawFbo()
 {
     
     ofEnableAlphaBlending();
-    m_currentFbo.begin();
-         ofClear(0, 0, 0);
-        if(m_syphonToggle)
-        {
-            AppManager::getInstance().getTextManager().draw();
-        }
-    
-    m_currentFbo.end();
-    ofDisableAlphaBlending();
-    
-    m_currentWindowFrame.draw();
-    m_currentFbo.draw(m_currentWindowRect.x,m_currentWindowRect.y,m_currentWindowRect.width,m_currentWindowRect.height);
-}
-
-void LayoutManager::drawPreviewFbo()
-{
-    
-    ofEnableAlphaBlending();
-    m_previewFbo.begin();
-    ofPushStyle();
+    m_fbo.begin();
     ofClear(0, 0, 0);
+        AppManager::getInstance().getSceneManager().draw();
     
-    AppManager::getInstance().getTextManager().drawPreviousVisuals();
-    
-    ofPopStyle();
-    m_previewFbo.end();
+    m_fbo.end();
     ofDisableAlphaBlending();
     
-    m_previewWindowFrame.draw();
-    m_previewFbo.draw(m_previewWindowRect.x,m_previewWindowRect.y,m_previewWindowRect.width,m_previewWindowRect.height);
-    
+    m_windowFrame.draw();
+    m_fbo.draw(m_windowRect.x,m_windowRect.y,m_windowRect.width,m_windowRect.height);
 }
+
 
 void LayoutManager::windowResized(int w, int h)
 {
@@ -312,9 +226,9 @@ void LayoutManager::windowResized(int w, int h)
         return;
     }
     
-    this->resetWindowRects();
-    this->resetWindowFrames();
-    this->resetWindowTitles();
+    this->resetWindowRect();
+    this->resetWindowFrame();
+    this->resetWindowTitle();
 }
 
 
