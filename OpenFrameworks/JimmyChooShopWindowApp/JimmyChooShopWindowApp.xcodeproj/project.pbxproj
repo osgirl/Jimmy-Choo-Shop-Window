@@ -836,11 +836,11 @@
 				94B476E65081D2D5CE6D1228 /* BlankScene.h */,
 				0A04CD17818C41C63D34AFD0 /* DiscoScene.cpp */,
 				FBE1711B3E223A63D7C2B371 /* DiscoScene.h */,
+				4E02314B18587CFEB6B86ECC /* ShowcaseScene.cpp */,
+				D546CED24D383D1B5A71B344 /* ShowcaseScene.h */,
 				1A14124BF720E4CA8987CC24 /* SceneManager.cpp */,
 				76C4479895B14357D331E849 /* SceneManager.h */,
 				8C488F38001D542DA27140DF /* scenes.h */,
-				4E02314B18587CFEB6B86ECC /* ShowcaseScene.cpp */,
-				D546CED24D383D1B5A71B344 /* ShowcaseScene.h */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";

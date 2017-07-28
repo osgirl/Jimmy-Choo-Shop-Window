@@ -38,6 +38,10 @@ public:
 
     //! Called when exit
     void willExit();
+    
+private:
+    
+    ofColor m_currentColor;
 
 };
 

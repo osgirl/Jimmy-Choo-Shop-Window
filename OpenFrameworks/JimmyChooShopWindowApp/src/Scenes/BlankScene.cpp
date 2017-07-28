@@ -29,6 +29,7 @@ void BlankScene::willFadeIn() {
     ofLogNotice("BlankScene::willFadeIn");
     AppManager::getInstance().getDmxManager().onSetDmxLightColor(ofColor::black);
     AppManager::getInstance().getDmxManager().onSetDmxLightSolid();
+    AppManager::getInstance().getSerialManager().onSetColor(ofColor::black);
 }
 
 void BlankScene::willDraw() {

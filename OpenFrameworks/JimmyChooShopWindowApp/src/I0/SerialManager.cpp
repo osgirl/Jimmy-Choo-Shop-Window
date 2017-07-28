@@ -18,6 +18,7 @@ SerialManager::SerialManager(): Manager()
 SerialManager::~SerialManager()
 {
    ofLogNotice() << "SerialManager::destructor";
+   this->onSetColor(ofColor::black);
 }
 
 
@@ -43,11 +44,30 @@ void SerialManager::setupSerial()
     // (ie, COM4 on a pc, /dev/tty.... on linux, /dev/tty... on a mac)
     // arduino users check in arduino app....
     int baud = 9600;
-    m_serial.setup(0, baud); //open the first device
+    int portNum = 3;
+    
+    if(!m_serial.setup(portNum, baud)) //open a device number)
+    {
+        ofLogNotice() <<"SerialManager::initialized << Could not cpnnect to serial " << deviceList[portNum].getDeviceName();
+    }
     
 }
 
 void SerialManager::update()
 {
     //
+}
+
+
+void SerialManager::onSetColor(const ofColor& color)
+{
+    unsigned char bytes[4];
+    
+    bytes[0] = color.r;
+    bytes[1] = color.g;
+    bytes[2] = color.b;
+    bytes[3] = '\n';
+    
+    m_serial.writeBytes(bytes,sizeof(bytes));
+
 }

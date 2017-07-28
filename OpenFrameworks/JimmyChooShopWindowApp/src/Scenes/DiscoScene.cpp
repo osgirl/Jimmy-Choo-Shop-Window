@@ -28,7 +28,9 @@ void DiscoScene::willFadeIn() {
      ofLogNotice("DiscoScene::willFadeIn");
      AppManager::getInstance().getAudioManager().playSample("NightFever");
      AppManager::getInstance().getDmxManager().onSetDmxLightStrobe();
-     //AppManager::getInstance().getDmxManager().onSetDmxLightSolid();
+     int motorSpeed = 127;
+     AppManager::getInstance().getDmxManager().onSetDmxMotorSpeed(motorSpeed);
+     AppManager::getInstance().getSerialManager().onSetColor(ofColor::pink);
 }
 
 void DiscoScene::willDraw() {

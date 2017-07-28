@@ -71,6 +71,7 @@ void AppManager::setupManagers()
     m_keyboardManager.setup();
     m_audioManager.setup();
     m_sceneManager.setup();
+    m_serialManager.setup();
     m_dmxManager.setup();
     m_guiManager.setup();
     

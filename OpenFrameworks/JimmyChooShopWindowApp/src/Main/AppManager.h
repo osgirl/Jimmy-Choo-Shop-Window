@@ -71,6 +71,9 @@ public:
     //! Returns the dmx manager
     DmxManager&  getDmxManager() { return m_dmxManager; }
     
+    //! Returns the serial manager
+    SerialManager&  getSerialManager() { return m_serialManager; }
+    
     //==========================================================================
     
     void toggleDebugMode();
@@ -113,6 +116,7 @@ private:
     SceneManager             m_sceneManager;             ///< Manages the scenes
     AudioManager             m_audioManager;             ///< Manages the audio
     DmxManager               m_dmxManager;               ///< Manages the dmx
+    SerialManager            m_serialManager;            ///< Manages the serial communications
     bool                     m_debugMode;
 };
 

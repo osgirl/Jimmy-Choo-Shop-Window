@@ -107,7 +107,7 @@ void GuiManager::setupDmxGui()
     m_dmxLightChannel.addListener(dmxManager, &DmxManager::onSetDmxLightChannel);
     m_parameters.add(m_dmxLightChannel);
     
-    m_dmxMotorChannel.set("Motor Ch.", 1, 9, 512);
+    m_dmxMotorChannel.set("Motor Ch.", 9, 1, 512);
     m_dmxMotorChannel.addListener(dmxManager, &DmxManager::onSetDmxMotorChannel);
     m_parameters.add(m_dmxMotorChannel);
 

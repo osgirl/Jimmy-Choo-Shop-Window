@@ -18,6 +18,7 @@ DmxManager::DmxManager(): Manager(), m_dmxLightStartChannel(1), m_dmxMotorStartC
 DmxManager::~DmxManager()
 {
    ofLogNotice() << "DmxManager::destructor";
+   this->exit();
 }
 
 
@@ -76,7 +77,7 @@ void DmxManager::onSetDmxLightStrobe()
 {
     m_dmx.setLevel(m_dmxLightStartChannel + 3, 0); //Set master dimming to 0
     m_dmx.setLevel(m_dmxLightStartChannel, 201); //Set Strobe mode
-     m_dmx.setLevel(m_dmxLightStartChannel+2, 155); //Set Strobe speed
+    m_dmx.setLevel(m_dmxLightStartChannel+2, 155); //Set Strobe speed
     m_dmx.update();
 }
 
@@ -85,4 +86,12 @@ void DmxManager::onSetDmxLightSolid()
     m_dmx.setLevel(m_dmxLightStartChannel, 0); //Set mode to manual
     m_dmx.setLevel(m_dmxLightStartChannel + 3, 255); //Set master dimming to full
     m_dmx.update();
+}
+
+void DmxManager::exit()
+{
+    int speed = 0;
+    this->onSetDmxMotorSpeed(speed);
+    this->onSetDmxLightSolid();
+    this->onSetDmxLightColor(ofColor::black);
 }

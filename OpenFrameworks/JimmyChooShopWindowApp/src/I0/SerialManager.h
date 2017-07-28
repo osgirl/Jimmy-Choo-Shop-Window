@@ -34,8 +34,9 @@ public:
     void setup();
 
     void update();
+    
+    void onSetColor(const ofColor& color);
 
-   
 
 private:
     

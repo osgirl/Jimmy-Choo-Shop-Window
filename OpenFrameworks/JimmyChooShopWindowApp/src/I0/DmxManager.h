@@ -51,6 +51,8 @@ private:
     
     void setupDmx();
     
+    void exit();
+    
 private:
     
     ofxDmx m_dmx;

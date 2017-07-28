@@ -20,3 +20,4 @@
 #include "SceneManager.h"
 #include "AudioManager.h"
 #include "DmxManager.h"
+#include "SerialManager.h"
