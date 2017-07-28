@@ -68,6 +68,9 @@ public:
     //! Returns the audio manager
     AudioManager&  getAudioManager() { return m_audioManager; }
     
+    //! Returns the dmx manager
+    DmxManager&  getDmxManager() { return m_dmxManager; }
+    
     //==========================================================================
     
     void toggleDebugMode();
@@ -109,6 +112,7 @@ private:
     GuiManager               m_guiManager;               ///< Manages the graphical user interface
     SceneManager             m_sceneManager;             ///< Manages the scenes
     AudioManager             m_audioManager;             ///< Manages the audio
+    DmxManager               m_dmxManager;               ///< Manages the dmx
     bool                     m_debugMode;
 };
 

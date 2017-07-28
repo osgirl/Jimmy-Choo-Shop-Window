@@ -75,9 +75,7 @@ private:
     
     void setupScenesGui();
     
-    void setupDmxLightGui();
-    
-    void setupDmxMotorGui();
+    void setupDmxGui();
     
     void setupNeonLight();
     
@@ -87,17 +85,15 @@ private:
     
 private:
     
-    ofxDatGui			m_gui;
-    ofParameterGroup        m_parameters;
+    ofxDatGui            m_gui;
+    ofParameterGroup     m_parameters;
     
     ofParameter<float>	m_guiFPS;
     
     
-    ofParameterGroup    m_parametersDmxLights;
-    ofParameterGroup    m_parametersDmxMotor;
-    ofParameterGroup    m_parametersNeonLights;
-    ofParameterGroup    m_parametersAudio;
-    
+    ofParameter<int>    m_dmxLightChannel;
+    ofParameter<int>    m_dmxMotorChannel;
+    ofParameter<int>    m_dmxMotorSpeed;
    
     bool        m_showGui;  //It defines the whether the gui should be shown or not
 };

@@ -8,7 +8,7 @@
 
 
 #include "BlankScene.h"
-#include "RectangleVisual.h"
+#include "AppManager.h"
 
 BlankScene::BlankScene(): ofxScene("BLANK"){}
 
@@ -26,7 +26,9 @@ void BlankScene::draw() {
 }
 
 void BlankScene::willFadeIn() {
-     ofLogNotice("BlankScene::willFadeIn");
+    ofLogNotice("BlankScene::willFadeIn");
+    AppManager::getInstance().getDmxManager().onSetDmxLightColor(ofColor::black);
+    AppManager::getInstance().getDmxManager().onSetDmxLightSolid();
 }
 
 void BlankScene::willDraw() {

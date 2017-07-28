@@ -27,6 +27,8 @@ void DiscoScene::draw() {
 void DiscoScene::willFadeIn() {
      ofLogNotice("DiscoScene::willFadeIn");
      AppManager::getInstance().getAudioManager().playSample("NightFever");
+     AppManager::getInstance().getDmxManager().onSetDmxLightStrobe();
+     //AppManager::getInstance().getDmxManager().onSetDmxLightSolid();
 }
 
 void DiscoScene::willDraw() {
@@ -35,9 +37,10 @@ void DiscoScene::willDraw() {
 
 void DiscoScene::willFadeOut() {
     ofLogNotice("DiscoScene::willFadeOut");
+    AppManager::getInstance().getAudioManager().stopSample();
 }
 
 void DiscoScene::willExit() {
     ofLogNotice("DiscoScene::willExit");
-    AppManager::getInstance().getAudioManager().stopSample();
+   
 }

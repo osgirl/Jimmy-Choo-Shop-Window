@@ -19,4 +19,4 @@
 #include "GuiManager.h"
 #include "SceneManager.h"
 #include "AudioManager.h"
-
+#include "DmxManager.h"

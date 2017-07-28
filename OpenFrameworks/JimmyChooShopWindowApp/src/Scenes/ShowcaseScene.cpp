@@ -8,7 +8,7 @@
 
 
 #include "ShowcaseScene.h"
-#include "RectangleVisual.h"
+#include "AppManager.h"
 
 ShowcaseScene::ShowcaseScene(): ofxScene("SHOWCASE"){}
 
@@ -26,7 +26,9 @@ void ShowcaseScene::draw() {
 }
 
 void ShowcaseScene::willFadeIn() {
-     ofLogNotice("ShowcaseScene::willFadeIn");
+    ofLogNotice("ShowcaseScene::willFadeIn");
+    AppManager::getInstance().getDmxManager().onSetDmxLightColor(ofColor::blue);
+    AppManager::getInstance().getDmxManager().onSetDmxLightSolid();
 }
 
 void ShowcaseScene::willDraw() {

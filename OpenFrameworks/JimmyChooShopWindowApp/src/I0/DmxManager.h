@@ -35,7 +35,17 @@ public:
 
     void update();
 
-   
+    void onSetDmxLightChannel(int& value);
+    
+    void onSetDmxMotorChannel(int& value);
+    
+    void onSetDmxMotorSpeed(int& value);
+    
+    void onSetDmxLightColor(const ofColor& color);
+    
+    void onSetDmxLightStrobe();
+    
+    void onSetDmxLightSolid();
 
 private:
     
@@ -44,6 +54,8 @@ private:
 private:
     
     ofxDmx m_dmx;
+    int m_dmxLightStartChannel;
+    int m_dmxMotorStartChannel;
 
 };
 

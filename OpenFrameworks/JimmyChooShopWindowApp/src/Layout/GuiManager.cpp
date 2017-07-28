@@ -41,8 +41,7 @@ void GuiManager::setup()
 
     this->setupGuiParameters();
     this->setupScenesGui();
-    this->setupDmxLightGui();
-    this->setupDmxMotorGui();
+    this->setupDmxGui();
     this->setupNeonLight();
     this->setupGuiEvents();
     this->loadGuiValues();
@@ -53,6 +52,8 @@ void GuiManager::setup()
 
 void GuiManager::setupGuiParameters()
 {
+    ofxDatGuiLog::quiet();
+    
     m_gui.setPosition(ofxDatGuiAnchor::TOP_LEFT);
     //m_gui.setAssetPath(ofToDataPath("fonts/"));
     m_gui.setTheme(new GuiTheme());
@@ -98,10 +99,31 @@ void GuiManager::setupScenesGui()
     
 }
 
-void GuiManager::setupDmxLightGui()
+void GuiManager::setupDmxGui()
 {
+    auto dmxManager = &AppManager::getInstance().getDmxManager();
+    
+    m_dmxLightChannel.set("Light Ch.", 1, 1, 512);
+    m_dmxLightChannel.addListener(dmxManager, &DmxManager::onSetDmxLightChannel);
+    m_parameters.add(m_dmxLightChannel);
+    
+    m_dmxMotorChannel.set("Motor Ch.", 1, 9, 512);
+    m_dmxMotorChannel.addListener(dmxManager, &DmxManager::onSetDmxMotorChannel);
+    m_parameters.add(m_dmxMotorChannel);
+
+    m_dmxMotorSpeed.set("Motor Speed", 50, 0, 127);
+    m_dmxMotorSpeed.addListener(dmxManager, &DmxManager::onSetDmxMotorSpeed);
+    m_parameters.add(m_dmxMotorSpeed);
+    
     // add a folder to group a few components together //
-    ofxDatGuiFolder* folder = m_gui.addFolder("DMX Lights", ofColor::cyan);
+    ofxDatGuiFolder* folder = m_gui.addFolder("DMX", ofColor::cyan);
+    
+    folder->addSlider(m_dmxLightChannel);
+    folder->addSlider(m_dmxMotorChannel);
+    folder->addSlider(m_dmxMotorSpeed);
+    folder->addButton("* Strobe");
+    folder->addButton("* Solid");
+    folder->expand();
     
     m_gui.addBreak();
 }
@@ -112,15 +134,6 @@ void GuiManager::update()
 }
 
 
-void GuiManager::setupDmxMotorGui()
-{
-
-    // add a folder to group a few components together //
-    ofxDatGuiFolder* folder = m_gui.addFolder("DMX Motor", ofColor::cyan);
-    
-    m_gui.addBreak();
-    
-}
 
 void GuiManager::setupNeonLight()
 {
@@ -231,9 +244,14 @@ void GuiManager::onButtonEvent(ofxDatGuiButtonEvent e)
 {
     cout << "onButtonEvent: " << e.target->getName() << " Selected" << endl;
     
-    if(e.target->getName() == "* Next Video")
+    if(e.target->getName() == "* Solid")
     {
-        //AppManager::getInstance().getVideoManager().onNextVideoChange();
+        AppManager::getInstance().getDmxManager().onSetDmxLightSolid();
+    }
+    
+    else if(e.target->getName() == "* Strobe")
+    {
+        AppManager::getInstance().getDmxManager().onSetDmxLightStrobe();
     }
  
 

@@ -10,7 +10,7 @@
 #include "AppManager.h"
 
 
-DmxManager::DmxManager(): Manager()
+DmxManager::DmxManager(): Manager(), m_dmxLightStartChannel(1), m_dmxMotorStartChannel(1)
 {
     //Intentionally left empty
 }
@@ -36,10 +36,53 @@ void DmxManager::setup()
 
 void DmxManager::setupDmx()
 {
-    m_dmx.connect("/dev/tty.usbserial-EN198035"); // use the name
+    m_dmx.connect("/dev/tty.usbserial-EN198035", 512); // use the name
 }
 
 void DmxManager::update()
 {
+    m_dmx.update();
+}
+
+
+
+void DmxManager::onSetDmxLightChannel(int& value)
+{
+    m_dmxLightStartChannel = ofClamp(value, 1, 512);
+}
+
+void DmxManager::onSetDmxMotorChannel(int& value)
+{
+    m_dmxMotorStartChannel = ofClamp(value, 1, 512);
+}
+
+void DmxManager::onSetDmxMotorSpeed(int& value)
+{
+    int dmxspeed = ofClamp(value, 0, 128);
+    m_dmx.setLevel(m_dmxMotorStartChannel, dmxspeed);
+    m_dmx.update();
+}
+
+
+void DmxManager::onSetDmxLightColor(const ofColor& color)
+{
+    m_dmx.setLevel(m_dmxLightStartChannel + 4, color.r);
+    m_dmx.setLevel(m_dmxLightStartChannel + 5, color.g);
+    m_dmx.setLevel(m_dmxLightStartChannel + 6, color.b);
+    m_dmx.update();
+}
+
+void DmxManager::onSetDmxLightStrobe()
+{
+    m_dmx.setLevel(m_dmxLightStartChannel + 3, 0); //Set master dimming to 0
+    m_dmx.setLevel(m_dmxLightStartChannel, 201); //Set Strobe mode
+     m_dmx.setLevel(m_dmxLightStartChannel+2, 155); //Set Strobe speed
+    m_dmx.update();
+}
+
+void DmxManager::onSetDmxLightSolid()
+{
+    m_dmx.setLevel(m_dmxLightStartChannel, 0); //Set mode to manual
+    m_dmx.setLevel(m_dmxLightStartChannel + 3, 255); //Set master dimming to full
     m_dmx.update();
 }
