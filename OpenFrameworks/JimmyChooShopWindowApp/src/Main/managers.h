@@ -18,4 +18,5 @@
 #include "KeyboardManager.h"
 #include "GuiManager.h"
 #include "SceneManager.h"
+#include "AudioManager.h"
 

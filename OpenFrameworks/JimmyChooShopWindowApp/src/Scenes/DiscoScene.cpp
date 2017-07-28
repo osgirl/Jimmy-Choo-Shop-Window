@@ -8,7 +8,7 @@
 
 
 #include "DiscoScene.h"
-#include "RectangleVisual.h"
+#include "AppManager.h"
 
 DiscoScene::DiscoScene(): ofxScene("DISCO"){}
 
@@ -22,13 +22,11 @@ void DiscoScene::update() {
 
 void DiscoScene::draw() {
     ofBackground(255,0,0);
-    ofColor(255);
-    ofDrawRectangle(0, 0, 400, 400);
-    
 }
 
 void DiscoScene::willFadeIn() {
      ofLogNotice("DiscoScene::willFadeIn");
+     AppManager::getInstance().getAudioManager().playSample("NightFever");
 }
 
 void DiscoScene::willDraw() {
@@ -41,4 +39,5 @@ void DiscoScene::willFadeOut() {
 
 void DiscoScene::willExit() {
     ofLogNotice("DiscoScene::willExit");
+    AppManager::getInstance().getAudioManager().stopSample();
 }

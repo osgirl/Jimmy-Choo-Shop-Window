@@ -42,6 +42,8 @@ public:
     
     const ResourcesPathMap& getVideoResourcesPath() const {return m_videoResourcesPath;}
     
+    const ResourcesPathMap& getAudioResourcesPath() const {return m_audioResourcesPath;}
+    
     ofColor getColor(const string& colorName);
     
     float getAppWidth() const {return m_appWidth;}
@@ -88,6 +90,9 @@ private:
     //! Loads all the video  settings
     void loadVideoSettings();
     
+    //! Loads all the audio  settings
+    void loadAudioSettings();
+    
     
 private:
     
@@ -97,6 +102,7 @@ private:
     ResourcesPathMap        m_texturesPath;         ///< stores the texture paths
     ResourcesPathMap        m_svgResourcesPath;     ///< stores the svg paths
     ResourcesPathMap        m_videoResourcesPath;   ///< stores the video paths
+    ResourcesPathMap        m_audioResourcesPath;   ///< stores the audio paths
     ColorMap                m_colors;               ///< stores all the application's colors
     float                   m_appWidth;             ///< stores the applications width
     float                   m_appHeight;            ///< stores the applications height

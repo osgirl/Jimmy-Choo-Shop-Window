@@ -10,12 +10,13 @@
 #pragma once
 
 #include "Manager.h"
+#include "SettingsManager.h"
 
 //========================== class AudioManager ==============================
 //============================================================================
 /** \class AudioManager AudioManager.h
- *	\brief Class managing the text
- *	\details it renders the current subtitles according to a width, height and position
+ *	\brief Class managing the audio
+ *	\details it loads the samples and gives the methods to play them
  */
 
 
@@ -31,14 +32,18 @@ public:
     //! Destructor
     ~AudioManager();
     
-    //! Setup the Text Manager
+    //! Setup the Audio Manager
     void setup();
     
-    //! Update the Text Manager
+    //! Update the Audio Manager
     void update();
     
-    //! Draw the Text Manager
+    //! Draw the Audio Manager
     void draw();
+    
+    bool playSample(string name);
+    
+    bool stopSample();
     
     
 private:
@@ -48,7 +53,8 @@ private:
     
 private:
     
-    ofSoundPlayer  m_soundPlayer;
+    ResourcesPathMap    m_sampleNames;
+    ofSoundPlayer       m_soundPlayer;
 
 };
 

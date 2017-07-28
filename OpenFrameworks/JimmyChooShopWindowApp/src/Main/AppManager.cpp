@@ -69,6 +69,7 @@ void AppManager::setupManagers()
     m_visualEffectsManager.setup();
     m_layoutManager.setup();
     m_keyboardManager.setup();
+    m_audioManager.setup();
     m_sceneManager.setup();
     m_guiManager.setup();
     
@@ -81,6 +82,7 @@ void AppManager::update()
     
     m_visualEffectsManager.update();
     m_viewManager.update();
+    m_audioManager.update();
     m_sceneManager.update();
     m_layoutManager.update();
     m_guiManager.update();

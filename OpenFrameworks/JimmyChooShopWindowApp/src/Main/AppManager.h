@@ -65,6 +65,9 @@ public:
     //! Returns the  scene manager
     SceneManager&  getSceneManager() { return m_sceneManager; }
     
+    //! Returns the audio manager
+    AudioManager&  getAudioManager() { return m_audioManager; }
+    
     //==========================================================================
     
     void toggleDebugMode();
@@ -105,6 +108,7 @@ private:
     KeyboardManager          m_keyboardManager;          ///< Manages the keyboard
     GuiManager               m_guiManager;               ///< Manages the graphical user interface
     SceneManager             m_sceneManager;             ///< Manages the scenes
+    AudioManager             m_audioManager;             ///< Manages the audio
     bool                     m_debugMode;
 };
 

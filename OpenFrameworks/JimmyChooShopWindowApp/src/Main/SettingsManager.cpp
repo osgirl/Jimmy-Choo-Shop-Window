@@ -48,12 +48,13 @@ void SettingsManager::loadAllSettings()
     this->loadTextureSettings();
     this->loadSvgSettings();
     this->loadVideoSettings();
+    this->loadAudioSettings();
     this->loadColors();
 }
 
 bool SettingsManager::loadSettingsFile()
 {
-    if(!m_xml.load(ofToDataPath(APPLICATION_SETTINGS_FILE_NAME))){
+    if(!m_xml.load(APPLICATION_SETTINGS_FILE_NAME)){
         ofLogNotice() <<"SettingsManager::loadSettingsFile-> unable to load file: " << APPLICATION_SETTINGS_FILE_NAME ;
         return false;
     }
@@ -293,6 +294,37 @@ void SettingsManager::loadVideoSettings()
     ofLogNotice() <<"SettingsManager::loadSvgSettings->  path not found: " << path ;
 }
 
+
+
+void SettingsManager::loadAudioSettings()
+{
+    m_xml.setTo("//");
+    
+    string path = "//audio";
+    if(m_xml.exists(path)) {
+        
+        typedef   std::map<string, string>   AttributesMap;
+        AttributesMap attributes;
+        
+        path = "//audio/sample[0]";
+        m_xml.setTo(path);
+        do {
+            
+            attributes = m_xml.getAttributes();
+            m_audioResourcesPath[attributes["name"]] = attributes["path"];
+            
+            ofLogNotice() <<"SettingsManager::loadAudioSettings->  sample = " << attributes["name"]
+            <<", path = "<< attributes["path"] ;
+        }
+        while(m_xml.setToSibling()); // go to the next svg
+        
+        
+        ofLogNotice() <<"SettingsManager::loadAudioSettings->  successfully loaded the resource settings" ;
+        return;
+    }
+    
+    ofLogNotice() <<"SettingsManager::loadAudioSettings->  path not found: " << path ;
+}
 
 
 
