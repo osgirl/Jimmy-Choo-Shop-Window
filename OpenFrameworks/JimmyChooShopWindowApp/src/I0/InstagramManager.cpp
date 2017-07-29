@@ -12,7 +12,7 @@
 
 const int InstagramManager::TIMER_INTERVAL_MS = 2000;
 
-InstagramManager::InstagramManager(): Manager(), m_currentString("")
+InstagramManager::InstagramManager(): Manager(), m_currentString(""), m_newTag(false)
 {
     //Intentionally left empty
 }
@@ -62,14 +62,18 @@ void InstagramManager::setupTimer()
 void InstagramManager::update()
 {
     m_timer.update();
+    if(m_newTag){
+        m_newTag = false;
+        AppManager::getInstance().getGuiManager().onSceneChange("DISCO");
+    }
 }
 
 
-void InstagramManager::checkUpdate(const string& result, const string& tag)
+bool InstagramManager::checkUpdate(const string& result, const string& tag)
 {
     if(m_tags.find(tag)==m_tags.end()) //No tag found with that name
     {
-        return;
+        return false;
     }
     
     string hashtagString = this->parseJson(result);
@@ -77,7 +81,10 @@ void InstagramManager::checkUpdate(const string& result, const string& tag)
     if(m_tags[tag]!=hashtagString){
         m_tags[tag]=hashtagString;
         ofLogNotice() <<"InstagramManager::parseJson -> " << tag << ": "<< m_tags[tag];
+        return true;
     }
+    
+     return false;
     
     // cout << json["tag"]["media"]["nodes"][0]["caption"].asString() <<endl;
 }
@@ -98,7 +105,7 @@ void InstagramManager::urlResponse(ofHttpResponse & response)
         {
             //ofLogNotice() <<"InstagramManager::urlResponse -> " << response.request.name << ", " << response.status;
             
-            this->checkUpdate(response.data, tag.first);
+            m_newTag = this->checkUpdate(response.data, tag.first);
         }
     }
 }
@@ -117,7 +124,5 @@ void InstagramManager::timerCompleteHandler( int &args )
         
         //ofLogNotice() <<"InstagramManager::loadurl -> " << url;
     }
-    
-   
 }
 

@@ -10,14 +10,26 @@
 #include "DiscoScene.h"
 #include "AppManager.h"
 
+
+const int DiscoScene::TIMER_DURATION_MS = 36000;
+
 DiscoScene::DiscoScene(): ofxScene("DISCO"){}
 
 void DiscoScene::setup() {
     ofLogNotice("DiscoScene::setup");
+    this->setupTimer();
 }
 
-void DiscoScene::update() {
+void DiscoScene::setupTimer()
+{
+    m_timer.setup( TIMER_DURATION_MS );
+    ofAddListener( m_timer.TIMER_COMPLETE , this, &DiscoScene::timerCompleteHandler ) ;
     
+}
+
+void DiscoScene::update()
+{
+    m_timer.update();
 }
 
 void DiscoScene::draw() {
@@ -26,11 +38,12 @@ void DiscoScene::draw() {
 
 void DiscoScene::willFadeIn() {
      ofLogNotice("DiscoScene::willFadeIn");
-     AppManager::getInstance().getAudioManager().playSample("NightFever");
+     AppManager::getInstance().getAudioManager().playSample("NightFeverShort");
      AppManager::getInstance().getDmxManager().onSetDmxLightStrobe();
      int motorSpeed = 127;
      AppManager::getInstance().getDmxManager().onSetDmxMotorSpeed(motorSpeed);
      AppManager::getInstance().getSerialManager().onSetColor(ofColor::pink);
+     m_timer.start(false);
 }
 
 void DiscoScene::willDraw() {
@@ -46,3 +59,11 @@ void DiscoScene::willExit() {
     ofLogNotice("DiscoScene::willExit");
    
 }
+
+void DiscoScene::timerCompleteHandler( int &args )
+{
+    ofLogNotice("DiscoScene::timerCompleteHandler -> Timer completed");
+    AppManager::getInstance().getGuiManager().onSceneChange("SHOWCASE");
+
+}
+

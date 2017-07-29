@@ -41,6 +41,8 @@ public:
     void urlResponse(ofHttpResponse & response);
     
     void timerCompleteHandler( int &args ) ;
+    
+    const string& getCurrentString() const {return m_currentString;}
 
 
 private:
@@ -49,7 +51,7 @@ private:
     
     void setupTags();
     
-    void checkUpdate(const string& result, const string& tag);
+    bool checkUpdate(const string& result, const string& tag);
     
     string parseJson(const string& result);
     
@@ -62,6 +64,7 @@ private:
     ofxSimpleTimer     m_timer;
     ofxJSONElement     m_json;
     string             m_currentString;
+    bool               m_newTag;
 
 };
 

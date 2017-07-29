@@ -1,7 +1,7 @@
 /*
  *  TextVisual.cpp
  *
- *  Created by Imanol G—mez on 16/02/15.
+ *  Created by Imanol GÑmez on 16/02/15.
  *
  */
 
@@ -25,68 +25,68 @@ TextVisual::~TextVisual()
 
 void TextVisual::setText(const std::string& text, const std::string& fontName, float fontSize, ofColor color)
 {
-//    m_text = text;
-//    m_fontSize = fontSize;
-//
-//    m_font.setup(fontName);
-//
-//    if(m_centred){
-//        m_font.setTextBlockAlignment(ofxFontStash::OF_TEXT_ALIGN_CENTER);
-//    }
-//
-//    //m_box =  m_font.getBBox(m_text,m_fontSize,m_position.x,m_position.y);
-//    m_box = m_font.drawMultiLineColumn(m_text,m_fontSize,m_position.x,m_position.y,m_width, false);
-//    m_color = color;
-//    m_translation = m_position - m_box.getPosition();
-//
-//    if(m_centred){
-//       m_translation.y -= m_box.getHeight()*0.5;
-//    }
-//
-
+    //    m_text = text;
+    //    m_fontSize = fontSize;
+    //
+    //    m_font.setup(fontName);
+    //
+    //    if(m_centred){
+    //        m_font.setTextBlockAlignment(ofxFontStash::OF_TEXT_ALIGN_CENTER);
+    //    }
+    //
+    //    //m_box =  m_font.getBBox(m_text,m_fontSize,m_position.x,m_position.y);
+    //    m_box = m_font.drawMultiLineColumn(m_text,m_fontSize,m_position.x,m_position.y,m_width, false);
+    //    m_color = color;
+    //    m_translation = m_position - m_box.getPosition();
+    //
+    //    if(m_centred){
+    //       m_translation.y -= m_box.getHeight()*0.5;
+    //    }
+    //
+    
     m_text = text;
     m_fontSize = fontSize;
     m_fontName = fontName;
-
+    
     m_font.setup(fontName,m_fontSize);
     m_font.setLineHeight(m_lineHeight);
-
+    
     if(m_centred){
         m_font.setTextBlockAlignment(EngineFont::OF_TEXT_ALIGN_CENTER);
     }
-
+    
     m_box =  m_font.drawMultiLineColumn(m_text,m_position.x,m_position.y,m_width);
-
+    
     m_color = color;
     m_translation = m_position - m_box.getPosition();
-
+    
     if(m_centred){
-       m_translation.y -= m_box.getHeight()*0.5;
+        m_translation.y -= m_box.getHeight()*0.5;
     }
-
+    
 }
 
 void TextVisual::setText(const std::string& text)
 {
-//    m_text = text;
-//
-//    m_box = m_font.drawMultiLineColumn(m_text,m_fontSize,m_position.x,m_position.y,m_width, false);
-//    //m_box =  m_font.getBBox(m_text,m_fontSize,m_position.x,m_position.y);
-//
-//    m_translation = m_position - m_box.getPosition();
-//    if(m_centred){
-//        m_translation.y -= m_box.getHeight()*0.5;
-//    }
-
+    //    m_text = text;
+    //
+    //    m_box = m_font.drawMultiLineColumn(m_text,m_fontSize,m_position.x,m_position.y,m_width, false);
+    //    //m_box =  m_font.getBBox(m_text,m_fontSize,m_position.x,m_position.y);
+    //
+    //    m_translation = m_position - m_box.getPosition();
+    //    if(m_centred){
+    //        m_translation.y -= m_box.getHeight()*0.5;
+    //    }
+    
     m_text = text;
-
+    
     m_box =  m_font.drawMultiLineColumn(m_text,m_position.x,m_position.y,m_width);
-
+    
     m_translation = m_position - m_box.getPosition();
     if(m_centred){
         m_translation.y -= m_box.getHeight()*0.5;
     }
-
+    
 }
 
 void  TextVisual::setWidth(float width)
@@ -113,9 +113,9 @@ void  TextVisual::setFontName(const string& name)
 
 void  TextVisual::setLineHeight(float lineHeight)
 {
-     m_lineHeight= lineHeight;
-     m_font.setLineHeight(m_lineHeight);
-     this->setText(m_text);
+    m_lineHeight= lineHeight;
+    m_font.setLineHeight(m_lineHeight);
+    this->setText(m_text);
 }
 
 void TextVisual::draw()
@@ -123,37 +123,37 @@ void TextVisual::draw()
     ofPushMatrix();
     ofPushStyle();
     //ofEnableAlphaBlending();
-
-        ofScale(m_scale.x, m_scale.y);
-        //ofSetColor(ofColor(255,255,10,200));
-        //ofCircle(m_position, 3);
-        //ofSetColor(ofColor(255,10,10,100));
-        //if(m_centred){
-            //ofRect(m_position.x - m_box.width*0.5, m_position.y - m_box.height*0.5, m_box.width, m_box.height);
-        //}
-        //else{
-            //ofRect(m_position.x, m_position.y, m_box.width, m_box.height);
-        //}
-
     
-        ofSetColor(m_color);
-        if(m_drawBB){
-            ofNoFill();
-            if(m_centred){
-                ofDrawRectangle(m_position.x - m_box.width*0.5, m_position.y - m_box.height*0.5, m_box.width, m_box.height);
-            }
-            else{
-                ofDrawRectangle(m_position.x, m_position.y, m_box.width, m_box.height);
-            }
+    ofScale(m_scale.x, m_scale.y);
+    //ofSetColor(ofColor(255,255,10,200));
+    //ofCircle(m_position, 3);
+    //ofSetColor(ofColor(255,10,10,100));
+    //if(m_centred){
+    //ofRect(m_position.x - m_box.width*0.5, m_position.y - m_box.height*0.5, m_box.width, m_box.height);
+    //}
+    //else{
+    //ofRect(m_position.x, m_position.y, m_box.width, m_box.height);
+    //}
+    
+    
+    ofSetColor(m_color);
+    if(m_drawBB){
+        ofNoFill();
+        if(m_centred){
+            ofDrawRectangle(m_position.x - m_box.width*0.5, m_position.y - m_box.height*0.5, m_box.width, m_box.height);
         }
+        else{
+            ofDrawRectangle(m_position.x, m_position.y, m_box.width, m_box.height);
+        }
+    }
     
-        ofTranslate(m_translation.x, m_translation.y);
+    ofTranslate(m_translation.x, m_translation.y);
     
-
-        //m_font.drawMultiLineColumn(m_text,m_fontSize, m_position.x,m_position.y,m_width);
-        m_font.drawMultiLineColumn(m_text,m_position.x,m_position.y,m_width);
-       
-
+    
+    //m_font.drawMultiLineColumn(m_text,m_fontSize, m_position.x,m_position.y,m_width);
+    m_font.drawMultiLineColumn(m_text,m_position.x,m_position.y,m_width);
+    
+    
     //ofDisableAlphaBlending();
     
     ofPopStyle();

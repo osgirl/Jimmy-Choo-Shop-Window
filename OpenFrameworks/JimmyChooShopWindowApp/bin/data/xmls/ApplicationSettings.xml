@@ -20,6 +20,7 @@
   <audio>
 
     <sample name="NightFever" path="sound/NightFever_BeeGees.mp3"/>
+    <sample name="NightFeverShort" path="sound/NightFever_BeeGees_short.mp3"/>
     <sample name="TestSound" path="sound/TestSound.mp3"/>
 
   </audio>
@@ -43,7 +44,6 @@
 
     <tag name="jimmychoo"/>
     <tag name="iwantchoosloane"/>
-    <tag name="onelove"/>
 
   </tags>
 

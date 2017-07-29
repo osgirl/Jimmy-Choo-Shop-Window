@@ -11,22 +11,22 @@
 
 EngineFont::EngineFont():m_lineHeight(1.0),m_batchDrawing(false),m_textBlockAlignment(OF_TEXT_ALIGN_LEFT)
 {
-	//Intentionally left empty
+    //Intentionally left empty
 }
 
 EngineFont::~EngineFont()
 {
-	//Intentionally left empty
+    //Intentionally left empty
 }
 
 bool EngineFont::setup( string fontFile, float fontSize, float lineHeightPercent)
 {
-
+    
     //m_trueTypeFont.setEncoding(OF_ENCODING_UTF8);
-
-	m_lineHeight = lineHeightPercent;
-
-	bool bAntiAliased=true;
+    
+    m_lineHeight = lineHeightPercent;
+    
+    bool bAntiAliased=true;
     bool bFullCharacterSet=true;
     bool makeContours=false;
     float simplifyAmt=0.3;
@@ -34,16 +34,16 @@ bool EngineFont::setup( string fontFile, float fontSize, float lineHeightPercent
     
     string filePathName = getFilePathName(fontFile);
     
-	//if(m_trueTypeFont.load(fontFile,fontSize,bAntiAliased,bFullCharacterSet,makeContours,simplifyAmt,dpi)){
+    //if(m_trueTypeFont.load(fontFile,fontSize,bAntiAliased,bFullCharacterSet,makeContours,simplifyAmt,dpi)){
     if(m_trueTypeFont.load(filePathName,fontSize,true, true)){
-	    ofLogNotice() << "EngineFont::setup-> font loaded " << fontFile << " with size " << fontSize;
+        ofLogNotice() << "EngineFont::setup-> font loaded " << fontFile << " with size " << fontSize;
         return true;
-	}
-	else{
-         ofLogNotice() << "EngineFont::setup-> Can't load font " << fontFile << "!!";
+    }
+    else{
+        ofLogNotice() << "EngineFont::setup-> Can't load font " << fontFile << "!!";
         return false;
-	}
-
+    }
+    
     return false;
 }
 
@@ -93,7 +93,7 @@ void EngineFont::draw( string text, float x, float y)
     if(!m_trueTypeFont.isLoaded()){
         return;
     }
-
+    
     m_trueTypeFont.drawString(text,x,y);
 }
 
@@ -102,15 +102,15 @@ void EngineFont::drawMultiLine( string text, float x, float y)
     if(!m_trueTypeFont.isLoaded()){
         return;
     }
-
+    
     stringstream ss(text);
     string s;
     int line = 0;
     float yy = y;
     //int fontSize = m_trueTypeFont.getFontSize();
     int fontSize = m_trueTypeFont.getSize();
-
-
+    
+    
     while ( getline(ss, s, '\n') ) {
         //cout << s << endl;
         yy = y + fontSize * m_lineHeight* FONT_HEIGHT_MULT * line;
@@ -121,30 +121,30 @@ void EngineFont::drawMultiLine( string text, float x, float y)
 
 ofRectangle EngineFont::drawMultiLineColumn( string text, float x, float y, float columnWidth)
 {
-
+    
     ofRectangle totalArea = ofRectangle(x,y,0,0);
-
+    
     if(!m_trueTypeFont.isLoaded()){
         return totalArea;
     }
-
+    
     int fontSize = m_trueTypeFont.getSize();
     //int fontSize = m_trueTypeFont.getFontSize();
-
-	vector<string>splitLines;
+    
+    vector<string>splitLines;
     ofRectangle r;
-
+    
     ofUTF8Ptr start = ofUTF8::beginPtr(text);
     ofUTF8Ptr iter = ofUTF8::beginPtr(text);
     ofUTF8Ptr lineStart = iter;
     ofUTF8Ptr lastSpace;
     ofUTF8Ptr stop = ofUTF8::endPtr(text);
-
+    
     string thisLine = "";
     bool foundSpace = false;
     bool foundNewLine = false;
     while(iter < stop) {
-
+        
         ofUniChar c = ofUTF8::getNext(iter); // get the next unichar and iterate
         if ( ofUnicode::isSpace(c) ){
             foundSpace = true;
@@ -155,7 +155,7 @@ ofRectangle EngineFont::drawMultiLineColumn( string text, float x, float y, floa
         }
         thisLine += ofTextConverter::toUTF8(c);
         r = m_trueTypeFont.getStringBoundingBox(thisLine.c_str(), 0,0);
-
+        
         if ( r.width > columnWidth || foundNewLine ) { //we went too far, lets jump back to our closest space
             if(foundNewLine){
                 if (thisLine == "\n"){ //if the whole line is only \n, replace for space to avoid weird things
@@ -164,7 +164,7 @@ ofRectangle EngineFont::drawMultiLineColumn( string text, float x, float y, floa
                     thisLine = thisLine.substr(0, thisLine.length()-1);
                 }
                 splitLines.push_back(thisLine);
-
+                
             }else{
                 if (foundSpace){
                     //cout << "## foundSpace! (" << thisLine << ")" << endl;
@@ -189,59 +189,59 @@ ofRectangle EngineFont::drawMultiLineColumn( string text, float x, float y, floa
             }
         }
     }
-
+    
     for(int i = 0; i < splitLines.size(); i++)
     {
         float yy = m_lineHeight * FONT_HEIGHT_MULT * fontSize * i;
-
+        
         ofPushMatrix();
-
-            if(m_textBlockAlignment == OF_TEXT_ALIGN_LEFT)
-            {
-                ofTranslate(0, yy);
-            }
-
-            else if(m_textBlockAlignment == OF_TEXT_ALIGN_CENTER)
-            {
-                ofRectangle r = m_trueTypeFont.getStringBoundingBox(splitLines[i], 0,0);
-                ofTranslate(-r.getWidth()*0.5, yy);
-            }
-            else if(m_textBlockAlignment == OF_TEXT_ALIGN_RIGHT)
-            {
-                ofRectangle r = m_trueTypeFont.getStringBoundingBox(splitLines[i], 0,0);
-                ofTranslate(-r.getWidth(), yy);
-            }
-            else
-            {
-                ofTranslate(0, yy);
-            }
-
-            m_trueTypeFont.drawString(splitLines[i],x,y);
-
+        
+        if(m_textBlockAlignment == OF_TEXT_ALIGN_LEFT)
+        {
+            ofTranslate(0, yy);
+        }
+        
+        else if(m_textBlockAlignment == OF_TEXT_ALIGN_CENTER)
+        {
+            ofRectangle r = m_trueTypeFont.getStringBoundingBox(splitLines[i], 0,0);
+            ofTranslate(-r.getWidth()*0.5, yy);
+        }
+        else if(m_textBlockAlignment == OF_TEXT_ALIGN_RIGHT)
+        {
+            ofRectangle r = m_trueTypeFont.getStringBoundingBox(splitLines[i], 0,0);
+            ofTranslate(-r.getWidth(), yy);
+        }
+        else
+        {
+            ofTranslate(0, yy);
+        }
+        
+        m_trueTypeFont.drawString(splitLines[i],x,y);
+        
         ofPopMatrix();
-
+        
         totalArea = totalArea.getUnion( m_trueTypeFont.getStringBoundingBox(splitLines[i], x, y + yy));
     }
-
-	return totalArea;
+    
+    return totalArea;
 }
 
 string EngineFont::walkAndFill(ofUTF8Ptr begin, ofUTF8Ptr & iter, ofUTF8Ptr end){
-
-	string finalLine = "";
-	ofUTF8Ptr i = begin;
-	while (i < iter) { // re-fill the finalLine from the begining to the last Space
-		finalLine += ofTextConverter::toUTF8(ofUTF8::getNext(i)); // get the next unichar and iterate
-		if(i == end){
-			break;
-		}
-	}
-	return finalLine;
+    
+    string finalLine = "";
+    ofUTF8Ptr i = begin;
+    while (i < iter) { // re-fill the finalLine from the begining to the last Space
+        finalLine += ofTextConverter::toUTF8(ofUTF8::getNext(i)); // get the next unichar and iterate
+        if(i == end){
+            break;
+        }
+    }
+    return finalLine;
 }
 
 
 void EngineFont::setLineHeight(float percent){
-	m_lineHeight = percent;
+    m_lineHeight = percent;
 }
 
 
@@ -338,7 +338,7 @@ string EngineFont::getFontFilePathByName(string fontName)
     HeapFree(GetProcessHeap(), 0, value_data);
     
     l_ret = RegCloseKey(key_ft);
-
+    
     
     if(fonts_table.find(fontname)!=fonts_table.end()){
         return fonts_table[fontname];
@@ -351,7 +351,7 @@ string EngineFont::getFontFilePathByName(string fontName)
 #endif
     
 #ifdef TARGET_LINUX
-   
+    
     std::string filename;
     FcPattern * pattern = FcNameParse((const FcChar8*)fontName.c_str());
     FcBool ret = FcConfigSubstitute(0,pattern,FcMatchPattern);
@@ -384,8 +384,8 @@ string EngineFont::getFontFilePathByName(string fontName)
     return filename;
     
 #endif
-
-
+    
+    
 }
 
 

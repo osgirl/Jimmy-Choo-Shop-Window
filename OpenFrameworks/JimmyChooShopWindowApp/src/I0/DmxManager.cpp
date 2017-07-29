@@ -94,4 +94,5 @@ void DmxManager::exit()
     this->onSetDmxMotorSpeed(speed);
     this->onSetDmxLightSolid();
     this->onSetDmxLightColor(ofColor::black);
+    m_dmx.setLevel(m_dmxLightStartChannel + 3, 0); //Set master dimming to zero
 }

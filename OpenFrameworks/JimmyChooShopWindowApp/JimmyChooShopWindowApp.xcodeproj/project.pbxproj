@@ -15,6 +15,8 @@
 		08B4079C1F2C9BFA006C480E /* InstagramManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08B4079A1F2C9BFA006C480E /* InstagramManager.cpp */; };
 		08B407A11F2C9EE8006C480E /* ofxSimpleTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08B4079F1F2C9EE8006C480E /* ofxSimpleTimer.cpp */; };
 		08B407A31F2C9EF0006C480E /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 08B407A21F2C9EF0006C480E /* README.md */; };
+		08B407A91F2CC766006C480E /* ofxTrueTypeFontUC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08B407A71F2CC766006C480E /* ofxTrueTypeFontUC.cpp */; };
+		08B407AB1F2CC76E006C480E /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 08B407AA1F2CC76E006C480E /* README.md */; };
 		0EB621FABB5465348CEC3C77 /* license.md in Sources */ = {isa = PBXBuildFile; fileRef = A219C615761DD3D3A75B81F5 /* license.md */; };
 		12451834526FB5CD4EA0D0DF /* ofxSceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3B778D8F951EC700B066390 /* ofxSceneManager.cpp */; };
 		15FA0788DED9B05645862A3D /* ofxEasingCubic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2647D2EA00878BEB0023C444 /* ofxEasingCubic.cpp */; };
@@ -143,6 +145,9 @@
 		08B4079F1F2C9EE8006C480E /* ofxSimpleTimer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ofxSimpleTimer.cpp; path = ../../../../../../../../../Applications/of_v0.9.8_osx_release/addons/ofxSimpleTimer/src/ofxSimpleTimer.cpp; sourceTree = "<group>"; };
 		08B407A01F2C9EE8006C480E /* ofxSimpleTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxSimpleTimer.h; path = ../../../../../../../../../Applications/of_v0.9.8_osx_release/addons/ofxSimpleTimer/src/ofxSimpleTimer.h; sourceTree = "<group>"; };
 		08B407A21F2C9EF0006C480E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../../../../../../../../Applications/of_v0.9.8_osx_release/addons/ofxSimpleTimer/README.md; sourceTree = "<group>"; };
+		08B407A71F2CC766006C480E /* ofxTrueTypeFontUC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ofxTrueTypeFontUC.cpp; path = Addons/ofxTrueTypeFontUC/src/ofxTrueTypeFontUC.cpp; sourceTree = "<group>"; };
+		08B407A81F2CC766006C480E /* ofxTrueTypeFontUC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxTrueTypeFontUC.h; path = Addons/ofxTrueTypeFontUC/src/ofxTrueTypeFontUC.h; sourceTree = "<group>"; };
+		08B407AA1F2CC76E006C480E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = Addons/ofxTrueTypeFontUC/README.md; sourceTree = "<group>"; };
 		08C5194B0C92DDA2A7539395 /* core.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = core.h; path = src/Addons/ofxUnicode/libs/utf8cpp/src/utf8_v2_3_1/source/utf8/core.h; sourceTree = SOURCE_ROOT; };
 		09BB1D7613A1F9D8E8B11D7A /* KeyboardManager.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = KeyboardManager.h; path = src/I0/KeyboardManager.h; sourceTree = SOURCE_ROOT; };
 		09F8F2DF1D53E65319F30B96 /* LightManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = LightManager.cpp; path = src/Engine/3D/LightManager.cpp; sourceTree = SOURCE_ROOT; };
@@ -356,6 +361,24 @@
 			children = (
 				08B4079F1F2C9EE8006C480E /* ofxSimpleTimer.cpp */,
 				08B407A01F2C9EE8006C480E /* ofxSimpleTimer.h */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		08B407A51F2CC757006C480E /* ofxTrueTypeFontUC */ = {
+			isa = PBXGroup;
+			children = (
+				08B407AA1F2CC76E006C480E /* README.md */,
+				08B407A61F2CC75D006C480E /* src */,
+			);
+			name = ofxTrueTypeFontUC;
+			sourceTree = "<group>";
+		};
+		08B407A61F2CC75D006C480E /* src */ = {
+			isa = PBXGroup;
+			children = (
+				08B407A71F2CC766006C480E /* ofxTrueTypeFontUC.cpp */,
+				08B407A81F2CC766006C480E /* ofxTrueTypeFontUC.h */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -729,6 +752,7 @@
 		AD642137CCDF61FB3E6CCEA2 /* Addons */ = {
 			isa = PBXGroup;
 			children = (
+				08B407A51F2CC757006C480E /* ofxTrueTypeFontUC */,
 				08B4079D1F2C9ECD006C480E /* ofxSimpleTimer */,
 				74A312B2568D421CAAEF740A /* ofxDatGui */,
 				1B41ADB372A759D872E1D939 /* ofxDmx */,
@@ -1097,6 +1121,7 @@
 				E49699C1F3B736D5847985D8 /* license.txt in Sources */,
 				6BE84BED9B493CA514480EF3 /* ofxaddons_thumbnail.png in Sources */,
 				040259BAD9E7E5CDA062C1FF /* Verdana.ttf in Sources */,
+				08B407A91F2CC766006C480E /* ofxTrueTypeFontUC.cpp in Sources */,
 				E23B9A2CD222C1969CC8B2BA /* icon-group-closed.png in Sources */,
 				46DE9A6B85E9B574643D0D67 /* icon-group-open.png in Sources */,
 				63A90FF94CFD24B528DBEF66 /* icon-radio-off.png in Sources */,
@@ -1134,6 +1159,7 @@
 				AF31AC9CB51C7D2710025360 /* ofxEasingBounce.cpp in Sources */,
 				31FD9151D0665681A27C77D1 /* ofxEasingCirc.cpp in Sources */,
 				15FA0788DED9B05645862A3D /* ofxEasingCubic.cpp in Sources */,
+				08B407AB1F2CC76E006C480E /* README.md in Sources */,
 				83C6F105ADF7915F226EAE94 /* ofxEasingElastic.cpp in Sources */,
 				46A50237177AED3C6967ABE5 /* ofxEasingExpo.cpp in Sources */,
 				F77B2C294EBE453D7DDA0F6E /* ofxEasingLinear.cpp in Sources */,

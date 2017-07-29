@@ -45,6 +45,7 @@ void GuiManager::setup()
     this->setupNeonLight();
     this->setupGuiEvents();
     this->loadGuiValues();
+    this->onSceneChange("SHOWCASE");
     
     ofLogNotice() <<"GuiManager::initialized";
     

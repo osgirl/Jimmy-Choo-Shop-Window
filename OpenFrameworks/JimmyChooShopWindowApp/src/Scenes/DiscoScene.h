@@ -10,9 +10,13 @@
 
 
 #include "ofxScene.h"
+#include "ofxSimpleTimer.h"
+
 
 class DiscoScene : public ofxScene {
 
+    static const int TIMER_DURATION_MS;
+    
 public:
 
     //! Constructor
@@ -38,6 +42,16 @@ public:
 
     //! Called when exit
     void willExit();
+    
+    void timerCompleteHandler( int &args ) ;
+    
+private:
+    
+    void setupTimer();
+    
+private:
+    
+    ofxSimpleTimer     m_timer;
 
 };
 
