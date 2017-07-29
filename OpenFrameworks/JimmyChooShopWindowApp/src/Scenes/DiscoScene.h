@@ -11,6 +11,7 @@
 
 #include "ofxScene.h"
 #include "ofxSimpleTimer.h"
+#include "TextVisual.h"
 
 
 class DiscoScene : public ofxScene {
@@ -49,9 +50,14 @@ private:
     
     void setupTimer();
     
+    void setupText();
+    
+    void updateText();
+    
 private:
     
     ofxSimpleTimer     m_timer;
+    TextVisual         m_textVisual;
 
 };
 

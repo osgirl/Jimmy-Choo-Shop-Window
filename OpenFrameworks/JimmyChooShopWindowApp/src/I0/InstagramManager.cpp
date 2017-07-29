@@ -81,6 +81,7 @@ bool InstagramManager::checkUpdate(const string& result, const string& tag)
     if(m_tags[tag]!=hashtagString){
         m_tags[tag]=hashtagString;
         ofLogNotice() <<"InstagramManager::parseJson -> " << tag << ": "<< m_tags[tag];
+        m_currentString = m_tags[tag];
         return true;
     }
     

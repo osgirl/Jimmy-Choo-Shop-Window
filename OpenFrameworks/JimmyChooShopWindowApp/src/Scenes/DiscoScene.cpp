@@ -18,6 +18,7 @@ DiscoScene::DiscoScene(): ofxScene("DISCO"){}
 void DiscoScene::setup() {
     ofLogNotice("DiscoScene::setup");
     this->setupTimer();
+    this->setupText();
 }
 
 void DiscoScene::setupTimer()
@@ -27,13 +28,35 @@ void DiscoScene::setupTimer()
     
 }
 
+void DiscoScene::setupText()
+{
+    int margin =  LayoutManager::MARGIN;
+    
+    float width = AppManager::getInstance().getSettingsManager().getAppWidth();
+    float height  = AppManager::getInstance().getSettingsManager().getAppHeight();
+    ofPoint pos = ofPoint(width/2, height/2);
+    float w = width - 2*margin;
+    float h = height - 2*margin;
+    string text = " ";
+    string fontName = "fonts/Arial Unicode.ttf";
+    float size = 20;
+    
+    
+    m_textVisual.setWidth(w); m_textVisual.setHeight(h);
+    m_textVisual.setPosition(pos); m_textVisual.setCentred(true);
+    m_textVisual.setLineHeight(1.5);
+    m_textVisual.setText(text, fontName, size, ofColor::white);
+    
+}
+
 void DiscoScene::update()
 {
     m_timer.update();
 }
 
 void DiscoScene::draw() {
-    ofBackground(255,0,0);
+    ofBackground(0,0,0);
+    m_textVisual.draw();
 }
 
 void DiscoScene::willFadeIn() {
@@ -44,7 +67,15 @@ void DiscoScene::willFadeIn() {
      AppManager::getInstance().getDmxManager().onSetDmxMotorSpeed(motorSpeed);
      AppManager::getInstance().getSerialManager().onSetColor(ofColor::pink);
      m_timer.start(false);
+     this->updateText();
 }
+
+void DiscoScene::updateText()
+{
+    auto text = AppManager::getInstance().getInstagramManager().getCurrentString();
+    m_textVisual.setText(text);
+}
+
 
 void DiscoScene::willDraw() {
     ofLogNotice("DiscoScene::willDraw");
