@@ -32,7 +32,7 @@ void ShowcaseScene::willFadeIn() {
     
     AppManager::getInstance().getLayoutManager().setTitle(getName());
     
-    AppManager::getInstance().getSerialManager().onSetShowcase();
+    AppManager::getInstance().getSerialManager().onSetSolid();
 }
 
 void ShowcaseScene::willDraw() {

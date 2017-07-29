@@ -41,7 +41,7 @@ public:
     
     void onSetDisco();
     
-    void onSetShowcase();
+    void onSetSolid();
     
 private:
     

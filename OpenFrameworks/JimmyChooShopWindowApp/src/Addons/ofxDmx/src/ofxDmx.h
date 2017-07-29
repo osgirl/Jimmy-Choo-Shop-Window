@@ -22,6 +22,16 @@ public:
 	
 	void setChannels(unsigned int channels = 24); // change the number of channels
 	bool isConnected();
+    
+    bool autoconnect(unsigned int channels = 24);
+    
+private:
+    
+    bool checkConnection(int portNum);
+    
+    bool sendPin();
+    
+    bool receivedOk();
 	
 private:	
 	int connected;

@@ -20,6 +20,7 @@ SerialManager::SerialManager(): Manager()
 SerialManager::~SerialManager()
 {
    ofLogNotice() << "SerialManager::destructor";
+   this->onSetSolid();
    this->onSetColor(ofColor::black);
 }
 
@@ -160,7 +161,7 @@ void SerialManager::onSetDisco()
     m_serial.writeByte('d');
 }
 
-void SerialManager::onSetShowcase()
+void SerialManager::onSetSolid()
 {
     m_serial.writeByte('s');
 }

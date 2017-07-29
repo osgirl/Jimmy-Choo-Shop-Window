@@ -37,7 +37,8 @@ void DmxManager::setup()
 
 void DmxManager::setupDmx()
 {
-    m_dmx.connect("/dev/tty.usbserial-EN198035", 512); // use the name
+    //m_dmx.connect("/dev/tty.usbserial-EN198035", 512); // use the name
+    m_dmx.autoconnect(255);
 }
 
 void DmxManager::update()
