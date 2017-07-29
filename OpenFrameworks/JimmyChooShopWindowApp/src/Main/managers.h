@@ -21,3 +21,4 @@
 #include "AudioManager.h"
 #include "DmxManager.h"
 #include "SerialManager.h"
+#include "InstagramManager.h"

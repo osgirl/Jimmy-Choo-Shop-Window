@@ -74,6 +74,9 @@ public:
     //! Returns the serial manager
     SerialManager&  getSerialManager() { return m_serialManager; }
     
+    //! Returns the Instagram manager
+    InstagramManager&  getInstagramManager() { return m_instagramManager; }
+    
     //==========================================================================
     
     void toggleDebugMode();
@@ -117,6 +120,7 @@ private:
     AudioManager             m_audioManager;             ///< Manages the audio
     DmxManager               m_dmxManager;               ///< Manages the dmx
     SerialManager            m_serialManager;            ///< Manages the serial communications
+    InstagramManager         m_instagramManager;         ///< Manages the Instagram
     bool                     m_debugMode;
 };
 
