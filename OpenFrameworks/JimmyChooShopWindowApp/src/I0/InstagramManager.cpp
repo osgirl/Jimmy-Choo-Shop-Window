@@ -33,10 +33,22 @@ void InstagramManager::setup()
     
     Manager::setup();
     
+    this->setupTags();
     this->setupTimer();
+    
     ofRegisterURLNotification(this);
     
     ofLogNotice() <<"InstagramManager::initialized" ;
+}
+
+void InstagramManager::setupTags()
+{
+    auto& tags = AppManager::getInstance().getSettingsManager().getTags();
+    for(auto& tag: tags)
+    {
+        m_tags[tag] = "";
+        ofLogNotice() <<"InstagramManager::setupTags -> Added tag: " << tag;
+    }
 }
 
 void InstagramManager::setupTimer()
@@ -53,27 +65,41 @@ void InstagramManager::update()
 }
 
 
-void InstagramManager::parseJson(const string& result){
-    
-    m_json.parse(result);
-    
-    string hashtagString =  m_json["tag"]["media"]["nodes"][0]["caption"].asString();
-    
-    if(m_currentString!=hashtagString){
-        m_currentString=hashtagString;
-        ofLogNotice() <<"InstagramManager::parseJson -> " << m_currentString;
+void InstagramManager::checkUpdate(const string& result, const string& tag)
+{
+    if(m_tags.find(tag)==m_tags.end()) //No tag found with that name
+    {
+        return;
     }
     
+    string hashtagString = this->parseJson(result);
+    
+    if(m_tags[tag]!=hashtagString){
+        m_tags[tag]=hashtagString;
+        ofLogNotice() <<"InstagramManager::parseJson -> " << tag << ": "<< m_tags[tag];
+    }
     
     // cout << json["tag"]["media"]["nodes"][0]["caption"].asString() <<endl;
 }
 
-void InstagramManager::urlResponse(ofHttpResponse & response){
-    if(response.status==200 && response.request.name == "hashtag"){
-        //cout << response.data << endl;
-        this->parseJson(response.data );
-    }else{
-        cout << response.status << " " << response.error << endl;
+string InstagramManager::parseJson(const string& result)
+{
+    m_json.parse(result);
+    return m_json["tag"]["media"]["nodes"][0]["caption"].asString();
+}
+
+void InstagramManager::urlResponse(ofHttpResponse & response)
+{
+    //ofLogNotice() <<"InstagramManager::urlResponse -> " << response.request.name << ", " << response.status;
+    
+    for (auto& tag : m_tags)
+    {
+        if(response.status==200 && response.request.name == tag.first)
+        {
+            //ofLogNotice() <<"InstagramManager::urlResponse -> " << response.request.name << ", " << response.status;
+            
+            this->checkUpdate(response.data, tag.first);
+        }
     }
 }
 
@@ -82,6 +108,16 @@ void InstagramManager::timerCompleteHandler( int &args )
 {
     m_timer.start(false);
     //cout<<"TIMER COMPLETED"<<endl;
-    ofLoadURLAsync("https://www.instagram.com/explore/tags/onelove/?__a=1","hashtag");
+    string start = "https://www.instagram.com/explore/tags/" ;
+    string end = "/?__a=1" ;
+    
+    for (auto& tag : m_tags) {
+        string url = start + tag.first + end;
+        ofLoadURLAsync(url,tag.first);
+        
+        //ofLogNotice() <<"InstagramManager::loadurl -> " << url;
+    }
+    
+   
 }
 

@@ -47,13 +47,21 @@ private:
     
     void setupTimer();
     
-    void parseJson(const string& result);
+    void setupTags();
+    
+    void checkUpdate(const string& result, const string& tag);
+    
+    string parseJson(const string& result);
     
 private:
     
-     ofxSimpleTimer     m_timer;
-     ofxJSONElement     m_json;
-     string             m_currentString;
+    
+    typedef            map<string,string> TagMap; ///< Defines a map of current feeds related to a tag
+    
+    TagMap             m_tags;
+    ofxSimpleTimer     m_timer;
+    ofxJSONElement     m_json;
+    string             m_currentString;
 
 };
 

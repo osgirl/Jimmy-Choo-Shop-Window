@@ -39,11 +39,12 @@
 
   </colors>
 
-  <hashtags>
+  <tags>
 
-    <hashtag name="jimmychoo"/>
-    <hashtag name="iwantchoosloane"/>
+    <tag name="jimmychoo"/>
+    <tag name="iwantchoosloane"/>
+    <tag name="onelove"/>
 
-  </hashtags>
+  </tags>
 
 </settings>

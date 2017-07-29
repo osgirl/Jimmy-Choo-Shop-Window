@@ -50,6 +50,7 @@ void SettingsManager::loadAllSettings()
     this->loadVideoSettings();
     this->loadAudioSettings();
     this->loadColors();
+    this->loadTagSettings();
 }
 
 bool SettingsManager::loadSettingsFile()
@@ -287,7 +288,7 @@ void SettingsManager::loadVideoSettings()
         while(m_xml.setToSibling()); // go to the next svg
         
         
-        ofLogNotice() <<"SettingsManager::loadSvgSettings->  successfully loaded the resource settings" ;
+        ofLogNotice() <<"SettingsManager::loadSvgSettings->  successfully loaded the video settings" ;
         return;
     }
     
@@ -319,14 +320,41 @@ void SettingsManager::loadAudioSettings()
         while(m_xml.setToSibling()); // go to the next svg
         
         
-        ofLogNotice() <<"SettingsManager::loadAudioSettings->  successfully loaded the resource settings" ;
+        ofLogNotice() <<"SettingsManager::loadAudioSettings->  successfully loaded the audio settings" ;
         return;
     }
     
     ofLogNotice() <<"SettingsManager::loadAudioSettings->  path not found: " << path ;
 }
 
-
+void SettingsManager::loadTagSettings()
+{
+    m_xml.setTo("//");
+    
+    string path = "//tags";
+    if(m_xml.exists(path)) {
+        
+        typedef   std::map<string, string>   AttributesMap;
+        AttributesMap attributes;
+        
+        path = "//tags/tag[0]";
+        m_xml.setTo(path);
+        do {
+            
+            attributes = m_xml.getAttributes();
+            m_tags.push_back(attributes["name"]);
+            
+            ofLogNotice() <<"SettingsManager::loadTagSettings->  tag = " << attributes["name"];
+        }
+        while(m_xml.setToSibling()); // go to the next svg
+        
+        
+        ofLogNotice() <<"SettingsManager::loadTagSettings->  successfully loaded the tag settings" ;
+        return;
+    }
+    
+    ofLogNotice() <<"SettingsManager::loadTagSettings->  path not found: " << path ;
+}
 
 
 
