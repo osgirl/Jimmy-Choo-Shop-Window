@@ -149,14 +149,18 @@ void SerialManager::onSetColor(const ofColor& color)
     bytes[2] = color.g;
     bytes[3] = color.b;
     bytes[4] = '\n';
-//
-//    unsigned char bytes[4];
-//    
-//    bytes[0] = color.r;
-//    bytes[1] = color.g;
-//    bytes[2] = color.b;
-//    bytes[4] = '\n';
     
     m_serial.writeBytes(bytes,sizeof(bytes));
 
+}
+
+
+void SerialManager::onSetDisco()
+{
+    m_serial.writeByte('d');
+}
+
+void SerialManager::onSetShowcase()
+{
+    m_serial.writeByte('s');
 }

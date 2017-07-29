@@ -40,11 +40,9 @@ void LayoutManager::setup()
 
 	Manager::setup();
     
-    
-   
-    
     this->setupFbo();
     this->setupWindowFrame();
+    this->setupColor();
     
     this->createTextVisuals();
     this->createSvgVisuals();
@@ -69,6 +67,12 @@ void LayoutManager::setupFbo()
     
 }
 
+void LayoutManager::setupColor()
+{
+    m_animationColor.setSaturation(255);
+    m_animationColor.setBrightness(255);
+    m_animationColor.setHue(0);
+}
 void LayoutManager::resetWindowRect()
 {
     float width = AppManager::getInstance().getSettingsManager().getAppWidth();
@@ -107,9 +111,18 @@ void LayoutManager::update()
 {
     if(!m_initialized)
         return;
+    
+    this->updateColor();
 }
 
+void LayoutManager::updateColor()
+{
+    float dt = ofGetLastFrameTime();
+    
+    float hue = fmod((m_animationColor.getHue() + dt*10),360);
+    m_animationColor.setHue(hue);
 
+}
 
 void LayoutManager::createTextVisuals()
 {

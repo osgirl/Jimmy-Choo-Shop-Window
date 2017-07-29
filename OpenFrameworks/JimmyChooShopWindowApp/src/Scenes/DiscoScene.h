@@ -54,6 +54,11 @@ private:
     
     void updateText();
     
+    void setupDmx();
+    
+    void updateColors();
+    
+      
 private:
     
     ofxSimpleTimer     m_timer;

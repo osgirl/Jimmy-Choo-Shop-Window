@@ -41,7 +41,9 @@ public:
     
 private:
     
-    ofColor m_currentColor;
-
+    
+    void setupDmx();
+    
+    void updateColors();
 };
 

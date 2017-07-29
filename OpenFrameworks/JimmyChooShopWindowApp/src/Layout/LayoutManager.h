@@ -50,6 +50,8 @@ public:
     void windowResized(int w, int h);
     
     void setTitle(const string& title);
+    
+    const ofColor& getAnimationColor() const {return m_animationColor;}
 
 private:
 
@@ -71,6 +73,10 @@ private:
     void addVisuals();
     
     void setupFbo();
+    
+    void setupColor();
+    
+    void updateColor();
     
     void resetWindowRect();
     
@@ -100,6 +106,7 @@ private:
     ofRectangle         m_windowRect;
     RectangleVisual     m_windowFrame;
     ofFbo               m_fbo;
+    ofColor             m_animationColor;
 
 };
 

@@ -39,6 +39,10 @@ public:
     
     void onSetColor(const ofColor& color);
     
+    void onSetDisco();
+    
+    void onSetShowcase();
+    
 private:
     
     void setupSerial();

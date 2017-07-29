@@ -52,6 +52,7 @@ void DiscoScene::setupText()
 void DiscoScene::update()
 {
     m_timer.update();
+    this->updateColors();
 }
 
 void DiscoScene::draw() {
@@ -62,13 +63,11 @@ void DiscoScene::draw() {
 void DiscoScene::willFadeIn() {
      ofLogNotice("DiscoScene::willFadeIn");
      AppManager::getInstance().getAudioManager().playSample("NightFeverShort");
-     AppManager::getInstance().getDmxManager().onSetDmxLightStrobe();
-     int motorSpeed = 127;
-     AppManager::getInstance().getDmxManager().onSetDmxMotorSpeed(motorSpeed);
-     AppManager::getInstance().getSerialManager().onSetColor(ofColor::pink);
+     this->setupDmx();
      m_timer.start(false);
      this->updateText();
      AppManager::getInstance().getLayoutManager().setTitle(getName());
+     AppManager::getInstance().getSerialManager().onSetDisco();
 }
 
 void DiscoScene::updateText()
@@ -80,6 +79,7 @@ void DiscoScene::updateText()
 
 void DiscoScene::willDraw() {
     ofLogNotice("DiscoScene::willDraw");
+    AppManager::getInstance().getSerialManager().onSetDisco();
 }
 
 void DiscoScene::willFadeOut() {
@@ -96,6 +96,21 @@ void DiscoScene::timerCompleteHandler( int &args )
 {
     ofLogNotice("DiscoScene::timerCompleteHandler -> Timer completed");
     AppManager::getInstance().getGuiManager().onSceneChange("SHOWCASE");
-
 }
+
+void DiscoScene::setupDmx()
+{
+    AppManager::getInstance().getDmxManager().onSetDmxLightStrobe();
+    int motorSpeed = 127;
+    AppManager::getInstance().getDmxManager().onSetDmxMotorSpeed(motorSpeed);
+}
+
+void DiscoScene::updateColors()
+{
+    auto animationColor = AppManager::getInstance().getLayoutManager().getAnimationColor();
+    
+    AppManager::getInstance().getSerialManager().onSetColor(animationColor);
+    
+}
+
 
