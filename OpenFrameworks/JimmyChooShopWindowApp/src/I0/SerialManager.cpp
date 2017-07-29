@@ -56,11 +56,11 @@ void SerialManager::setupSerial()
         }
     }
     
-//    if(!m_serial.setup(portNum, baud)) //open a device number)
+//    if(!m_serial.setup(0, BAUD_RATE)) //open a device number)
 //    {
-//        ofLogNotice() <<"SerialManager::initialized << Could not cpnnect to serial " << deviceList[portNum].getDeviceName();
+//        ofLogNotice() <<"SerialManager::initialized << Could not cpnnect to serial " << deviceList[0].getDeviceName();
 //    }
-    
+//    
 }
 
 bool SerialManager::checkConnection(int portNum)
@@ -149,6 +149,13 @@ void SerialManager::onSetColor(const ofColor& color)
     bytes[2] = color.g;
     bytes[3] = color.b;
     bytes[4] = '\n';
+//
+//    unsigned char bytes[4];
+//    
+//    bytes[0] = color.r;
+//    bytes[1] = color.g;
+//    bytes[2] = color.b;
+//    bytes[4] = '\n';
     
     m_serial.writeBytes(bytes,sizeof(bytes));
 

@@ -45,39 +45,31 @@ void loop() {
 //  } 
 
     // if there's any serial available, read it:
-    while (Serial.available() > 0) {
-     byte header = Serial.read();
-      if(header == 'c')
-      {
-          fill_solid(leds, NUM_LEDS, CRGB::Red);
-          FastLED.show(); 
-          byte red = Serial.read();
-          byte green = Serial.read();
-          byte blue = Serial.read();
-
-          // look for the newline. That's the end of your sentence:
-          if (Serial.read() == '\n') {
-            // constrain the values to 0 - 255 
-      
-             gColor.r = red;
-             gColor.g = green;
-             gColor.b = blue;
-      
-             fill_solid(leds, NUM_LEDS, gColor);
-             FastLED.show(); 
-
-//              while (Serial.available() > 0) {
-//                int val = Serial.read();
-//              }
-
-             break;
-          }
-          }
-          else if(header == '?')
-          {
-               Serial.print("OK"); 
-               break;
-          }
+    while (Serial.available() > 0) 
+    {
+       byte header = Serial.read();
+        if(header == 'c')
+        {
+            byte red = Serial.read();
+            byte green = Serial.read();
+            byte blue = Serial.read();
+  
+            // look for the newline. That's the end of your sentence:
+            if (Serial.read() == '\n')
+            {
+               gColor.r = red;
+               gColor.g = green;
+               gColor.b = blue;
+        
+               fill_solid(leds, NUM_LEDS, gColor);
+               FastLED.show(); 
+              }
+           }
+           else if(header == '?')
+           {
+                Serial.print("OK"); 
+                break;
+           }
      
-     }
+      }
 }
