@@ -23,6 +23,8 @@
 class SerialManager: public Manager
 {
 
+    static const int BAUD_RATE;
+    
 public:
     //! Constructor
     SerialManager();
@@ -36,11 +38,16 @@ public:
     void update();
     
     void onSetColor(const ofColor& color);
-
-
+    
 private:
     
     void setupSerial();
+    
+    bool checkConnection(int portNum);
+    
+    bool sendPin();
+    
+    bool receivedOk();
     
 private:
     

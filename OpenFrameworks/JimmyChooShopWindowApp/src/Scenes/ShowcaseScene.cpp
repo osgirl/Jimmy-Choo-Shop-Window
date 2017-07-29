@@ -45,6 +45,7 @@ void ShowcaseScene::willFadeIn() {
     AppManager::getInstance().getDmxManager().onSetDmxLightSolid();
     int motorSpeed = 20;
     AppManager::getInstance().getDmxManager().onSetDmxMotorSpeed(motorSpeed);
+    AppManager::getInstance().getLayoutManager().setTitle(getName());
     
     //AppManager::getInstance().getSerialManager().onSetColor(ofColor::blue);
 }

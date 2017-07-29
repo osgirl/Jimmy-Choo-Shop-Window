@@ -219,6 +219,15 @@ void LayoutManager::drawFbo()
     m_fbo.draw(m_windowRect.x,m_windowRect.y,m_windowRect.width,m_windowRect.height);
 }
 
+void LayoutManager::setTitle(const string& title)
+{
+    string titleKey = "SceneName";
+    if( m_textVisuals.find(titleKey) == m_textVisuals.end()){
+        return;
+    }
+    
+    m_textVisuals[titleKey]->setText(title);
+}
 
 void LayoutManager::windowResized(int w, int h)
 {

@@ -107,8 +107,8 @@ void EngineFont::drawMultiLine( string text, float x, float y)
     string s;
     int line = 0;
     float yy = y;
-    //int fontSize = m_trueTypeFont.getFontSize();
-    int fontSize = m_trueTypeFont.getSize();
+    int fontSize = m_trueTypeFont.getFontSize();
+    ///int fontSize = m_trueTypeFont.getSize();
     
     
     while ( getline(ss, s, '\n') ) {
@@ -128,8 +128,8 @@ ofRectangle EngineFont::drawMultiLineColumn( string text, float x, float y, floa
         return totalArea;
     }
     
-    int fontSize = m_trueTypeFont.getSize();
-    //int fontSize = m_trueTypeFont.getFontSize();
+    //int fontSize = m_trueTypeFont.getSize();
+    int fontSize = m_trueTypeFont.getFontSize();
     
     vector<string>splitLines;
     ofRectangle r;

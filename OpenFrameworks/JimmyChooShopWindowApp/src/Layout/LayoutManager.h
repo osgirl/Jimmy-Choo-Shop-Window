@@ -49,6 +49,7 @@ public:
     
     void windowResized(int w, int h);
     
+    void setTitle(const string& title);
 
 private:
 

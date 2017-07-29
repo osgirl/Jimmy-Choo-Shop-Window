@@ -68,6 +68,7 @@ void DiscoScene::willFadeIn() {
      AppManager::getInstance().getSerialManager().onSetColor(ofColor::pink);
      m_timer.start(false);
      this->updateText();
+     AppManager::getInstance().getLayoutManager().setTitle(getName());
 }
 
 void DiscoScene::updateText()
