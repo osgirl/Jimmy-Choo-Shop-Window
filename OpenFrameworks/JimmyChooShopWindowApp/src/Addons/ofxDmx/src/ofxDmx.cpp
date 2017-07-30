@@ -45,9 +45,11 @@ bool ofxDmx::autoconnect(unsigned int channels)
         {
             this->connect(device.getDeviceID(), channels);
             ofLogNotice() <<"ENTTEC USB PRO connected to port " << device.getDeviceName();
-            break;
+			return true;
         }
     }
+
+	return false;
 }
 
 bool ofxDmx::checkConnection(int portNum)
@@ -57,9 +59,13 @@ bool ofxDmx::checkConnection(int portNum)
         this->sendPin();
         ofSleepMillis(50);
         if(this->receivedOk()){
-            ofLogNotice() <<"ENTTEC USB PRO connected to " << portNum;
+            ofLogNotice() <<"Received OK from ENTECC USB PRO ";
+			serial.close();
             return true;
         }
+		else {
+			serial.close();
+		}
     }
     
     ofLogError() <<" ENTTEC USB PRO is not connected ";
@@ -68,7 +74,7 @@ bool ofxDmx::checkConnection(int portNum)
     
 }
 
-bool ofxDmx::sendPin()
+void ofxDmx::sendPin()
 {
     unsigned int dataSize = 0;
     unsigned int packetSize = DMX_PRO_HEADER_SIZE + dataSize + DMX_PRO_END_SIZE;
@@ -99,7 +105,7 @@ bool ofxDmx::receivedOk()
     
     /// // we want to read 4 bytes
     int bytesRequired = 4;
-    unsigned char bytes[bytesRequired];
+    unsigned char bytes[4];
     int bytesRemaining = bytesRequired;
     // loop until we've read everything
     while ( bytesRemaining > 0 ){

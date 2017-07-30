@@ -11,7 +11,7 @@
 #include "ofMain.h"
 #include "Manager.h"
 #include "ofxDmx.h"
-#include "ofxDmx4All.h"
+//#include "ofxDmx4All.h"
 
 //========================== class DmxManager =======================================
 //==============================================================================
@@ -56,7 +56,7 @@ private:
     
 private:
     
-    ofxDmx4All m_dmx;
+    ofxDmx m_dmx;
     int m_dmxLightStartChannel;
     int m_dmxMotorStartChannel;
 

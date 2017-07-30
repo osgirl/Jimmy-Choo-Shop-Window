@@ -76,7 +76,7 @@ bool AudioManager::playSample(string name)
     return true;
 }
 
-bool AudioManager::stopSample()
+void AudioManager::stopSample()
 {
     m_soundPlayer.stop();
 }

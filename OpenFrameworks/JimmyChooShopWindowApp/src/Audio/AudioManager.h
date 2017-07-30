@@ -43,7 +43,7 @@ public:
     
     bool playSample(string name);
     
-    bool stopSample();
+    void stopSample();
     
     
 private:

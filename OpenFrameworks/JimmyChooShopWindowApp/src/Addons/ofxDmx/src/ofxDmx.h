@@ -29,7 +29,7 @@ private:
     
     bool checkConnection(int portNum);
     
-    bool sendPin();
+    void sendPin();
     
     bool receivedOk();
 	

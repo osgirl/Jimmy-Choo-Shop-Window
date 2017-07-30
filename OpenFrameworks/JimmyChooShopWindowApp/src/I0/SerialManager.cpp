@@ -74,6 +74,9 @@ bool SerialManager::checkConnection(int portNum)
             ofLogNotice() <<"SerialManager::checkConnection << Arduino connected to " << portNum;
             return true;
         }
+		else {
+			m_serial.close();
+		}
     }
     
     ofLogNotice() <<"SerialManager::checkConnection << Arduino is not connected ";
@@ -82,7 +85,7 @@ bool SerialManager::checkConnection(int portNum)
     
 }
 
-bool SerialManager::sendPin()
+void SerialManager::sendPin()
 {
     unsigned char byte = '?';
     m_serial.writeByte(byte);
@@ -100,7 +103,7 @@ bool SerialManager::receivedOk()
     
     /// // we want to read 2 bytes
     int bytesRequired = 2;
-    unsigned char bytes[bytesRequired];
+    unsigned char bytes[2];
     int bytesRemaining = bytesRequired;
     // loop until we've read everything
     while ( bytesRemaining > 0 ){

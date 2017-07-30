@@ -269,7 +269,7 @@ string EngineFont::getFontFilePathByName(string fontName)
 #endif
     
 #ifdef TARGET_WIN32
-    
+	string fontPath = "";
     map<std::string, std::string> fonts_table;
     
     LONG l_ret;
@@ -280,7 +280,7 @@ string EngineFont::getFontFilePathByName(string fontName)
     l_ret = RegOpenKeyExW(HKEY_LOCAL_MACHINE, Fonts, 0, KEY_QUERY_VALUE, &key_ft);
     if (l_ret != ERROR_SUCCESS){
         ofLogError("ofTrueTypeFont") << "initWindows(): couldn't find fonts registery key";
-        return;
+        return fontPath;
     }
     
     DWORD value_count;
@@ -294,18 +294,18 @@ string EngineFont::getFontFilePathByName(string fontName)
     l_ret = RegQueryInfoKeyW(key_ft, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, &value_count, nullptr, &max_data_len, nullptr, nullptr);
     if(l_ret != ERROR_SUCCESS){
         ofLogError("ofTrueTypeFont") << "initWindows(): couldn't query registery for fonts";
-        return;
+        return fontPath;
     }
     
     // no font installed
     if (value_count == 0){
         ofLogError("ofTrueTypeFont") << "initWindows(): couldn't find any fonts in registery";
-        return;
+        return fontPath;
     }
     
     // max_data_len is in BYTE
     value_data = static_cast<BYTE *>(HeapAlloc(GetProcessHeap(), HEAP_GENERATE_EXCEPTIONS, max_data_len));
-    if(value_data == nullptr) return;
+    if(value_data == nullptr) return fontPath;
     
     char value_name_char[2048];
     char value_data_char[2048];
@@ -340,11 +340,11 @@ string EngineFont::getFontFilePathByName(string fontName)
     l_ret = RegCloseKey(key_ft);
     
     
-    if(fonts_table.find(fontname)!=fonts_table.end()){
-        return fonts_table[fontname];
+    if(fonts_table.find(fontName)!=fonts_table.end()){
+        return fonts_table[fontName];
     }
     for(map<std::string,std::string>::iterator it = fonts_table.begin(); it!=fonts_table.end(); it++){
-        if(ofIsStringInString(ofToLower(it->first),ofToLower(fontname))) return it->second;
+        if(ofIsStringInString(ofToLower(it->first),ofToLower(fontName))) return it->second;
     }
     return "";
     
