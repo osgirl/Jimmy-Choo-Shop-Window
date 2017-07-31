@@ -14,7 +14,7 @@
 const string SettingsManager::APPLICATION_SETTINGS_FILE_NAME = "xmls/ApplicationSettings.xml";
 
 
-SettingsManager::SettingsManager(): Manager(), m_appHeight(0.0), m_appWidth(0.0)
+SettingsManager::SettingsManager(): Manager(), m_appHeight(0.0), m_appWidth(0.0), m_dmxPort(-1), m_serialPort(-1)
 {
     //Intentionally left empty
 }
@@ -45,6 +45,7 @@ void SettingsManager::loadAllSettings()
     this->setWindowProperties();
     this->setDebugProperties();
     this->setNetworkProperties();
+    this->loadSerialSettings();
     this->loadTextureSettings();
     this->loadSvgSettings();
     this->loadVideoSettings();
@@ -155,6 +156,38 @@ void SettingsManager::setNetworkProperties()
     }
     
     ofLogNotice() <<"SettingsManager::setNetworkProperties->  path not found: " << networkPath ;
+}
+
+
+void SettingsManager::loadSerialSettings()
+{
+    m_xml.setTo("//");
+    
+    string path = "//of_settings/serial";
+    if(m_xml.exists(path)) {
+        m_xml.setTo(path);
+        typedef   std::map<string, string>   AttributesMap;
+        AttributesMap attributes = m_xml.getAttributes();
+        
+        bool autoSerial = ofToBool(attributes["auto"]);
+        
+        if(autoSerial){
+             ofLogNotice() <<"SettingsManager::loadSerialSettings->  serial will be automatically selected" ;
+            m_dmxPort = -1;
+            m_serialPort = -1;
+        }
+        else{
+            m_serialPort = ofToInt(attributes["serialPort"]);
+            m_dmxPort = ofToInt(attributes["dmxPort"]);
+            
+            ofLogNotice() <<"SettingsManager::loadSerialSettings->  serial port = " << m_serialPort << ", dmx port = " << m_dmxPort;
+        }
+        
+        ofLogNotice() <<"SettingsManager::loadSerialSettings->  successfully loaded the serial settings" ;
+        return;
+    }
+    
+    ofLogNotice() <<"SettingsManager::loadSerialSettings->  path not found: " << path ;
 }
 
 void SettingsManager::loadColors()

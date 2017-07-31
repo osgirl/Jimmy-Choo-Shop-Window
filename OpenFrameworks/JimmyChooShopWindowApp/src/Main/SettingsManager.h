@@ -63,6 +63,9 @@ public:
     
     string getMidiName() const {return m_midiName;}
     
+    int getDmxPort() const {return m_dmxPort;}
+    
+    int getSerialPort() const {return m_serialPort;}
     
 private:
     
@@ -99,6 +102,8 @@ private:
     //! Loads all the tag  settings
     void loadTagSettings();
     
+    //! Loads all the serial  settings
+    void loadSerialSettings();
     
 private:
     
@@ -119,7 +124,9 @@ private:
     string                  m_ipAddress;            ///< stores the Ip Address used for the Network communications
     string                  m_syphonName;           ///<stores the name of the syphon pipe name
     string                  m_midiName;             ///<stores the name of the midi device
-    
+    bool                    m_autoSerial;           ///< stores whether the serial port has to be search automatically or not
+    int                     m_serialPort;           ///< stores the settings serial port
+    int                     m_dmxPort;              ///< stores the settings dmx port
     
 };
 

@@ -45,7 +45,13 @@ public:
     
 private:
     
+    void readSerialSettings();
+    
     void setupSerial();
+    
+    void autoConnect();
+    
+    void connect(int portNum);
     
     bool checkConnection(int portNum);
     
@@ -55,7 +61,7 @@ private:
     
 private:
     
-     ofSerial	m_serial;
+    ofSerial   m_serial;
     bool       m_connected;
 
 };

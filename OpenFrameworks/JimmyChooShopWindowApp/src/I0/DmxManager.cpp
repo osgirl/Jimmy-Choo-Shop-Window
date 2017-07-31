@@ -35,12 +35,22 @@ void DmxManager::setup()
     ofLogNotice() <<"DmxManager::initialized" ;
 }
 
+
+
 void DmxManager::setupDmx()
 {
-    //m_dmx.connect("/dev/tty.usbserial-EN198035", 512); // use the name
-    m_dmx.autoconnect(255);
-	//m_dmx.connect(1,255);
+    int dmxPort = AppManager::getInstance().getSettingsManager().getDmxPort();
+    if(dmxPort<0){
+        ofLogNotice() <<"DmxManager::setupSerial << Autoconnecting dmx port";
+        m_dmx.autoconnect(255);
+    }
+    else{
+        ofLogNotice() <<"DmxManager::setupSerial << Connecting dmx to port " << dmxPort;
+        m_dmx.connect(dmxPort,255);
+    }
 }
+
+
 
 void DmxManager::update()
 {
