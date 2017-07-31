@@ -81,8 +81,11 @@ bool InstagramManager::checkUpdate(const string& result, const string& tag)
     if(m_tags[tag]!=hashtagString){
         m_tags[tag]=hashtagString;
         ofLogNotice() <<"InstagramManager::parseJson -> " << tag << ": "<< m_tags[tag];
-        m_currentString = m_tags[tag];
-        return true;
+        if(this->checkAllTags(result)){
+            m_currentString = m_tags[tag];
+            return true;
+        }
+        
     }
     
      return false;
@@ -122,8 +125,28 @@ void InstagramManager::timerCompleteHandler( int &args )
     for (auto& tag : m_tags) {
         string url = start + tag.first + end;
         ofLoadURLAsync(url,tag.first);
-        
+        break; //Just use the first tag as reference
         //ofLogNotice() <<"InstagramManager::loadurl -> " << url;
     }
 }
+
+
+bool InstagramManager::checkAllTags(const string& result)
+{
+    bool allTagsAreInResult = true;
+   
+    for (auto& tag : m_tags)
+    {
+        string hastag = '#' + tag.first ;
+        if(!ofIsStringInString(result, hastag))
+        {
+            ofLogNotice() <<"InstagramManager::checkAllTags -> hashtag not found: " << hastag;
+            allTagsAreInResult = false;
+            break;
+        }
+    }
+    
+    return allTagsAreInResult;
+}
+
 

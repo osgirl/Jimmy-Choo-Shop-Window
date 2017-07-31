@@ -40,7 +40,8 @@ void DiscoScene::setupText()
     float w = width - 2*margin;
     float h = height - 2*margin;
     string text = " ";
-    string fontName = "fonts/Arial Unicode.ttf";
+    //string fontName = "fonts/Arial Unicode.ttf";
+    string fontName = "fonts/OpenSansEmoji.ttf";
     float size = 20;
     
     
