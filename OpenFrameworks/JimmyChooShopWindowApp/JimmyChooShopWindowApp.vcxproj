@@ -232,7 +232,6 @@
     <ClCompile Include="src\Scenes\DiscoScene.cpp" />
     <ClCompile Include="src\Scenes\SceneManager.cpp" />
     <ClCompile Include="src\Scenes\ShowcaseScene.cpp" />
-    <ClCompile Include="src\Visuals\TextManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Addons\ofxDatGui\src\components\ofxDatGui2dPad.h" />
@@ -328,7 +327,6 @@
     <ClInclude Include="src\Scenes\SceneManager.h" />
     <ClInclude Include="src\Scenes\scenes.h" />
     <ClInclude Include="src\Scenes\ShowcaseScene.h" />
-    <ClInclude Include="src\Visuals\TextManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">
