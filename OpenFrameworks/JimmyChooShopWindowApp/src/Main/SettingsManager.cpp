@@ -120,9 +120,10 @@ void SettingsManager::setWindowProperties()
         
         //ofSetFullscreen(fullscreen);
         //ofSetWindowShape(ofGetScreenWidth(),ofGetScreenHeight());
-        if(!fullscreen){
-            //ofSetWindowPosition(x,y);
-        }
+  
+//        if(!fullscreen){
+//            ofSetWindowPosition(x,y);
+//        }
         ofSetWindowTitle(title);
         
         ofLogNotice() <<"SettingsManager::setWindowProperties->  successfully loaded the window settings" ;

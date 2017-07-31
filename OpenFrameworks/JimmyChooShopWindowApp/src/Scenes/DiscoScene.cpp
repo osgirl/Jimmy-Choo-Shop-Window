@@ -13,7 +13,9 @@
 
 const int DiscoScene::TIMER_DURATION_MS = 36000;
 
-DiscoScene::DiscoScene(): ofxScene("DISCO"){}
+DiscoScene::DiscoScene(): ofxScene("DISCO"), m_updateColors(false)
+{
+}
 
 void DiscoScene::setup() {
     ofLogNotice("DiscoScene::setup");
@@ -38,7 +40,8 @@ void DiscoScene::setupText()
     float w = width - 2*margin;
     float h = height - 2*margin;
     string text = " ";
-    string fontName = "fonts/Arial Unicode.ttf";
+    //string fontName = "fonts/Arial Unicode.ttf";
+    string fontName = "fonts/OpenSansEmoji.ttf";
     float size = 20;
     
     
@@ -52,7 +55,10 @@ void DiscoScene::setupText()
 void DiscoScene::update()
 {
     m_timer.update();
-    this->updateColors();
+    if(m_updateColors){
+        this->updateColors();
+    }
+  
 }
 
 void DiscoScene::draw() {
@@ -85,6 +91,8 @@ void DiscoScene::willDraw() {
 void DiscoScene::willFadeOut() {
     ofLogNotice("DiscoScene::willFadeOut");
     AppManager::getInstance().getAudioManager().stopSample();
+    m_updateColors = false;
+    m_timer.stop();
 }
 
 void DiscoScene::willExit() {
@@ -100,6 +108,7 @@ void DiscoScene::timerCompleteHandler( int &args )
 
 void DiscoScene::setupDmx()
 {
+    m_updateColors = true;
     AppManager::getInstance().getDmxManager().onSetDmxLightStrobe();
     int motorSpeed = 127;
     AppManager::getInstance().getDmxManager().onSetDmxMotorSpeed(motorSpeed);

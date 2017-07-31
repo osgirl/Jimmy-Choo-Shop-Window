@@ -10,14 +10,20 @@
 #include "ShowcaseScene.h"
 #include "AppManager.h"
 
-ShowcaseScene::ShowcaseScene(): ofxScene("SHOWCASE"){}
+ShowcaseScene::ShowcaseScene(): ofxScene("SHOWCASE"), m_updateColors(false)
+{
+}
 
 void ShowcaseScene::setup() {
     ofLogNotice("ShowcaseScene::setup");
 }
 
 void ShowcaseScene::update() {
-    this->updateColors();
+    
+    if(m_updateColors){
+        this->updateColors();
+    }
+    
 }
 
 void ShowcaseScene::draw() {
@@ -41,6 +47,7 @@ void ShowcaseScene::willDraw() {
 
 void ShowcaseScene::willFadeOut() {
     ofLogNotice("ShowcaseScene::willFadeOut");
+    m_updateColors = false;
 }
 
 void ShowcaseScene::willExit() {
@@ -48,6 +55,7 @@ void ShowcaseScene::willExit() {
 }
 
 void ShowcaseScene::setupDmx() {
+    m_updateColors = true;
     AppManager::getInstance().getDmxManager().onSetDmxLightSolid();
     int motorSpeed = 20;
     AppManager::getInstance().getDmxManager().onSetDmxMotorSpeed(motorSpeed);

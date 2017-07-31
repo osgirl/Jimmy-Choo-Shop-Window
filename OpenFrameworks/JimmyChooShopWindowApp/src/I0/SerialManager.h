@@ -56,6 +56,7 @@ private:
 private:
     
      ofSerial	m_serial;
+    bool       m_connected;
 
 };
 

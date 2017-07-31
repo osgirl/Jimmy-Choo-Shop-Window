@@ -31,7 +31,6 @@
 		46DE9A6B85E9B574643D0D67 /* icon-group-open.png in Sources */ = {isa = PBXBuildFile; fileRef = A01E3068BFA24F657DF38672 /* icon-group-open.png */; };
 		48F94177806B5CB8D3C0F283 /* CameraAnimations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A05F1DCF8180DEEC9FBAE585 /* CameraAnimations.cpp */; };
 		49EE14834E328B244122B5DE /* ofxDatGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F01F646CD84F962650B9F49A /* ofxDatGui.cpp */; };
-		4B0B15105E437A479A088D85 /* TextManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6A891B058BA7C5243EB37E6 /* TextManager.cpp */; };
 		4D5BF349E2CCE75A3A8DD44E /* ofxEasingQuad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E2EEF646D906C2A7E13E0F90 /* ofxEasingQuad.cpp */; };
 		5057E92136F67CEB60A9CFE8 /* icon-radio-on.png in Sources */ = {isa = PBXBuildFile; fileRef = A29639DFC905F9941E01F8A6 /* icon-radio-on.png */; };
 		50F6A2F683FD5F7B762148D0 /* ShowcaseScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E02314B18587CFEB6B86ECC /* ShowcaseScene.cpp */; };
@@ -289,7 +288,6 @@
 		D35FE818DAD79E0110A02D56 /* history.md */ = {isa = PBXFileReference; explicitFileType = file; fileEncoding = 30; name = history.md; path = src/Addons/ofxDatGui/history.md; sourceTree = SOURCE_ROOT; };
 		D546CED24D383D1B5A71B344 /* ShowcaseScene.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ShowcaseScene.h; path = src/Scenes/ShowcaseScene.h; sourceTree = SOURCE_ROOT; };
 		D5BBC200839D2DFA77CB6DDF /* license.txt */ = {isa = PBXFileReference; explicitFileType = file; fileEncoding = 30; name = license.txt; path = src/Addons/ofxDatGui/license.txt; sourceTree = SOURCE_ROOT; };
-		D6A891B058BA7C5243EB37E6 /* TextManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = TextManager.cpp; path = src/Visuals/TextManager.cpp; sourceTree = SOURCE_ROOT; };
 		D879F7D240D94C88129AC7F6 /* ofxEasingSine.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxEasingSine.cpp; path = src/Addons/ofxTween/src/Easings/ofxEasingSine.cpp; sourceTree = SOURCE_ROOT; };
 		DA2BEEEFB535A7D4C2159448 /* LightManager.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = LightManager.h; path = src/Engine/3D/LightManager.h; sourceTree = SOURCE_ROOT; };
 		DB9366F7D9955330659D9AFC /* ofxEasing.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxEasing.cpp; path = src/Addons/ofxTween/src/Easings/ofxEasing.cpp; sourceTree = SOURCE_ROOT; };
@@ -307,7 +305,6 @@
 		EE8EE9B67F16AAC684FE2416 /* icon-radio-off.png */ = {isa = PBXFileReference; explicitFileType = file; fileEncoding = 30; name = "icon-radio-off.png"; path = "src/Addons/ofxDatGui/ofxbraitsch/ofxdatgui/icon-radio-off.png"; sourceTree = SOURCE_ROOT; };
 		EF5A805DE3B91078A0F6661A /* license.md */ = {isa = PBXFileReference; explicitFileType = file; fileEncoding = 30; name = license.md; path = src/Addons/ofxDmx4All/license.md; sourceTree = SOURCE_ROOT; };
 		F01F646CD84F962650B9F49A /* ofxDatGui.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxDatGui.cpp; path = src/Addons/ofxDatGui/src/ofxDatGui.cpp; sourceTree = SOURCE_ROOT; };
-		F14F42C52BF0F42C3E8E620D /* TextManager.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = TextManager.h; path = src/Visuals/TextManager.h; sourceTree = SOURCE_ROOT; };
 		F1FF1C3AF9C3A3E425FFC2DE /* ofxDatGuiComponent.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDatGuiComponent.h; path = src/Addons/ofxDatGui/src/core/ofxDatGuiComponent.h; sourceTree = SOURCE_ROOT; };
 		F7D513F7C92E3C60F81B1A61 /* ResourceManager.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ResourceManager.h; path = src/Engine/Resources/ResourceManager.h; sourceTree = SOURCE_ROOT; };
 		F8F59BB673171E652227B3A2 /* license.md */ = {isa = PBXFileReference; explicitFileType = file; fileEncoding = 30; name = license.md; path = src/Addons/ofxDmx/license.md; sourceTree = SOURCE_ROOT; };
@@ -815,15 +812,6 @@
 			name = src;
 			sourceTree = "<group>";
 		};
-		C02C33831C66F04FEBAE29DE /* Visuals */ = {
-			isa = PBXGroup;
-			children = (
-				D6A891B058BA7C5243EB37E6 /* TextManager.cpp */,
-				F14F42C52BF0F42C3E8E620D /* TextManager.h */,
-			);
-			name = Visuals;
-			sourceTree = "<group>";
-		};
 		C9A8C2EA34B35E4BED69D33C /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
@@ -953,7 +941,6 @@
 				375D8B140B52B55EB32EB487 /* Layout */,
 				AF4FDCF7E02C59FCC5FE54A2 /* Main */,
 				C9A8C2EA34B35E4BED69D33C /* Scenes */,
-				C02C33831C66F04FEBAE29DE /* Visuals */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -1206,7 +1193,6 @@
 				8B8821FB4158456E8185A22B /* SceneManager.cpp in Sources */,
 				50F6A2F683FD5F7B762148D0 /* ShowcaseScene.cpp in Sources */,
 				08B407A31F2C9EF0006C480E /* README.md in Sources */,
-				4B0B15105E437A479A088D85 /* TextManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

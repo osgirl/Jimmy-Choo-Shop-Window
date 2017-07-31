@@ -63,6 +63,7 @@ private:
     
     ofxSimpleTimer     m_timer;
     TextVisual         m_textVisual;
+    bool               m_updateColors;
 
 };
 

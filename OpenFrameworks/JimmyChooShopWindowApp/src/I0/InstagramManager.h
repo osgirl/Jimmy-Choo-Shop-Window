@@ -55,6 +55,8 @@ private:
     
     string parseJson(const string& result);
     
+    bool checkAllTags(const string& result);
+    
 private:
     
     
