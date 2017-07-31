@@ -92,6 +92,7 @@ bool SerialManager::checkConnection(int portNum)
 void SerialManager::sendPin()
 {
     unsigned char byte = '?';
+    ofLogNotice() <<"SerialManager::sendPin << Sent '?'";
     m_serial.writeByte(byte);
 }
 

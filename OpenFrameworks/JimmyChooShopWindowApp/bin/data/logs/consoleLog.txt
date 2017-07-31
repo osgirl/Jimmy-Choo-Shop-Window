@@ -1,6 +1,6 @@
 
 
---------------------------------------- 2017-07-31-18-02-42-249
+--------------------------------------- 2017-07-31-19-35-16-838
 [notice ] SettingsManager::initialized
 [notice ] SettingsManager::loadSettingsFile->  successfully loaded xmls/ApplicationSettings.xml
 [notice ] SettingsManager::setWindowProperties->  successfully loaded the window settings
@@ -55,55 +55,58 @@
 [verbose] ofFbo: checkGLSupport(): maxColorAttachments: 8, maxDrawBuffers: 8, maxSamples: 8
 [verbose] ofFbo: FRAMEBUFFER_COMPLETE - OK
 [notice ] SceneManager::initialized
-[notice ] ofSerial: [0] = tty.usbserial-EN198035
-[notice ] ofSerial: [1] = cu.usbserial-EN198035
+[notice ] ofSerial: [0] = cu.usbserial-EN198035
+[notice ] ofSerial: [1] = tty.usbserial-EN198035
 [notice ] ofSerial: [2] = tty.usbmodem2851691
 [notice ] ofSerial: [3] = cu.usbmodem2851691
-[notice ] ofSerial: [4] = tty.MINIJAMBOXbyJawbone-SPP
-[notice ] ofSerial: [5] = cu.MINIJAMBOXbyJawbone-SPP
+[notice ] ofSerial: [4] = cu.MINIJAMBOXbyJawbone-SPP
+[notice ] ofSerial: [5] = tty.MINIJAMBOXbyJawbone-SPP
 [notice ] ofSerial: [6] = tty.Bluetooth-Incoming-Port
 [notice ] ofSerial: [7] = cu.Bluetooth-Incoming-Port
-[notice ] ofSerial: opening /dev/tty.usbserial-EN198035 @ 115200 bps
-[notice ] ofSerial: opened /dev/tty.usbserial-EN198035 sucessfully @ 115200 bps
+[notice ] ofSerial: opening /dev/cu.usbserial-EN198035 @ 115200 bps
+[notice ] ofSerial: opened /dev/cu.usbserial-EN198035 sucessfully @ 115200 bps
+[notice ] SerialManager::sendPin << Sent '?'
 [verbose] ofSerial: wrote byte
 [notice ] SerialManager::checkConnection << Serial Available: 0
 [notice ] SerialManager::checkConnection << Arduino is not connected 
-[notice ] ofSerial: opening /dev/cu.usbserial-EN198035 @ 115200 bps
-[notice ] ofSerial: opened /dev/cu.usbserial-EN198035 sucessfully @ 115200 bps
+[notice ] ofSerial: opening /dev/tty.usbserial-EN198035 @ 115200 bps
+[notice ] ofSerial: opened /dev/tty.usbserial-EN198035 sucessfully @ 115200 bps
+[notice ] SerialManager::sendPin << Sent '?'
 [verbose] ofSerial: wrote byte
 [notice ] SerialManager::checkConnection << Serial Available: 0
 [notice ] SerialManager::checkConnection << Arduino is not connected 
 [notice ] ofSerial: opening /dev/tty.usbmodem2851691 @ 115200 bps
 [notice ] ofSerial: opened /dev/tty.usbmodem2851691 sucessfully @ 115200 bps
+[notice ] SerialManager::sendPin << Sent '?'
 [verbose] ofSerial: wrote byte
 [notice ] SerialManager::checkConnection << Serial Available: 2
 [notice ] SerialManager::receivedOk << Arduino sent OK 
 [notice ] SerialManager::checkConnection << Arduino connected to 2
 [notice ] SerialManager::setupSerial << Arduino connected to port tty.usbmodem2851691
 [notice ] SerialManager::initialized
-[notice ] ofSerial: [0] = tty.usbserial-EN198035
-[notice ] ofSerial: [1] = cu.usbserial-EN198035
+[notice ] ofSerial: [0] = cu.usbserial-EN198035
+[notice ] ofSerial: [1] = tty.usbserial-EN198035
 [notice ] ofSerial: [2] = tty.usbmodem2851691
 [notice ] ofSerial: [3] = cu.usbmodem2851691
-[notice ] ofSerial: [4] = tty.MINIJAMBOXbyJawbone-SPP
-[notice ] ofSerial: [5] = cu.MINIJAMBOXbyJawbone-SPP
+[notice ] ofSerial: [4] = cu.MINIJAMBOXbyJawbone-SPP
+[notice ] ofSerial: [5] = tty.MINIJAMBOXbyJawbone-SPP
 [notice ] ofSerial: [6] = tty.Bluetooth-Incoming-Port
 [notice ] ofSerial: [7] = cu.Bluetooth-Incoming-Port
-[notice ] ofSerial: opening /dev/tty.usbserial-EN198035 @ 57600 bps
-[notice ] ofSerial: opened /dev/tty.usbserial-EN198035 sucessfully @ 57600 bps
+[notice ] ofSerial: opening /dev/cu.usbserial-EN198035 @ 57600 bps
+[notice ] ofSerial: opened /dev/cu.usbserial-EN198035 sucessfully @ 57600 bps
 [verbose] ofSerial: wrote 5 bytes
 [notice ] Received OK from ENTECC USB PRO 
-[notice ] ofSerial: [0] = tty.usbserial-EN198035
-[notice ] ofSerial: [1] = cu.usbserial-EN198035
+[notice ] ofSerial: [0] = cu.usbserial-EN198035
+[notice ] ofSerial: [1] = tty.usbserial-EN198035
 [notice ] ofSerial: [2] = tty.usbmodem2851691
 [notice ] ofSerial: [3] = cu.usbmodem2851691
-[notice ] ofSerial: [4] = tty.MINIJAMBOXbyJawbone-SPP
-[notice ] ofSerial: [5] = cu.MINIJAMBOXbyJawbone-SPP
+[notice ] ofSerial: [4] = cu.MINIJAMBOXbyJawbone-SPP
+[notice ] ofSerial: [5] = tty.MINIJAMBOXbyJawbone-SPP
 [notice ] ofSerial: [6] = tty.Bluetooth-Incoming-Port
 [notice ] ofSerial: [7] = cu.Bluetooth-Incoming-Port
-[notice ] ofSerial: opening /dev/tty.usbserial-EN198035 @ 57600 bps
-[notice ] ofSerial: opened /dev/tty.usbserial-EN198035 sucessfully @ 57600 bps
-[notice ] ENTTEC USB PRO connected to port tty.usbserial-EN198035
+[notice ] ofSerial: opening /dev/cu.usbserial-EN198035 @ 57600 bps
+[notice ] ofSerial: opened /dev/cu.usbserial-EN198035 sucessfully @ 57600 bps
+[notice ] ENTTEC USB PRO connected to port cu.usbserial-EN198035
 [notice ] DmxManager::initialized
 [verbose] ofSerial: wrote 261 bytes
 [notice ] BlankScene::willFadeOut: 
@@ -115,112 +118,39 @@
 [notice ] GuiManager::initialized
 [notice ] ShowcaseScene::willDraw: 
 [notice ] BlankScene::willExit: 
-[notice ] InstagramManager::parseJson -> onelove: One Love ( cover ) - Surakarta Squad 
-full video please click link youtube on my bio 😊 like & subscribe yaa thankyou
-
-talent : - vocal
-@panggilsajayudha 
-@violistaaa 
-@arjuna_istambul_ardi 
-@trevilourat 
-@nathanimans 
-@tevypb 
-@bagus_padadrum 
-@jscrenita 
-@dimaz_raditya 
-@bhensip 
-@elansakti 
-@yddeoirtas 
-@chrisna_wihardjan 
-guitar : @yusufdeo 
-bass : @ochid_evoria
-Keyboard : @ekapramuditha94
-pianika : @samuelkinata
-Saxophone : @romansa_kristianda 
-Drum : @andrewwprasetyo 
-cameraman : @yohanesdestriawan 
-record, mixing, & mastering : scene #13 @israfan 
-#onelove #bobmarley #cover #surakartasquad
+[notice ] InstagramManager::parseJson -> onelove: #нашеморе #onelove #rest #пупуни #pypynyafamily ❤️🐬☀️🐚
 [notice ] ShowcaseScene::willFadeOut: 
 [notice ] DiscoScene::setup: 
 [notice ] EngineFont::setup-> font loaded fonts/OpenSansEmoji.ttf with size 20
 [notice ] DiscoScene::willFadeIn: 
-[notice ] DiscoScene::willDraw: 
 [notice ] ShowcaseScene::willExit: 
-[notice ] InstagramManager::parseJson -> onelove: Happy Birthday To Hawaii's Finest! @bretmanrock 😂hauʻoli lā hānau akua e hoopomaikai mai ia ‼️👏🏾🙏🏽
-#HappyBirthdayBretmanRock #BretmanRock #Hawaii #808 #PolynesianMusic #Phillipines #PolynesianMovement #PolyMovement #IslandLife #IslandVibes #IslandMusic #IslandJams #ONELOVE 🤙🏽
-(@polynesianmusic 🌺🇬🇧)
-[notice ] InstagramManager::parseJson -> onelove: water is life #empath #water #cleanse #empath #healer #onelove #indigo #crystalchildren #earthangel #love #motherearth #waterislife #namaste #balance #shaman #goodvibes
+[notice ] DiscoScene::willDraw: 
+[notice ] InstagramManager::parseJson -> onelove: Эти сторис бесценны.💓 Для всего остального есть Mastercard...💳 #niece #onelove #lovestory
+[notice ] InstagramManager::parseJson -> onelove: #handmadejewelry#onelove#firstpost#like4like#followme#positivethinking#positivevibes#
+🤓
+[notice ] InstagramManager::parseJson -> onelove: #thank you @zachariah_suto for the #love #sighting
+#masslove #love #fence #sticker #boston #massachusetts #lovemassachusetts #loveboston #bostonlove #lovenewengland #stickerlove #lovesticker #lovestickers #seeninboston #bostonma #bostonmass #loveforall #ahimsa #unconditionallove #universallove #spirituality #positivity #positive #onelove #spreadlove
+[notice ] InstagramManager::parseJson -> onelove: Довольный хомяк🐹 #впитерепить Мотаясь каждый день по Ленинградке между домом Зеликом и Москвой я всегда хотела выйти за молоком и случайно доехать до Питера💕 такой спонтанный трип💙 #питер #питер2017 #ванлав #питерванлав #onelove #spb
+[notice ] InstagramManager::parseJson -> onelove: Набор с черным киприйским чаем из Карпат. У чая ароматый насыщенный вкус без лишней крепости. В дополнение к чаю наш фирменный майский мёд и сухофрукты (яблоко, спелая груша, киви, клубника). Я бы сказала, что это самый универсальный подарок - для всех😊. Стоимость такого набора: 250 грн.  #подарочныйнабор#подарки#подароквкоробке#киприйскийчай#мед#майскиймед#медкиев#gifts #giftshop #studiogifts #podarok #podarki#onelove
+[notice ] InstagramManager::parseJson -> onelove: Its not always about beauty, beauty without brains is like owning a car n not fueling it...
+#BeautyWithBrains...
+#Estypretty...
+#GodOverAll.....
+#OneLove....
 [notice ] DiscoScene::timerCompleteHandler -> Timer completed: 
 [notice ] DiscoScene::willFadeOut: 
 [notice ] ShowcaseScene::setup: 
 [notice ] ShowcaseScene::willFadeIn: 
 [notice ] ShowcaseScene::willDraw: 
 [notice ] DiscoScene::willExit: 
-[notice ] InstagramManager::parseJson -> onelove: I LOVE YOU ALL ❤
-@ralfsbikavnieks 
-#Fakts #SummerSound #Liepāja #OneLove #FaktsClique
+[notice ] InstagramManager::parseJson -> onelove: My woman#roots @fantji_ #suriname #paramaribo #amsterdam #holland #lioness #jahdaughter #naturalbeauty #sheknowsherroots #dreads #onelove  #empressious #mother #mylove #realthing #interacial #melanin #empress
 [notice ] ShowcaseScene::willFadeOut: 
 [notice ] DiscoScene::setup: 
 [notice ] EngineFont::setup-> font loaded fonts/OpenSansEmoji.ttf with size 20
 [notice ] DiscoScene::willFadeIn: 
 [notice ] ShowcaseScene::willExit: 
 [notice ] DiscoScene::willDraw: 
-[notice ] InstagramManager::parseJson -> onelove: #familyfirst#hesready#babybump#onelove#comingsoon#happycouplr
-[notice ] InstagramManager::parseJson -> onelove: Representing my #westindian #roots 🇬🇩 #onelove 🌎 #Summer pics and vids on my 👻 journey2fashion
-[notice ] DiscoScene::timerCompleteHandler -> Timer completed: 
-[notice ] DiscoScene::willFadeOut: 
-[notice ] ShowcaseScene::setup: 
-[notice ] ShowcaseScene::willFadeIn: 
-[notice ] ShowcaseScene::willDraw: 
-[notice ] DiscoScene::willExit: 
-[notice ] InstagramManager::parseJson -> onelove: Свет не поймать раз и навсегда, его нужно ловить в себе каждый день 🎇 
-#myworld #followme #happytime #summer #sunset #onelove #traveling #letsgo
-[notice ] ShowcaseScene::willFadeOut: 
-[notice ] DiscoScene::setup: 
-[notice ] EngineFont::setup-> font loaded fonts/OpenSansEmoji.ttf with size 20
-[notice ] DiscoScene::willFadeIn: 
-[notice ] ShowcaseScene::willExit: 
-[notice ] DiscoScene::willDraw: 
-[notice ] InstagramManager::parseJson -> onelove: 17 days and a wedding 🤵🏻❤️👰🏽 #boldogabbnemislehetnék #szerelmemvagy #onelove
-[notice ] InstagramManager::parseJson -> onelove: View from the core. 
-#toronto #summertime #day #gig #sky #blue #onelove #concretejungle #madmax #driving
-[notice ] InstagramManager::parseJson -> onelove: Our Latest Collection Mandala Hessian Bags Arrived💮
-Very unique and limited!
-#onelove #latest#hessianbag #mandala#mandalaart #oneloveinterior#
-[notice ] DiscoScene::timerCompleteHandler -> Timer completed: 
-[notice ] DiscoScene::willFadeOut: 
-[notice ] ShowcaseScene::setup: 
-[notice ] ShowcaseScene::willFadeIn: 
-[notice ] ShowcaseScene::willDraw: 
-[notice ] DiscoScene::willExit: 
-[notice ] InstagramManager::parseJson -> onelove: 2 weeks ago while in Delaware we linked up with Wanda over at D&H in Newark to share with us her Journey in Culinary arts as well as connections and spreading good vibes in the arts community! She made us some lamb, potatoes and asparagus too!!! 🙌🏾 loading soon! #FromTheSoul #onelove #cheflife #4thevillage #documentary #food #love #life #nutrition #arts #livemusic #speeddating #delaware #blackgirlmagic #blackchef #goodeats
-[notice ] ShowcaseScene::willFadeOut: 
-[notice ] DiscoScene::setup: 
-[notice ] EngineFont::setup-> font loaded fonts/OpenSansEmoji.ttf with size 20
-[notice ] DiscoScene::willFadeIn: 
-[notice ] ShowcaseScene::willExit: 
-[notice ] DiscoScene::willDraw: 
-[notice ] InstagramManager::parseJson -> onelove: 🇯🇲💚 #onelove #jamaica
-[notice ] InstagramManager::parseJson -> onelove: Un 31 más, gracias por siempre estar ahí para mí, gracias por siempre demostrar que este amor puede con cualquier cosa, gracias por estar a mi lado. Te amo y eso nada lo podrá cambiar. Vamos por más! Y a @bigday.photo gracias por la increíble sesión y excelente trabajo. #ac #love #octuber #onelove #savethedate
-[notice ] DiscoScene::timerCompleteHandler -> Timer completed: 
-[notice ] DiscoScene::willFadeOut: 
-[notice ] ShowcaseScene::setup: 
-[notice ] ShowcaseScene::willFadeIn: 
-[notice ] ShowcaseScene::willDraw: 
-[notice ] DiscoScene::willExit: 
-[notice ] InstagramManager::parseJson -> onelove: << Ed e' proprio questo il bello: rendersi conto di essere vivi!! >> 🎶☀ #happiness #summer #statodanimo
-#salento #holiday #salentomio #gallipoli #salentolife #beachlife #music #sun #salentoesoncontento #salentoterapia #beachparty #smile #like #likeforlike #likeforfollow #followme #picoftheday #beachwear #beachlovers #follow4follow #tag #tagfortag #love #onelove #cool #girl
-[notice ] ShowcaseScene::willFadeOut: 
-[notice ] DiscoScene::setup: 
-[notice ] EngineFont::setup-> font loaded fonts/OpenSansEmoji.ttf with size 20
-[notice ] DiscoScene::willFadeIn: 
-[notice ] ShowcaseScene::willExit: 
-[notice ] DiscoScene::willDraw: 
-[notice ] InstagramManager::parseJson -> onelove: when someone says pizza😂😂😂😂😍😍
-#kingoftheworld #eyes #concert #smile #subemelaradio #awesomesong #loveit #amazing #song #newsong  #enriqueiglesias #24february #love #smile #newvideo #newmusic #video #newsong #havana #cuba #subemelaradio  #song  #king #kike #kingofmillionhearts #kingoflatinpop #enriquette #enriquetteforever #fangirl #fangirlforlife #enriqueiglesiasforever #onelove #onelove❤️
-[notice ] InstagramManager::parseJson -> onelove: ,, #al_HoSani7772 ,,
-#عجمان #راك #الشارقه #دبي #أبوظبي #السعودية #الكويت #البحرين #فيديوهات #منوعه #مقاطع #صوتيات #اهداء #خااص #الحوسني #snapchat #UnatidArabEmirates #Ajman #Sharjah #Dubai #DXB #Abuduabi #Rak #UAE #me #my_pictures #Onelove #Emirates #
+[notice ] InstagramManager::parseJson -> onelove: #HeleneBeachFestival2017#onebeach#onefestival#onelove#257ers#Moshpit#Pogen#vornedabei#abriss#Schaumparty#schönezunge#2von2geschafft#großartig#olesnacken#schulziistbegeistert
 [notice ] JimmyChooShopWindowApp::exit
 [notice ] AppManager::Destructor
 [notice ] InstagramManager::destructor
