@@ -139,6 +139,11 @@ void ofxDmx4All::setChannels(unsigned int channels) {
 
 
 void ofxDmx4All::update(bool force) {
+    if(!isConnected())
+    {
+        return;
+    }
+    
 	if(needsUpdate || force) {
 		needsUpdate = false;
 
@@ -157,11 +162,11 @@ void ofxDmx4All::update(bool force) {
 
 bool ofxDmx4All::badChannel(unsigned int channel) {
 	if(channel > levels.size()) {
-		ofLogError() << "Channel " + ofToString(channel) + " is out of bounds. Only " + ofToString(levels.size()) + " channels are available.";
+		//ofLogError() << "Channel " + ofToString(channel) + " is out of bounds. Only " + ofToString(levels.size()) + " channels are available.";
 		return true;
 	}
 	if(channel == 0) {
-		ofLogError() << "Channel 0 does not exist. DMX channels start at 1.";
+		//ofLogError() << "Channel 0 does not exist. DMX channels start at 1.";
 		return true;
 	}
 	return false;

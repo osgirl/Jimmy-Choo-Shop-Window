@@ -12,7 +12,7 @@
 const int SerialManager::BAUD_RATE = 115200;
 
 
-SerialManager::SerialManager(): Manager()
+SerialManager::SerialManager(): Manager(), m_connected(false)
 {
     //Intentionally left empty
 }
@@ -47,15 +47,19 @@ void SerialManager::setupSerial()
     // (ie, COM4 on a pc, /dev/tty.... on linux, /dev/tty... on a mac)
     // arduino users check in arduino app....
 
+     m_connected = false;
     
     for(auto device: deviceList)
     {
         if(this->checkConnection(device.getDeviceID())) //open a device number
         {
             ofLogNotice() <<"SerialManager::setupSerial << Arduino connected to port " << device.getDeviceName();
-            break;
+            m_connected = true;
+            return;
         }
     }
+    
+    
     
 //    if(!m_serial.setup(0, BAUD_RATE)) //open a device number)
 //    {
@@ -146,6 +150,10 @@ void SerialManager::update()
 
 void SerialManager::onSetColor(const ofColor& color)
 {
+    if(!m_connected){
+        return;
+    }
+    
     unsigned char bytes[5];
     
     bytes[0] = 'c';
@@ -161,10 +169,17 @@ void SerialManager::onSetColor(const ofColor& color)
 
 void SerialManager::onSetDisco()
 {
+    if(!m_connected){
+        return;
+    }
+    
     m_serial.writeByte('d');
 }
 
 void SerialManager::onSetSolid()
 {
+    if(!m_connected){
+        return;
+    }
     m_serial.writeByte('s');
 }

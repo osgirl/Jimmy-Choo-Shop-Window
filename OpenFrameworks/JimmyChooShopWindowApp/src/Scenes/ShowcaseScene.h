@@ -45,5 +45,9 @@ private:
     void setupDmx();
     
     void updateColors();
+    
+private:
+    
+    bool m_updateColors;
 };
 
