@@ -178,9 +178,6 @@
     <ClCompile Include="src\Scenes\ShowcaseScene.cpp">
       <Filter>src\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="src\Visuals\TextManager.cpp">
-      <Filter>src\Visuals</Filter>
-    </ClCompile>
     <ClCompile Include="src\Addons\ofxDmx4All\src\ofxDmx4All.cpp">
       <Filter>src\Addons\ofxDmx4All\src</Filter>
     </ClCompile>
@@ -338,9 +335,6 @@
     </Filter>
     <Filter Include="src\Scenes">
       <UniqueIdentifier>{6A6AB684-C3B3-7377-6FC5-6FBF}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Visuals">
-      <UniqueIdentifier>{A6B5F35D-A8B6-920A-78B7-EB46}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Addons\ofxDmx4All">
       <UniqueIdentifier>{b8df7609-5846-407b-973c-6afb8bfb142d}</UniqueIdentifier>
@@ -628,9 +622,6 @@
     </ClInclude>
     <ClInclude Include="src\Scenes\ShowcaseScene.h">
       <Filter>src\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Visuals\TextManager.h">
-      <Filter>src\Visuals</Filter>
     </ClInclude>
     <ClInclude Include="src\Addons\ofxDmx4All\src\ofxDmx4All.h">
       <Filter>src\Addons\ofxDmx4All\src</Filter>
