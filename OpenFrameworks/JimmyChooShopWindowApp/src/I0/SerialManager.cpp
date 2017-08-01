@@ -38,7 +38,32 @@ void SerialManager::setup()
     ofLogNotice() <<"SerialManager::initialized" ;
 }
 
+
+
 void SerialManager::setupSerial()
+{
+    int serialPort = AppManager::getInstance().getSettingsManager().getSerialPort();
+    if(serialPort<0){
+        ofLogNotice() <<"SerialManager::setupSerial << Autoconnecting serial port";
+        this->autoConnect();
+    }
+    else{
+        ofLogNotice() <<"SerialManager::setupSerial << Connecting serial to port " << serialPort;
+        this->connect(serialPort);
+    }
+}
+      
+void SerialManager::connect(int portNum)
+{
+    if(m_serial.setup(portNum, BAUD_RATE)) //open a device number
+    {
+       ofLogNotice() <<"SerialManager::connect << Arduino connected to " << portNum;
+       m_connected = true;
+
+    }
+}
+
+void SerialManager::autoConnect()
 {
     m_serial.listDevices();
     vector <ofSerialDeviceInfo> deviceList = m_serial.getDeviceList();
@@ -73,7 +98,7 @@ bool SerialManager::checkConnection(int portNum)
     if(m_serial.setup(portNum, BAUD_RATE)) //open a device number
     {
         this->sendPin();
-        ofSleepMillis(50);
+        ofSleepMillis(100);
         if(this->receivedOk()){
             ofLogNotice() <<"SerialManager::checkConnection << Arduino connected to " << portNum;
             return true;
@@ -92,6 +117,7 @@ bool SerialManager::checkConnection(int portNum)
 void SerialManager::sendPin()
 {
     unsigned char byte = '?';
+    ofLogNotice() <<"SerialManager::sendPin << Sent '?'";
     m_serial.writeByte(byte);
 }
 
