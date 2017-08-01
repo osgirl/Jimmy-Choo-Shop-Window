@@ -58,6 +58,8 @@ public:
     void onSceneChange(const string& sceneName);
     
     void onSceneChange(int sceneIndex);
+
+	void onDmxSpeedChange(int value);
     
     void onDropdownEvent(ofxDatGuiDropdownEvent e);
     

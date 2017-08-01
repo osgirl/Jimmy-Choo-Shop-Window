@@ -216,7 +216,10 @@ void GuiManager::onSceneChange(int sceneIndex)
     AppManager::getInstance().getSceneManager().changeScene(sceneIndex);
 }
 
-
+void  GuiManager::onDmxSpeedChange(int value)
+{
+	m_dmxMotorSpeed = ofClamp(value, 0, 128);
+}
 
 void GuiManager::onDropdownEvent(ofxDatGuiDropdownEvent e)
 {

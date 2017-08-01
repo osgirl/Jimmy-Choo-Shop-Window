@@ -110,8 +110,8 @@ void DiscoScene::setupDmx()
 {
     m_updateColors = true;
     AppManager::getInstance().getDmxManager().onSetDmxLightStrobe();
-    int motorSpeed = 127;
-    AppManager::getInstance().getDmxManager().onSetDmxMotorSpeed(motorSpeed);
+    int motorSpeed = 125;
+	AppManager::getInstance().getGuiManager().onDmxSpeedChange(motorSpeed);
 }
 
 void DiscoScene::updateColors()

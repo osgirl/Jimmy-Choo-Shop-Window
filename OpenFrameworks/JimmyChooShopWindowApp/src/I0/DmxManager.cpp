@@ -71,8 +71,9 @@ void DmxManager::onSetDmxMotorChannel(int& value)
 
 void DmxManager::onSetDmxMotorSpeed(int& value)
 {
-    int dmxspeed = ofClamp(value, 0, 128);
+    int dmxspeed = 128 - ofClamp(value, 0, 128);
     m_dmx.setLevel(m_dmxMotorStartChannel, dmxspeed);
+	ofLogNotice() << "DmxManager::speed << " << dmxspeed;
     m_dmx.update();
 }
 

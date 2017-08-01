@@ -58,7 +58,7 @@ void ShowcaseScene::setupDmx() {
     m_updateColors = true;
     AppManager::getInstance().getDmxManager().onSetDmxLightSolid();
     int motorSpeed = 20;
-    AppManager::getInstance().getDmxManager().onSetDmxMotorSpeed(motorSpeed);
+    AppManager::getInstance().getGuiManager().onDmxSpeedChange(motorSpeed);
     
 }
 
