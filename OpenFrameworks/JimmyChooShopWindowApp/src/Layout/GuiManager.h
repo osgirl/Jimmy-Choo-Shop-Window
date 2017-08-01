@@ -9,11 +9,13 @@
 #pragma once
 
 #include "Manager.h"
-#include "ofxDatGui.h"
+#include "ofxGui.h"
+#include "ofxGuiExtended.h"
+
 //========================== class GuiManager ==============================
 //============================================================================
 /** \class GuiManager GuiManager.h
- *	\brief Class managing the applicationÂ´s grapical user interface (GUI)
+ *	\brief Class managing the application«s grapical user interface (GUI)
  *	\details It creates the gui and the callback functions that will be affected
  *    by the gui
  */
@@ -25,18 +27,15 @@ class GuiManager: public Manager
     static const int GUI_WIDTH;
     
 public:
-
+    
     //! Constructor
     GuiManager();
-
+    
     //! Destructor
     ~GuiManager();
-
+    
     //! Set-up the gui
     void setup();
-    
-    //! Update the gui
-    void update();
     
     //! Draw the gui
     void draw();
@@ -59,45 +58,38 @@ public:
     
     void onSceneChange(int sceneIndex);
     
-    void onDropdownEvent(ofxDatGuiDropdownEvent e);
-    
-    void onColorPickerEvent(ofxDatGuiColorPickerEvent e);
-    
-    void onButtonEvent(ofxDatGuiButtonEvent e);
-    
-    void onToggleEvent(ofxDatGuiToggleEvent e);
-    
-    void onMatrixEvent(ofxDatGuiMatrixEvent e);
+    void onMatrixSceneChange(bool& value);
     
 private:
     
     void setupGuiParameters();
     
-    void setupScenesGui();
-    
     void setupDmxGui();
     
-    void setupNeonLight();
-    
     void drawRectangle();
-
-    void setupGuiEvents();
+    
+    void setupGuiScenes();
     
 private:
     
-    ofxDatGui            m_gui;
-    ofParameterGroup     m_parameters;
+    // Fluid GUI
+    ofxPanel			m_gui;
     
     ofParameter<float>	m_guiFPS;
+    
+    
+    ofParameterGroup    m_parametersDmx;
+    ofxGuiMatrix        m_matrixScenes;
+    vector<ofParameter<bool>>   m_scenesParameters;
     
     
     ofParameter<int>    m_dmxLightChannel;
     ofParameter<int>    m_dmxMotorChannel;
     ofParameter<int>    m_dmxMotorSpeed;
-   
+    
+    
     bool        m_showGui;  //It defines the whether the gui should be shown or not
 };
 
 //==========================================================================
-
 

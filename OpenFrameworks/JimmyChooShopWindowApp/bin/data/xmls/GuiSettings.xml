@@ -1,5 +1,12 @@
 <group>
-	<Light_Ch_>1</Light_Ch_>
-	<Motor_Ch_>23</Motor_Ch_>
-	<Motor_Speed>37</Motor_Speed>
+	<FPS>60.1786</FPS>
+	<DMX>
+		<Light_Ch_>1</Light_Ch_>
+		<Motor_Ch_>9</Motor_Ch_>
+		<Motor_Speed>50</Motor_Speed>
+	</DMX>
+<group/>
+<BLANK>1</BLANK>
+	<SHOWCASE>0</SHOWCASE>
+	<DISCO>0</DISCO>
 </group>
