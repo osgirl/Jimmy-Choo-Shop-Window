@@ -11,6 +11,7 @@
 
 #include "Manager.h"
 #include "SettingsManager.h"
+#include "ofxOMXPlayer.h"
 
 //========================== class AudioManager ==============================
 //============================================================================
@@ -50,11 +51,12 @@ private:
         
     void setupSamples();
     
-    
 private:
     
     ResourcesPathMap    m_sampleNames;
+    ResourcesPathMap    m_videoSamples;
     ofSoundPlayer       m_soundPlayer;
+    ofxOMXPlayer        m_omxPlayer;
 
 };
 

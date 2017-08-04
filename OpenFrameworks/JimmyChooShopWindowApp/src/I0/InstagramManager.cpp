@@ -10,7 +10,7 @@
 #include "AppManager.h"
 
 
-const int InstagramManager::TIMER_INTERVAL_MS = 2000;
+const int InstagramManager::TIMER_INTERVAL_MS = 1000;
 
 InstagramManager::InstagramManager(): Manager(), m_currentString(""), m_newTag(false)
 {
