@@ -28,7 +28,7 @@
 
   <videos>
 
-    <sample name="NightFever" path="videos/Bee_Gees_-_Night_Fever_1977_.mp4"/>
+    <video name="NightFever" path="videos/Bee_Gees_-_Night_Fever_1977_.mp4"/>
 
   </videos>
 

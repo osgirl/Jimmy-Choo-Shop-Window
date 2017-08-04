@@ -44,6 +44,19 @@ void AudioManager::setupSamples()
     m_sampleNames = AppManager::getInstance().getSettingsManager().getAudioResourcesPath();
     
     m_videoSamples = AppManager::getInstance().getSettingsManager().getVideoResourcesPath();
+    
+    m_videoPlayer.setVolume(1.0);
+    
+//    //Somewhat like ofFboSettings we may have a lot of options so this is the current model
+//    ofxOMXPlayerSettings settings;
+//    //settings.videoPath = path;
+//    settings.useHDMIForAudio = true;	//default true
+//    settings.enableTexture = true;		//default true
+//    settings.enableLooping = true;		//default true
+//    settings.enableAudio = true;		//default true, save resources by disabling
+//    
+//    //so either pass in the settings
+//    m_omxPlayer.setup(settings);
 
 }
 
@@ -53,6 +66,7 @@ void AudioManager::update()
 {
     // update the sound playing system:
     //ofSoundUpdate();
+    m_videoPlayer.update();
 }
 
 
@@ -85,20 +99,15 @@ bool AudioManager::playSample(string name)
         return false;
     }
     
-    string path =  ofToDataPath(m_videoSamples[name],true);
+   // string path =  ofToDataPath(m_videoSamples[name],true);
     
-    string videoPath = ofToDataPath("../../../video/Timecoded_Big_bunny_1.mov", true);
+    m_videoPlayer.load(m_videoSamples[name]);
+    m_videoPlayer.setLoopState(OF_LOOP_NORMAL);
+    m_videoPlayer.play();
     
-    //Somewhat like ofFboSettings we may have a lot of options so this is the current model
-    ofxOMXPlayerSettings settings;
-    settings.videoPath = path;
-    settings.useHDMIForAudio = true;	//default true
-    settings.enableTexture = true;		//default true
-    settings.enableLooping = true;		//default true
-    settings.enableAudio = true;		//default true, save resources by disabling
-    
-    //so either pass in the settings
-    m_omxPlayer.setup(settings);
+//    //so either pass in the settings
+//    m_omxPlayer.loadMovie(path);
+//    m_omxPlayer.setPause(false);
     
     return true;
 }
@@ -106,7 +115,8 @@ bool AudioManager::playSample(string name)
 void AudioManager::stopSample()
 {
    // m_soundPlayer.stop();
-    m_omxPlayer.close();
+   // m_omxPlayer.setPause(true);
+    m_videoPlayer.stop();
 }
 
 
