@@ -62,6 +62,8 @@ public:
     
     void onMatrixSceneChange(bool& value);
     
+    void onSetMotorSpeed(int& value);
+    
 private:
     
     void setupGuiParameters();

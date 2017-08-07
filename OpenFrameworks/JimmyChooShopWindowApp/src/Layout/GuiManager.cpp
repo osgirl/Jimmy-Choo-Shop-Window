@@ -193,3 +193,8 @@ void GuiManager::onMatrixSceneChange(bool& value)
         }
     }
 }
+
+void GuiManager::onSetMotorSpeed(int& value)
+{
+    m_dmxMotorSpeed = value;
+}
