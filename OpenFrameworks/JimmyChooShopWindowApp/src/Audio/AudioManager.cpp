@@ -100,7 +100,8 @@ bool AudioManager::playSample(string name)
     }
     
    // string path =  ofToDataPath(m_videoSamples[name],true);
-    
+
+	ofLogNotice() <<"AudioManager::playSample -> Playing Sample!  " << name ;    
     m_videoPlayer.load(m_videoSamples[name]);
     m_videoPlayer.setLoopState(OF_LOOP_NORMAL);
     m_videoPlayer.play();
