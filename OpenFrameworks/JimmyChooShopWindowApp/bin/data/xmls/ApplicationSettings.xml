@@ -7,7 +7,7 @@
 
       <debug showCursor="1" setVerbose="1"/>
       <network ip="127.0.0.1"  portOscSend="7890" portOscReceive="5678" syphon="SubtitlesSyphon"/>
-      <serial auto="0"  dmxPort="3" serialPort="0"/>
+      <serial auto="1"  dmxPort="3" serialPort="0"/>
 
   </of_settings>
 
