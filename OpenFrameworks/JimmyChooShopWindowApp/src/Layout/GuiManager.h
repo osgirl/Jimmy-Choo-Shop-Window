@@ -40,6 +40,8 @@ public:
     //! Draw the gui
     void draw();
     
+    void update();
+    
     void saveGuiValues();
     
     void loadGuiValues();
@@ -70,6 +72,8 @@ private:
     
     void setupGuiScenes();
     
+    void updateScenes();
+    
 private:
     
     // Fluid GUI
@@ -86,6 +90,8 @@ private:
     ofParameter<int>    m_dmxLightChannel;
     ofParameter<int>    m_dmxMotorChannel;
     ofParameter<int>    m_dmxMotorSpeed;
+    
+    int         m_currentScene;
     
     
     bool        m_showGui;  //It defines the whether the gui should be shown or not

@@ -18,7 +18,7 @@ const string GuiManager::GUI_SETTINGS_NAME = "HeroDress";
 const int GuiManager::GUI_WIDTH = 350;
 
 
-GuiManager::GuiManager(): Manager(), m_showGui(true)
+GuiManager::GuiManager(): Manager(), m_showGui(true), m_currentScene(-1)
 {
     //Intentionally left empty
 }
@@ -43,6 +43,7 @@ void GuiManager::setup()
     this->setupGuiScenes();
     this->setupDmxGui();
     this->loadGuiValues();
+    this->onSceneChange("SHOWCASE");
     
     ofLogNotice() <<"GuiManager::initialized";
     
@@ -76,7 +77,7 @@ void GuiManager::setupGuiScenes()
     
     m_matrixScenes.setup("Presets",1);
     for(unsigned int i = 0; i < m_scenesParameters.size(); i++) {
-        m_scenesParameters.at(i).addListener(this, &GuiManager::onMatrixSceneChange);
+        //m_scenesParameters.at(i).addListener(this, &GuiManager::onMatrixSceneChange);
         m_matrixScenes.add(new ofxMinimalToggle(m_scenesParameters.at(i)));
     }
     //m_matrixNotes.setBorderColor(ofColor::aquamarine);
@@ -120,6 +121,24 @@ void GuiManager::draw()
     
 }
 
+void GuiManager::update()
+{
+    this->updateScenes();
+}
+
+void GuiManager::updateScenes()
+{
+    if(m_currentScene != m_matrixScenes.getActiveToggleIndex()){
+    
+        m_currentScene = m_matrixScenes.getActiveToggleIndex();
+        ofLogNotice() <<"GuiManager::updateScenes -> Current Scene: " << m_currentScene;
+        AppManager::getInstance().getSceneManager().changeScene(m_currentScene);
+        m_matrixScenes.setActiveToggle(m_currentScene);
+        
+    }
+}
+
+
 
 void GuiManager::saveGuiValues()
 {
@@ -155,7 +174,7 @@ void GuiManager::onSceneChange(const string &sceneName)
 void GuiManager::onSceneChange(int sceneIndex)
 {
     
-    if(sceneIndex>0&&sceneIndex<m_scenesParameters.size())
+    if(sceneIndex>=0&&sceneIndex<m_scenesParameters.size())
     {
          m_matrixScenes.setActiveToggle(sceneIndex);
     }
@@ -170,7 +189,7 @@ void GuiManager::onMatrixSceneChange(bool& value)
         {
             int index = m_matrixScenes.getActiveToggleIndex();
             ofLogNotice() <<"GuiManager::m_scenesParameters -> Scene: " << i << ", index = " << index;
-            AppManager::getInstance().getSceneManager().changeScene(i);
+            //AppManager::getInstance().getSceneManager().changeScene(i);
         }
     }
 }
