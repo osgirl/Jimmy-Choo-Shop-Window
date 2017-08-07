@@ -14,7 +14,7 @@
 
 
 const string GuiManager::GUI_SETTINGS_FILE_NAME = "xmls/GuiSettings.xml";
-const string GuiManager::GUI_SETTINGS_NAME = "HeroDress";
+const string GuiManager::GUI_SETTINGS_NAME = "GUI";
 const int GuiManager::GUI_WIDTH = 350;
 
 
@@ -96,7 +96,7 @@ void GuiManager::setupDmxGui()
     m_dmxLightChannel.addListener(dmxManager, &DmxManager::onSetDmxLightChannel);
     m_parametersDmx.add(m_dmxLightChannel);
     
-    m_dmxMotorChannel.set("Motor Ch.", 9, 1, 512);
+    m_dmxMotorChannel.set("Motor Ch.", 8, 1, 512);
     m_dmxMotorChannel.addListener(dmxManager, &DmxManager::onSetDmxMotorChannel);
     m_parametersDmx.add(m_dmxMotorChannel);
     

@@ -65,6 +65,7 @@ void InstagramManager::update()
     if(m_newTag){
         m_newTag = false;
         AppManager::getInstance().getGuiManager().onSceneChange("DISCO");
+        AppManager::getInstance().getSceneManager().changeScene("DISCO");
     }
 }
 

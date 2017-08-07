@@ -104,6 +104,7 @@ void DiscoScene::timerCompleteHandler( int &args )
 {
     ofLogNotice("DiscoScene::timerCompleteHandler -> Timer completed");
     AppManager::getInstance().getGuiManager().onSceneChange("SHOWCASE");
+    AppManager::getInstance().getSceneManager().changeScene("SHOWCASE");
 }
 
 void DiscoScene::setupDmx()
