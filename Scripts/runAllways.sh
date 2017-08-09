@@ -17,6 +17,8 @@ PROCESS=JimmyChooShopWi
 
 cd ../OpenFrameworks/JimmyChooShopWindowApp/bin/
 
+amixer set PCM -- 100%
+
 while true; do
 	if pgrep $PROCESS
 		then
