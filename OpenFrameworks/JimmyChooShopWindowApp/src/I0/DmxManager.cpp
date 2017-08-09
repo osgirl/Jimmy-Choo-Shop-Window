@@ -10,7 +10,7 @@
 #include "AppManager.h"
 
 
-DmxManager::DmxManager(): Manager(), m_dmxLightStartChannel(1), m_dmxMotorStartChannel(1)
+DmxManager::DmxManager(): Manager(), m_dmxLightStartChannel(1), m_dmxMotorStartChannel(8)
 {
     //Intentionally left empty
 }
@@ -62,18 +62,20 @@ void DmxManager::update()
 void DmxManager::onSetDmxLightChannel(int& value)
 {
     m_dmxLightStartChannel = ofClamp(value, 1, 512);
+    ofLogNotice() <<"DmxManager::onSetDmxLightChannel << DmxLightStartChannel " << m_dmxLightStartChannel;
 }
 
 void DmxManager::onSetDmxMotorChannel(int& value)
 {
     m_dmxMotorStartChannel = ofClamp(value, 1, 512);
+    ofLogNotice() <<"DmxManager::onSetDmxLightChannel << m_dmxMotorStartChannel " << m_dmxLightStartChannel;
 }
 
 void DmxManager::onSetDmxMotorSpeed(int& value)
 {
     int dmxspeed = 128 - ofClamp(value, 0, 128);
     m_dmx.setLevel(m_dmxMotorStartChannel, dmxspeed);
-	ofLogNotice() << "DmxManager::speed << " << dmxspeed;
+    ofLogNotice() << "DmxManager::speed << " << dmxspeed;
     m_dmx.update();
 }
 

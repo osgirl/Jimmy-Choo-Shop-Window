@@ -43,14 +43,12 @@ public:
     
     void setLineHeight(float percent);
     
-    static string getFontFilePathByName(string fontName);
     
 private:
     
     //fill in a string
     string walkAndFill(ofUTF8Ptr being, ofUTF8Ptr & iter, ofUTF8Ptr end);
     
-    string getFilePathName(string _fontname);
     
 private:
     

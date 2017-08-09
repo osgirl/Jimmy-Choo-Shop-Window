@@ -52,6 +52,8 @@ public:
     void setTitle(const string& title);
     
     const ofColor& getAnimationColor() const {return m_animationColor;}
+    
+    void setAnimationColor(ofColor& color){m_animationColor = color;}
 
 private:
 

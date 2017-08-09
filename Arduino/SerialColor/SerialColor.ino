@@ -87,7 +87,7 @@ void updateSerial()
          }
          else if(header == 'd')
          {
-              currentPattern = STROBE;
+              currentPattern = SINELON;
          }
          else if(header == 's')
          {

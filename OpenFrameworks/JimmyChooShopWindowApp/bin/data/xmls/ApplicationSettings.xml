@@ -26,6 +26,12 @@
 
   </audio>
 
+  <videos>
+
+    <video name="NightFever" path="videos/Bee_Gees_-_Night_Fever_1977_.mp4"/>
+
+  </videos>
+
   <colors>
 
     <color name="BackgroundColor" r="40" g="40" b="43" a="255"/>

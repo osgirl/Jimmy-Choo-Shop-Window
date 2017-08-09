@@ -37,6 +37,9 @@ void BlankScene::willDraw() {
    
 	AppManager::getInstance().getSerialManager().onSetColor(ofColor::black);
     AppManager::getInstance().getSerialManager().onSetSolid();
+    
+    int motorSpeed = 0;
+    AppManager::getInstance().getGuiManager().onSetMotorSpeed(motorSpeed);
 }
 
 void BlankScene::willFadeOut() {

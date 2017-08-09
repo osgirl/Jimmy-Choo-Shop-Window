@@ -56,7 +56,7 @@ private:
     
 private:
     
-	ofxDmx m_dmx;
+	ofxDmx4All m_dmx;
     int m_dmxLightStartChannel;
     int m_dmxMotorStartChannel;
 

@@ -34,7 +34,7 @@ void AudioManager::setup()
     Manager::setup();
     
     this->setupSamples();
-    
+   
     ofLogNotice() <<"AudioManager::initialized" ;
     
 }
@@ -42,14 +42,15 @@ void AudioManager::setup()
 void AudioManager::setupSamples()
 {
     m_sampleNames = AppManager::getInstance().getSettingsManager().getAudioResourcesPath();
-
+    m_soundPlayer.setVolume(1.0);
 }
+
 
 
 void AudioManager::update()
 {
     // update the sound playing system:
-    ofSoundUpdate();
+    //ofSoundUpdate();
 }
 
 
@@ -72,8 +73,10 @@ bool AudioManager::playSample(string name)
         return false;
     }
     
+    m_soundPlayer.setLoop(true); //Sound will loop
     m_soundPlayer.play();
     return true;
+    
 }
 
 void AudioManager::stopSample()

@@ -39,6 +39,8 @@ void ShowcaseScene::willFadeIn() {
     AppManager::getInstance().getLayoutManager().setTitle(getName());
     
     AppManager::getInstance().getSerialManager().onSetSolid();
+    ofColor color = ofColor(255,0,255);
+    AppManager::getInstance().getLayoutManager().setAnimationColor(color);
 }
 
 void ShowcaseScene::willDraw() {
@@ -58,7 +60,8 @@ void ShowcaseScene::setupDmx() {
     m_updateColors = true;
     AppManager::getInstance().getDmxManager().onSetDmxLightSolid();
     int motorSpeed = 20;
-    AppManager::getInstance().getGuiManager().onDmxSpeedChange(motorSpeed);
+    //AppManager::getInstance().getDmxManager().onSetDmxMotorSpeed(motorSpeed);
+    AppManager::getInstance().getGuiManager().onSetMotorSpeed(motorSpeed);
     
 }
 

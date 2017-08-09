@@ -50,7 +50,6 @@ private:
         
     void setupSamples();
     
-    
 private:
     
     ResourcesPathMap    m_sampleNames;

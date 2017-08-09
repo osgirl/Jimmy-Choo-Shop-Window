@@ -69,9 +69,11 @@ void LayoutManager::setupFbo()
 
 void LayoutManager::setupColor()
 {
-    m_animationColor.setSaturation(255);
-    m_animationColor.setBrightness(255);
-    m_animationColor.setHue(0);
+    //m_animationColor.setSaturation(255);
+    //m_animationColor.setBrightness(255);
+    //m_animationColor.setHue(300);
+    m_animationColor = ofColor(255,0,255);
+    
 }
 void LayoutManager::resetWindowRect()
 {
@@ -117,10 +119,11 @@ void LayoutManager::update()
 
 void LayoutManager::updateColor()
 {
-    float dt = ofGetLastFrameTime();
-    
-    float hue = fmod((m_animationColor.getHue() + dt*10),360);
-    m_animationColor.setHue(hue);
+    //float dt = ofGetLastFrameTime();
+    //float hue = fmod((m_animationColor.getHue() + dt*10),360);
+    float t = ofGetElapsedTimef()*0.5;
+    float saturation = ofMap(sin(t), -1, 1, 0, 255);
+    m_animationColor.setSaturation(saturation);
 
 }
 
