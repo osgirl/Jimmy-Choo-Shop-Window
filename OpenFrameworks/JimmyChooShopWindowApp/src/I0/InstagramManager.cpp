@@ -10,7 +10,8 @@
 #include "AppManager.h"
 
 
-const int InstagramManager::TIMER_INTERVAL_MS = 1000;
+const int InstagramManager::URL_TIMER_INTERVAL_MS = 1000;
+const int InstagramManager::SCENES_TIMER_INTERVAL_MS = 5000;
 
 InstagramManager::InstagramManager(): Manager(), m_currentString(""), m_newTag(false)
 {
@@ -34,7 +35,7 @@ void InstagramManager::setup()
     Manager::setup();
     
     this->setupTags();
-    this->setupTimer();
+    this->setupTimers();
     
     ofRegisterURLNotification(this);
     
@@ -51,23 +52,45 @@ void InstagramManager::setupTags()
     }
 }
 
-void InstagramManager::setupTimer()
+void InstagramManager::setupTimers()
 {
-    m_timer.setup( TIMER_INTERVAL_MS );
+    m_urlTimer.setup( URL_TIMER_INTERVAL_MS );
     
-    m_timer.start( false ) ;
-    ofAddListener( m_timer.TIMER_COMPLETE , this, &InstagramManager::timerCompleteHandler ) ;
+    m_urlTimer.start( false ) ;
+    ofAddListener( m_urlTimer.TIMER_COMPLETE , this, &InstagramManager::urlTimerCompleteHandler ) ;
+    
+    
+    m_scenesTimer.setup( SCENES_TIMER_INTERVAL_MS );
+    
+    m_scenesTimer.start( false ) ;
+    ofAddListener( m_scenesTimer.TIMER_COMPLETE , this, &InstagramManager::scenesTimerCompleteHandler ) ;
 }
 
 void InstagramManager::update()
 {
-    m_timer.update();
+    this->updateTimers();
+   
     if(m_newTag){
         m_newTag = false;
-        AppManager::getInstance().getGuiManager().onSceneChange("DISCO");
-        AppManager::getInstance().getSceneManager().changeScene("DISCO");
+        this->resetDiscoScene();
     }
 }
+
+
+void InstagramManager::updateTimers()
+{
+    m_urlTimer.update();
+    m_scenesTimer.update();
+}
+
+void InstagramManager::resetDiscoScene()
+{
+    AppManager::getInstance().getGuiManager().onSceneChange("DISCO");
+    AppManager::getInstance().getSceneManager().changeScene("DISCO");
+    ofLogNotice() <<"InstagramManager::resetDiscoScenes" ;
+    m_scenesTimer.start(false, true);
+}
+
 
 
 bool InstagramManager::checkUpdate(const string& result, const string& tag)
@@ -116,9 +139,9 @@ void InstagramManager::urlResponse(ofHttpResponse & response)
 }
 
 
-void InstagramManager::timerCompleteHandler( int &args )
+void InstagramManager::urlTimerCompleteHandler( int &args )
 {
-    m_timer.start(false);
+    m_urlTimer.start(false);
     //cout<<"TIMER COMPLETED"<<endl;
     string start = "https://www.instagram.com/explore/tags/" ;
     string end = "/?__a=1" ;
@@ -131,6 +154,13 @@ void InstagramManager::timerCompleteHandler( int &args )
     }
 }
 
+
+void InstagramManager::scenesTimerCompleteHandler( int &args )
+{
+    ofLogNotice("InstagramManager::scenesTimerCompleteHandler -> Timer completed");
+    AppManager::getInstance().getGuiManager().onSceneChange("SHOWCASE");
+    AppManager::getInstance().getSceneManager().changeScene("SHOWCASE");
+}
 
 bool InstagramManager::checkAllTags(const string& result)
 {

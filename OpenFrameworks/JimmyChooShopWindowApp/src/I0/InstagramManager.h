@@ -24,7 +24,8 @@
 class InstagramManager: public Manager
 {
     
-    static const int TIMER_INTERVAL_MS;
+    static const int URL_TIMER_INTERVAL_MS;
+    static const int SCENES_TIMER_INTERVAL_MS;
 
 public:
     //! Constructor
@@ -40,16 +41,20 @@ public:
     
     void urlResponse(ofHttpResponse & response);
     
-    void timerCompleteHandler( int &args ) ;
+    void urlTimerCompleteHandler( int &args ) ;
+    
+    void scenesTimerCompleteHandler( int &args ) ;
     
     const string& getCurrentString() const {return m_currentString;}
 
 
 private:
     
-    void setupTimer();
+    void setupTimers();
     
     void setupTags();
+    
+    void updateTimers();
     
     bool checkUpdate(const string& result, const string& tag);
     
@@ -57,13 +62,16 @@ private:
     
     bool checkAllTags(const string& result);
     
+    void resetDiscoScene();
+    
 private:
     
     
     typedef            map<string,string> TagMap; ///< Defines a map of current feeds related to a tag
     
     TagMap             m_tags;
-    ofxSimpleTimer     m_timer;
+    ofxSimpleTimer     m_urlTimer;
+    ofxSimpleTimer     m_scenesTimer;
     ofxJSONElement     m_json;
     string             m_currentString;
     bool               m_newTag;

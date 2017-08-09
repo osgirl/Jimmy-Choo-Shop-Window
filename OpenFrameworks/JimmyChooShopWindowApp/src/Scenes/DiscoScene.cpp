@@ -11,7 +11,6 @@
 #include "AppManager.h"
 
 
-const int DiscoScene::TIMER_DURATION_MS = 36000;
 
 DiscoScene::DiscoScene(): ofxScene("DISCO"), m_updateColors(false)
 {
@@ -19,15 +18,7 @@ DiscoScene::DiscoScene(): ofxScene("DISCO"), m_updateColors(false)
 
 void DiscoScene::setup() {
     ofLogNotice("DiscoScene::setup");
-    this->setupTimer();
     this->setupText();
-}
-
-void DiscoScene::setupTimer()
-{
-    m_timer.setup( TIMER_DURATION_MS );
-    ofAddListener( m_timer.TIMER_COMPLETE , this, &DiscoScene::timerCompleteHandler ) ;
-    
 }
 
 void DiscoScene::setupText()
@@ -54,10 +45,11 @@ void DiscoScene::setupText()
 
 void DiscoScene::update()
 {
-    m_timer.update();
     if(m_updateColors){
         this->updateColors();
     }
+    
+    this->updateText();
   
 }
 
@@ -70,7 +62,6 @@ void DiscoScene::willFadeIn() {
      ofLogNotice("DiscoScene::willFadeIn");
      AppManager::getInstance().getAudioManager().playSample("NightFever");
      this->setupDmx();
-     m_timer.start(false);
      this->updateText();
      AppManager::getInstance().getLayoutManager().setTitle(getName());
      AppManager::getInstance().getSerialManager().onSetDisco();
@@ -92,7 +83,6 @@ void DiscoScene::willFadeOut() {
     ofLogNotice("DiscoScene::willFadeOut");
     AppManager::getInstance().getAudioManager().stopSample();
     m_updateColors = false;
-    m_timer.stop();
 }
 
 void DiscoScene::willExit() {
@@ -100,12 +90,6 @@ void DiscoScene::willExit() {
    
 }
 
-void DiscoScene::timerCompleteHandler( int &args )
-{
-    ofLogNotice("DiscoScene::timerCompleteHandler -> Timer completed");
-    AppManager::getInstance().getGuiManager().onSceneChange("SHOWCASE");
-    AppManager::getInstance().getSceneManager().changeScene("SHOWCASE");
-}
 
 void DiscoScene::setupDmx()
 {
