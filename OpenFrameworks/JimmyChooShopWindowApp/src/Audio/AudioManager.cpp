@@ -66,7 +66,7 @@ void AudioManager::update()
 {
     // update the sound playing system:
     //ofSoundUpdate();
-    m_videoPlayer.update();
+    //m_videoPlayer.update();
 }
 
 
@@ -77,47 +77,48 @@ void AudioManager::draw()
 
 bool AudioManager::playSample(string name)
 {
-//    if(m_sampleNames.find(name)==m_sampleNames.end()){
-//        ofLogNotice() <<"AudioManager::playSample -> No sample named:  " << name ;
-//        return false;
-//    }
-//    
-//    string path = m_sampleNames[name];
-//    
-//    if(!m_soundPlayer.load(path)){
-//        ofLogNotice() <<"AudioManager::playSample -> No sample found under path:  " << path ;
-//        return false;
-//    }
-//    
-//    m_soundPlayer.play();
-//    return true;
-//    
-    
-    
-    if(m_videoSamples.find(name)==m_videoSamples.end()){
+    if(m_sampleNames.find(name)==m_sampleNames.end()){
         ofLogNotice() <<"AudioManager::playSample -> No sample named:  " << name ;
         return false;
     }
     
-   // string path =  ofToDataPath(m_videoSamples[name],true);
-
-	ofLogNotice() <<"AudioManager::playSample -> Playing Sample!  " << name ;    
-    m_videoPlayer.load(m_videoSamples[name]);
-    m_videoPlayer.setLoopState(OF_LOOP_NORMAL);
-    m_videoPlayer.play();
+    string path = m_sampleNames[name];
+    
+    if(!m_soundPlayer.load(path)){
+        ofLogNotice() <<"AudioManager::playSample -> No sample found under path:  " << path ;
+        return false;
+    }
+    
+    m_soundPlayer.setLoop(true); //Sound will loop
+    m_soundPlayer.play();
+    return true;
+    
+    
+    
+//    if(m_videoSamples.find(name)==m_videoSamples.end()){
+//        ofLogNotice() <<"AudioManager::playSample -> No sample named:  " << name ;
+//        return false;
+//    }
+//    
+//   // string path =  ofToDataPath(m_videoSamples[name],true);
+//
+//	ofLogNotice() <<"AudioManager::playSample -> Playing Sample!  " << name ;    
+//    m_videoPlayer.load(m_videoSamples[name]);
+//    m_videoPlayer.setLoopState(OF_LOOP_NORMAL);
+//    m_videoPlayer.play();
     
 //    //so either pass in the settings
 //    m_omxPlayer.loadMovie(path);
 //    m_omxPlayer.setPause(false);
     
-    return true;
+ //   return true;
 }
 
 void AudioManager::stopSample()
 {
-   // m_soundPlayer.stop();
+    m_soundPlayer.stop();
    // m_omxPlayer.setPause(true);
-    m_videoPlayer.stop();
+    //m_videoPlayer.stop();
 }
 
 
