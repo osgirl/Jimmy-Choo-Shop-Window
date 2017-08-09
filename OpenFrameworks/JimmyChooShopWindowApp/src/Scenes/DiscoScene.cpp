@@ -78,6 +78,7 @@ void DiscoScene::updateText()
 
 void DiscoScene::willDraw() {
     ofLogNotice("DiscoScene::willDraw");
+    this->setupDmx();
     AppManager::getInstance().getSerialManager().onSetDisco();
 }
 
@@ -128,10 +129,7 @@ void DiscoScene::setupColor()
     }
     AppManager::getInstance().getLayoutManager().setAnimationColor(color);
     
-    AppManager::getInstance().getDmxManager().onSetDmxLightStrobe();
     AppManager::getInstance().getDmxManager().onSetDmxStrobeColor(strobeColor);
-    AppManager::getInstance().getDmxManager().onSetDmxLightStrobe();
-    
 }
 
 

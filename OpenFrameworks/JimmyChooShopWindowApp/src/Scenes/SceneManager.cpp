@@ -66,7 +66,7 @@ void SceneManager::createScenes()
 
     
     m_mySceneManager.run(width, height);
-    this->onTransitionTimeChange(1.0);
+    this->onTransitionTimeChange(0.3);
 }
 
 
