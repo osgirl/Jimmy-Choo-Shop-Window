@@ -88,6 +88,13 @@ void DmxManager::onSetDmxLightColor(const ofColor& color)
     m_dmx.update();
 }
 
+void DmxManager::onSetDmxStrobeColor(int value)
+{
+    value = ofClamp(value,0,255);
+    m_dmx.setLevel(m_dmxLightStartChannel + 1, value); //Set master dimming to 0
+    m_dmx.update();
+}
+
 void DmxManager::onSetDmxLightStrobe()
 {
     m_dmx.setLevel(m_dmxLightStartChannel + 3, 0); //Set master dimming to 0

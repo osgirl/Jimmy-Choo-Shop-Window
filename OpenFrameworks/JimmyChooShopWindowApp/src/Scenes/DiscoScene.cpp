@@ -96,8 +96,8 @@ void DiscoScene::willExit() {
 void DiscoScene::setupDmx()
 {
     m_updateColors = true;
-    //AppManager::getInstance().getDmxManager().onSetDmxLightStrobe();
-    AppManager::getInstance().getDmxManager().onSetDmxLightSolid();
+    AppManager::getInstance().getDmxManager().onSetDmxLightStrobe();
+    //AppManager::getInstance().getDmxManager().onSetDmxLightSolid();
     int motorSpeed = 127;
     //AppManager::getInstance().getDmxManager().onSetDmxMotorSpeed(motorSpeed);
     AppManager::getInstance().getGuiManager().onSetMotorSpeed(motorSpeed);
@@ -109,22 +109,26 @@ void DiscoScene::updateColors()
     
     AppManager::getInstance().getSerialManager().onSetColor(animationColor);
     
-    float strobeProb = sin(ofGetElapsedTimef()*50);
-    if(strobeProb<0){
-        animationColor = ofColor::black;
-    }
-    
-    AppManager::getInstance().getDmxManager().onSetDmxLightColor(animationColor);
+//    float strobeProb = sin(ofGetElapsedTimef()*50);
+//    if(strobeProb<0){
+//        animationColor = ofColor::black;
+//    }
+//    
+//    AppManager::getInstance().getDmxManager().onSetDmxLightColor(animationColor);
     
 }
 
 void DiscoScene::setupColor()
 {
     ofColor color = ofColor(255,0,255);
+    int strobeColor = 182;
     if(ofRandom(1)<0.5){
         color = ofColor(0,0,255);
+        strobeColor = 162;
     }
     AppManager::getInstance().getLayoutManager().setAnimationColor(color);
+    
+    AppManager::getInstance().getDmxManager().onSetDmxStrobeColor(strobeColor);
     
     
 }

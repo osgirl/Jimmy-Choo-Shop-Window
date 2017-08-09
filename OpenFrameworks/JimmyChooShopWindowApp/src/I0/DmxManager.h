@@ -46,6 +46,8 @@ public:
     
     void onSetDmxLightStrobe();
     
+    void onSetDmxStrobeColor(int value);
+    
     void onSetDmxLightSolid();
 
 private:
