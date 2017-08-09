@@ -56,7 +56,7 @@ void GuiManager::setupGuiParameters()
     //m_gui.setPosition(ofGetWidth() - GUI_WIDTH - 20, 40);
     m_gui.setPosition(20, 20);
     m_gui.add(m_guiFPS.set("FPS", 0, 0, 60));
-    ofxGuiSetFont( "fonts/open-sans/OpenSans-Semibold.ttf", 9 );
+    //ofxGuiSetFont( "fonts/open-sans/OpenSans-Semibold.ttf", 9 );
     
 }
 
