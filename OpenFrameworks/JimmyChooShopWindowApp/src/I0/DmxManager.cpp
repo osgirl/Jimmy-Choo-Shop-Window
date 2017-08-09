@@ -91,7 +91,7 @@ void DmxManager::onSetDmxLightColor(const ofColor& color)
 void DmxManager::onSetDmxStrobeColor(int value)
 {
     value = ofClamp(value,0,255);
-    m_dmx.setLevel(m_dmxLightStartChannel + 1, value); //Set master dimming to 0
+    m_dmx.setLevel(m_dmxLightStartChannel + 1, value); //Set strobe color according to value
     m_dmx.update();
 }
 
