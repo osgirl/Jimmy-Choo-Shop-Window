@@ -16,7 +16,7 @@
 
 
 
-AudioManager::AudioManager(): Manager()
+AudioManager::AudioManager(): Manager(), m_currentPath("")
 {
     //Intentionally left empty
 }
@@ -87,11 +87,19 @@ bool AudioManager::playSample(string name)
             return false;
         }
     
-       string path =  ofToDataPath(m_videoSamples[name],true);
+        string path =  ofToDataPath(m_videoSamples[name],true);
+    
+        if(m_currentPath == path){
+            m_omxPlayer.restartMovie();
+        }
+        else{
+             m_omxPlayer.loadMovie(path);
+             m_currentPath = path;
+        }
     
         //so either pass in the settings
-        m_omxPlayer.loadMovie(path);
-        m_omxPlayer.setPause(false);
+    
+        m_omxPlayer.setPaused(false);
     
        return true;
     
@@ -121,7 +129,7 @@ bool AudioManager::playSample(string name)
 void AudioManager::stopSample()
 {
     #ifdef TARGET_RASPBERRY_PI
-        m_omxPlayer.setPause(true);
+        m_omxPlayer.setPaused(true);
     #else
     
          m_soundPlayer.stop();
