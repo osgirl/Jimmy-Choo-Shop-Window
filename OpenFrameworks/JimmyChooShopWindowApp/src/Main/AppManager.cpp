@@ -55,7 +55,7 @@ void AppManager::setupOF()
     ofSetLogLevel(OF_LOG_NOTICE);
     ofLogToFile("logs/consoleLog.txt", false);
     ofSetVerticalSync(true);
-    ofSetEscapeQuitsApp(false);
+    ofSetEscapeQuitsApp(true);
     ofSetBackgroundAuto(true);
     ofDisableSmoothing();
     ofDisableAntiAliasing();
