@@ -24,6 +24,7 @@ amixer set PCM -- 100%
 while true; do
 	if pgrep $PROCESS
 		then
+			continue
 			#echo '-> JimmyChooShopWi process already exit'
 		else
 			echo '-> Starting JimmyChooShopWi process...'

@@ -4,7 +4,7 @@ Software running the interaction, visuals and motor control of Jimmy Choo's shop
 
 ## Installation
 
-Developed for Windows 10 under OpenFrameworks 0.9.8
+Developed for Raspberry Pi v3 under OpenFrameworks 0.9.8
 
 ## Usage
 

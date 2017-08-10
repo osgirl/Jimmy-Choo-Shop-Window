@@ -14,6 +14,8 @@
 #include "AppManager.h"
 
 
+
+
 AudioManager::AudioManager(): Manager()
 {
     //Intentionally left empty
@@ -43,6 +45,23 @@ void AudioManager::setupSamples()
 {
     m_sampleNames = AppManager::getInstance().getSettingsManager().getAudioResourcesPath();
     m_soundPlayer.setVolume(1.0);
+    
+     m_videoSamples = AppManager::getInstance().getSettingsManager().getVideoResourcesPath();
+    
+    
+
+    
+    #ifdef TARGET_RASPBERRY_PI
+        ofxOMXPlayerSettings settings;
+        //settings.videoPath = path;
+        settings.useHDMIForAudio = true;	//default true
+        settings.enableTexture = true;		//default true
+        settings.enableLooping = true;		//default true
+        settings.enableAudio = true;		//default true, save resources by disabling
+    
+        //so either pass in the settings
+        m_omxPlayer.setup(settings);
+    #endif
 }
 
 
@@ -61,6 +80,28 @@ void AudioManager::draw()
 
 bool AudioManager::playSample(string name)
 {
+#ifdef TARGET_RASPBERRY_PI
+    
+        if(m_videoSamples.find(name)==m_videoSamples.end()){
+            ofLogNotice() <<"AudioManager::playSample -> No sample named:  " << name ;
+            return false;
+        }
+    
+       // string path =  ofToDataPath(m_videoSamples[name],true);
+    
+    	ofLogNotice() <<"AudioManager::playSample -> Playing Sample!  " << name ;
+        m_videoPlayer.load(m_videoSamples[name]);
+        m_videoPlayer.setLoopState(OF_LOOP_NORMAL);
+        m_videoPlayer.play();
+    
+        //so either pass in the settings
+        m_omxPlayer.loadMovie(path);
+        m_omxPlayer.setPause(false);
+    
+       return true;
+    
+#else
+
     if(m_sampleNames.find(name)==m_sampleNames.end()){
         ofLogNotice() <<"AudioManager::playSample -> No sample named:  " << name ;
         return false;
@@ -77,11 +118,20 @@ bool AudioManager::playSample(string name)
     m_soundPlayer.play();
     return true;
     
+#endif
+    
+    
 }
 
 void AudioManager::stopSample()
 {
-    m_soundPlayer.stop();
+    #ifdef TARGET_RASPBERRY_PI
+        m_omxPlayer.setPause(true);
+    #else
+    
+         m_soundPlayer.stop();
+    
+    #endif
 }
 
 
