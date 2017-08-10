@@ -49,10 +49,10 @@
 
   <tags>
 
-  <!--<tag name="happy"/>
-	<tag name="love"/> -->
-    <tag name="jimmychoo"/>
-    <tag name="iwantchoosloane"/> 
+  	<tag name="jimmychoo"/>
+	<tag name="iwantchoosloane"/>
+   <!-- <tag name="jimmychoo"/>
+    <tag name="iwantchoosloane"/> --> 
   </tags>
 
 </settings>
