@@ -12,6 +12,11 @@
 #include "Manager.h"
 #include "SettingsManager.h"
 
+#ifdef TARGET_RASPBERRY_PI
+    #include "ofxOMXPlayer.h"
+#endif
+
+
 //========================== class AudioManager ==============================
 //============================================================================
 /** \class AudioManager AudioManager.h
@@ -53,7 +58,12 @@ private:
 private:
     
     ResourcesPathMap    m_sampleNames;
+    ResourcesPathMap    m_videoSamples;
     ofSoundPlayer       m_soundPlayer;
+    
+#ifdef TARGET_RASPBERRY_PI
+    ofxOMXPlayer omxPlayer;
+#endif
 
 };
 
