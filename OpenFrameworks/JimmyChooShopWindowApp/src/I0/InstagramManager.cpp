@@ -87,7 +87,7 @@ void InstagramManager::resetDiscoScene()
 {
     AppManager::getInstance().getGuiManager().onSceneChange("DISCO");
     AppManager::getInstance().getSceneManager().changeScene("DISCO");
-    ofLogNotice() <<"InstagramManager::resetDiscoScenes" ;
+    //ofLogNotice() <<"InstagramManager::resetDiscoScenes" ;
     m_scenesTimer.start(false, true);
 }
 
@@ -157,7 +157,7 @@ void InstagramManager::urlTimerCompleteHandler( int &args )
 
 void InstagramManager::scenesTimerCompleteHandler( int &args )
 {
-    ofLogNotice("InstagramManager::scenesTimerCompleteHandler -> Timer completed");
+    //ofLogNotice("InstagramManager::scenesTimerCompleteHandler -> Timer completed");
     AppManager::getInstance().getGuiManager().onSceneChange("SHOWCASE");
     AppManager::getInstance().getSceneManager().changeScene("SHOWCASE");
 }

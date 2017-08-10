@@ -131,7 +131,7 @@ void GuiManager::updateScenes()
     if(m_currentScene != m_matrixScenes.getActiveToggleIndex()){
     
         m_currentScene = m_matrixScenes.getActiveToggleIndex();
-        ofLogNotice() <<"GuiManager::updateScenes -> Current Scene: " << m_currentScene;
+        //ofLogNotice() <<"GuiManager::updateScenes -> Current Scene: " << m_currentScene;
         AppManager::getInstance().getSceneManager().changeScene(m_currentScene);
         m_matrixScenes.setActiveToggle(m_currentScene);
         
@@ -188,7 +188,7 @@ void GuiManager::onMatrixSceneChange(bool& value)
         if( value && (m_scenesParameters.at(i).get() == true))
         {
             int index = m_matrixScenes.getActiveToggleIndex();
-            ofLogNotice() <<"GuiManager::m_scenesParameters -> Scene: " << i << ", index = " << index;
+            //ofLogNotice() <<"GuiManager::m_scenesParameters -> Scene: " << i << ", index = " << index;
             //AppManager::getInstance().getSceneManager().changeScene(i);
         }
     }
