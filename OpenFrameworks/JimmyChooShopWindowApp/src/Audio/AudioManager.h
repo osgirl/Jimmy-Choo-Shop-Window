@@ -62,7 +62,7 @@ private:
     ofSoundPlayer       m_soundPlayer;
     
 #ifdef TARGET_RASPBERRY_PI
-    ofxOMXPlayer omxPlayer;
+    ofxOMXPlayer m_omxPlayer;
 #endif
 
 };
