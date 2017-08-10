@@ -18,7 +18,7 @@
 
 const int LayoutManager::MARGIN = 20;
 const int LayoutManager::FRAME_MARGIN = 2;
-const string LayoutManager::LAYOUT_FONT =  "fonts/open-sans/OpenSans-Semibold.ttf";
+const string LayoutManager::LAYOUT_FONT =  "fonts/OpenSansEmoji.ttf";
 const string LayoutManager::LAYOUT_FONT_LIGHT =  "fonts/open-sans/OpenSans-Light.ttf";
 
 LayoutManager::LayoutManager(): Manager()
@@ -136,7 +136,7 @@ void LayoutManager::createTextVisuals()
     float y =  m_windowRect.y - h - 2*MARGIN;
     ofPoint pos = ofPoint(x, y);
     string text = "Current Scene";
-    string fontName = LAYOUT_FONT_LIGHT;
+    string fontName = LAYOUT_FONT;
     
 
     auto textVisual = ofPtr<TextVisual>(new TextVisual(pos,w,h,true));

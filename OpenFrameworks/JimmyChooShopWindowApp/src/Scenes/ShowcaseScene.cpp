@@ -15,7 +15,7 @@ ShowcaseScene::ShowcaseScene(): ofxScene("SHOWCASE"), m_updateColors(false)
 }
 
 void ShowcaseScene::setup() {
-    ofLogNotice("ShowcaseScene::setup");
+    //ofLogNotice("ShowcaseScene::setup");
 }
 
 void ShowcaseScene::update() {
