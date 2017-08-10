@@ -12,13 +12,18 @@
 
 
 
-DiscoScene::DiscoScene(): ofxScene("DISCO"), m_updateColors(false)
+DiscoScene::DiscoScene(): ofxScene("DISCO"), m_updateColors(false), m_initialized(false)
 {
 }
 
 void DiscoScene::setup() {
+    if(m_initialized){
+        return;
+    }
+    
     ofLogNotice("DiscoScene::setup");
     this->setupText();
+    m_initialized = true;
 }
 
 void DiscoScene::setupText()

@@ -58,6 +58,7 @@ private:
     
     TextVisual         m_textVisual;
     bool               m_updateColors;
+    bool               m_initialized;
 
 };
 

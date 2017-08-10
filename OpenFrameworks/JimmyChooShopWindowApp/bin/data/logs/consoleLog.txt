@@ -1,19 +1,20 @@
 
 
---------------------------------------- 2017-08-01-22-00-40-388
+--------------------------------------- 2017-08-10-09-57-46-003
 [notice ] SettingsManager::initialized
 [notice ] SettingsManager::loadSettingsFile->  successfully loaded xmls/ApplicationSettings.xml
 [notice ] SettingsManager::setWindowProperties->  successfully loaded the window settings
 [notice ] SettingsManager::setWindowProperties->  title = Jimmy Choo Shop Window App, width = 960, height = 600, x = 0, y = 0
 [notice ] SettingsManager::setDebugProperties->  successfully loaded the OF general settings
 [notice ] SettingsManager::setNetworkProperties->  successfully loaded the network settings
-[notice ] SettingsManager::loadSerialSettings->  serial port = 1, dmx port = 2
+[notice ] SettingsManager::loadSerialSettings->  serial will be automatically selected
 [notice ] SettingsManager::loadSerialSettings->  successfully loaded the serial settings
 [notice ] SettingsManager::loadTextureSettings->  texture = Equalizer, path = images/general/equalizer.png
 [notice ] SettingsManager::loadTextureSettings->  texture = Brush, path = images/general/brush.png
 [notice ] SettingsManager::loadTextureSettings->  successfully loaded the resource settings
 [notice ] SettingsManager::loadSvgSettings->  path not found: //svgs
-[notice ] SettingsManager::loadSvgSettings->  path not found: //videos
+[notice ] SettingsManager::loadVideoSettings->  video = NightFever, path = videos/Bee_Gees_-_Night_Fever_1977_.mp4
+[notice ] SettingsManager::loadSvgSettings->  successfully loaded the video settings
 [notice ] SettingsManager::loadAudioSettings->  sample = NightFever, path = sound/NightFever_BeeGees.mp3
 [notice ] SettingsManager::loadAudioSettings->  sample = NightFeverShort, path = sound/NightFever_BeeGees_short.mp3
 [notice ] SettingsManager::loadAudioSettings->  sample = TestSound, path = sound/TestSound.mp3
@@ -38,9 +39,9 @@
 [notice ] ViewManager::initialized 
 [notice ] VisualEffectsManager::initialized
 [verbose] ofFbo: GL frame buffer object supported
-[verbose] ofFbo: checkGLSupport(): maxColorAttachments: 8, maxDrawBuffers: 8, maxSamples: 32
+[verbose] ofFbo: checkGLSupport(): maxColorAttachments: 8, maxDrawBuffers: 8, maxSamples: 8
 [verbose] ofFbo: FRAMEBUFFER_COMPLETE - OK
-[notice ] EngineFont::setup-> font loaded fonts/open-sans/OpenSans-Light.ttf with size 20
+[notice ] EngineFont::setup-> font loaded fonts/OpenSansEmoji.ttf with size 20
 [notice ] LayoutManager::initialized
 [notice ] KeyboardManager::initialized
 [notice ] InstagramManager::setupTags -> Added tag: happy
@@ -48,231 +49,132 @@
 [notice ] InstagramManager::initialized
 [notice ] AudioManager::initialized
 [verbose] ofFbo: GL frame buffer object supported
-[verbose] ofFbo: checkGLSupport(): maxColorAttachments: 8, maxDrawBuffers: 8, maxSamples: 32
+[verbose] ofFbo: checkGLSupport(): maxColorAttachments: 8, maxDrawBuffers: 8, maxSamples: 8
 [verbose] ofFbo: FRAMEBUFFER_COMPLETE - OK
 [verbose] ofFbo: GL frame buffer object supported
-[verbose] ofFbo: checkGLSupport(): maxColorAttachments: 8, maxDrawBuffers: 8, maxSamples: 32
+[verbose] ofFbo: checkGLSupport(): maxColorAttachments: 8, maxDrawBuffers: 8, maxSamples: 8
 [verbose] ofFbo: FRAMEBUFFER_COMPLETE - OK
 [notice ] BlankScene::setup: 
 [notice ] BlankScene::willFadeIn: 
 [verbose] ofFbo: GL frame buffer object supported
-[verbose] ofFbo: checkGLSupport(): maxColorAttachments: 8, maxDrawBuffers: 8, maxSamples: 32
+[verbose] ofFbo: checkGLSupport(): maxColorAttachments: 8, maxDrawBuffers: 8, maxSamples: 8
 [verbose] ofFbo: FRAMEBUFFER_COMPLETE - OK
 [notice ] SceneManager::initialized
-[notice ] SerialManager::setupSerial << Connecting serial to port 1
-[notice ] ofSerial: found 0 devices
-[ error ] ofSerial: couldn't find device 1, only 0 devices found
+[notice ] SerialManager::setupSerial << Autoconnecting serial port
+[notice ] ofSerial: [0] = cu.Bluetooth-Incoming-Port
+[notice ] ofSerial: [1] = tty.Bluetooth-Incoming-Port
+[notice ] ofSerial: [2] = cu.MINIJAMBOXbyJawbone-SPP
+[notice ] ofSerial: [3] = tty.MINIJAMBOXbyJawbone-SPP
+[notice ] ofSerial: opening /dev/cu.Bluetooth-Incoming-Port @ 115200 bps
+[notice ] ofSerial: opened /dev/cu.Bluetooth-Incoming-Port sucessfully @ 115200 bps
+[notice ] SerialManager::sendPin << Sent '?'
+[verbose] ofSerial: wrote byte
+[notice ] SerialManager::checkConnection << Serial Available: 0
+[notice ] SerialManager::checkConnection << Arduino is not connected 
+[notice ] ofSerial: opening /dev/tty.Bluetooth-Incoming-Port @ 115200 bps
+[notice ] ofSerial: opened /dev/tty.Bluetooth-Incoming-Port sucessfully @ 115200 bps
+[notice ] SerialManager::sendPin << Sent '?'
+[verbose] ofSerial: wrote byte
+[notice ] SerialManager::checkConnection << Serial Available: 0
+[notice ] SerialManager::checkConnection << Arduino is not connected 
+[notice ] ofSerial: opening /dev/cu.MINIJAMBOXbyJawbone-SPP @ 115200 bps
+[ error ] ofSerial: unable to open /dev/cu.MINIJAMBOXbyJawbone-SPP
+[notice ] SerialManager::checkConnection << Arduino is not connected 
+[notice ] ofSerial: opening /dev/tty.MINIJAMBOXbyJawbone-SPP @ 115200 bps
+[ error ] ofSerial: unable to open /dev/tty.MINIJAMBOXbyJawbone-SPP
+[notice ] SerialManager::checkConnection << Arduino is not connected 
 [notice ] SerialManager::initialized
-[notice ] DmxManager::setupSerial << Connecting dmx to port 2
-[notice ] ofSerial: found 0 devices
-[notice ] ofSerial: found 0 devices
-[ error ] ofSerial: couldn't find device 2, only 0 devices found
+[notice ] DmxManager::setupSerial << Autoconnecting dmx port
+[notice ] ofSerial: [0] = cu.Bluetooth-Incoming-Port
+[notice ] ofSerial: [1] = tty.Bluetooth-Incoming-Port
+[notice ] ofSerial: [2] = cu.MINIJAMBOXbyJawbone-SPP
+[notice ] ofSerial: [3] = tty.MINIJAMBOXbyJawbone-SPP
+[notice ] ofSerial: opening /dev/cu.Bluetooth-Incoming-Port @ 38400 bps
+[notice ] ofSerial: opened /dev/cu.Bluetooth-Incoming-Port sucessfully @ 38400 bps
+[verbose] ofSerial: wrote 2 bytes
+[ error ]  Dmx4All is not connected 
+[notice ] ofSerial: opening /dev/tty.Bluetooth-Incoming-Port @ 38400 bps
+[notice ] ofSerial: opened /dev/tty.Bluetooth-Incoming-Port sucessfully @ 38400 bps
+[verbose] ofSerial: wrote 2 bytes
+[ error ]  Dmx4All is not connected 
+[notice ] ofSerial: opening /dev/cu.MINIJAMBOXbyJawbone-SPP @ 38400 bps
+[ error ] ofSerial: unable to open /dev/cu.MINIJAMBOXbyJawbone-SPP
+[ error ]  Dmx4All is not connected 
+[notice ] ofSerial: opening /dev/tty.MINIJAMBOXbyJawbone-SPP @ 38400 bps
+[ error ] ofSerial: unable to open /dev/tty.MINIJAMBOXbyJawbone-SPP
+[ error ]  Dmx4All is not connected 
 [notice ] DmxManager::initialized
-[notice ] DmxManager::speed << 91
+[warning] ofXml: setCurrentElement(): passed invalid path "DMX"
+[warning] ofXml: setToParent(): current element has no parent
+[notice ] GuiManager::initialized
+[notice ] BlankScene::willDraw: 
+[notice ] DmxManager::speed << 128
 [notice ] BlankScene::willFadeOut: 
-[notice ] ShowcaseScene::setup: 
 [notice ] ShowcaseScene::willFadeIn: 
 [notice ] DmxManager::speed << 108
-[notice ] GuiManager::initialized
 [notice ] ShowcaseScene::willDraw: 
 [notice ] BlankScene::willExit: 
-[notice ] InstagramManager::parseJson -> happy: With my nephew learning how to write, I find my days surrounded by pencil shavings! ✏️ I suppose I could just by a pacer, but what would be the fun in that?!?!? 🤣
-.
-.
-.
-.
-.
-#JulzWanderlustAdventures #exploreeverything #openmyworld #lifeofadventure #wanderlust #aroundtheworld #travelgram #newsouthwales #pencil #letter
-.
-.
-.
-.
-.
-#love #instagood #photooftheday #family #architecture #delicious #happy #art #beautiful #cool #yummy #summer #fun #smile #friends #cleaneating #style #food #amazing #life
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #love
 [notice ] ShowcaseScene::willFadeOut: 
 [notice ] DiscoScene::setup: 
 [notice ] EngineFont::setup-> font loaded fonts/OpenSansEmoji.ttf with size 20
 [notice ] DiscoScene::willFadeIn: 
-[notice ] DmxManager::speed << 3
-[notice ] InstagramManager::parseJson -> happy: Beetlejuice house! @airbnb #airbnb #love #loveit #cancun #mexico #instagood #cute #nationalgeographic #happy #tbt #beautiful #like #landscape #photooftheday #smile #god #girl #instalike #amazing #follow4follow #bestoftheday #photographer #girly #gorgeous #underwater #inspiration #sweet #party #luisjorgearnaudphotography
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #love
-[notice ] ShowcaseScene::willExit: 
+[notice ] DmxManager::speed << 1
 [notice ] DiscoScene::willDraw: 
-[notice ] InstagramManager::parseJson -> happy: 🎵Ooga-chaka Ooga-Ooga Ooga-chaka Ooga-OogaI can't stop this feelingDeep inside of me🎵 #HookedOnAFeeling #GoodVibes #SummerTime #Happy #Prisma
-[notice ] InstagramManager::checkAllTags -> hashtag not found: #happy
-[notice ] InstagramManager::parseJson -> happy: Finally we are at Köln ... #germany #köln #holiday #free #time #good #mood #happy #party #picture #instagram #iphone7 ❤️❤️❤️
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag not found: #love
-[notice ] InstagramManager::parseJson -> happy: Это мои дети просят меня ,чтобы я разрешила переехать в другую палату девочку.
-(Я спрашивала можно ли мне их поснимать,они раза решили.я не издеваюсь над детьми)
-#summertime #summer #camp #moments #memories #video #funny #happy #дети #лагерь
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag not found: #love
-[notice ] InstagramManager::parseJson -> happy: #diamon390 #dreamcometrue #timeofmylife #greatmemories #greattimes #greatpeople #happy #myday #worldtour #show #crazyboy #motivation #energy #lifestyle #сумасшедший #мотивация #образжизни #заряжайся #узнайбольше #энергия #шоу #внападении #ловикайф #интересно #настроение #party #fun #конкурс #выиграй #баскетбол
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag not found: #love
-[notice ] InstagramManager::parseJson -> happy: Wir ❤️❤️❤️ #love#couple#freaks#happy#coupleholiday#nice#cyprus#zypern#loveu#livelaughlove#love#ocean#mare#beach#goodday
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #love
-[notice ] InstagramManager::parseJson -> happy: Nameday shits👑
-#nameday #summer #mik #instagram #instapic #jewelry #ring #blondehair #girl #tb #photoshoot #photo #pic #happy #lipstick
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag not found: #love
-[notice ] InstagramManager::parseJson -> happy: 赤多めに～のオーダーで💠💠💠
-#ネイル#ネイルアート#ネイルデザイン#ジェルネイル#ジェルデザイン#nail#nails#nailart#naildesign#love#girls#happy#instagram#instanails#instagood#art#design#hair#osaka#japan#美容室#美容師#可愛い#綺麗#cute#beauty#フットネイル#楽しい
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #love
-[notice ] InstagramManager::parseJson -> happy: #信号 #嬉しい信号 #trafficlight #semaforo #smile #happy #happyday #streetstyle #streetart #streetarteverywhere #sky #instaday #instagood #instahappy #Milano #cadorna #instatime #smiles #smiley
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag not found: #love
-[notice ] InstagramManager::parseJson -> happy: #sudden set up #machan #birthday #delhi times #happy bday buddy....
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag not found: #love
-[notice ] InstagramManager::parseJson -> happy: I made you run up every hill and look at every ancient stone in Athens today and you still look kinda happy..😜💓😘😏☀️💞
-#thankyou #happy #loveyou #travelbuddy #greece #athens #acropolis #view #vacation #travel #tomorrowisarestday #sunkissed #luckyme
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #love
-[notice ] InstagramManager::parseJson -> happy: 🙌🏾🙌🏾🙌🏾🙌🏾Good morning #facts #comedy #goals #repost #life #fit #fitness #health #healthy #summer #comedy #lhhhollywood #realtalk #blessed #blessings #happy #lol #loyalty #happiness #worldstar #determination #focused #summertime #goodvibes #wshh #august #happytuesday
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag not found: #love
-[notice ] InstagramManager::parseJson -> happy: Greetings from Suffolk, England 📍🇬🇧 #bichon #westie #westiegram #instadaily #tot #tongueouttuesday #happy #holiday #love #cute #instadog #dogsofinstagram #animal #pet #petsagram
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #love
-[notice ] InstagramManager::parseJson -> happy: Selam olsun size, güzel insanlar. -
--
--
-#family #fam #mom #dad #brother #sister #brothers #sisters #bro #sis #siblings #love #instagood #father #mother #related #fun #photooftheday #children #kids #life #happy #familytime #cute #smile #fun
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #love
-[notice ] InstagramManager::parseJson -> happy: Hibiscus Flower: 👉Supports a healthy metabolism
-👉Helps maintain healthy cholesterol levels.
-
-#3monkstea #loveyourbody #organictea #tea #detox #amazing #yummy #love #happy #healthy #fit #organicskincare #itstartsontheinside #cleanse #kickcoffee #girls #instagood #fitness #life #beauty #foodporn #pretty #party #model #motivation #inspiration
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #love
-[notice ] InstagramManager::parseJson -> happy: #love #instagood #me #tbt #follow #cute#followme #photooftheday  #happy #tagsforlikes #beautiful #selfie #girl #picoftheday #smile #fashion  #friends #summer #fun
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #love
-[notice ] InstagramManager::parseJson -> happy: 1985
-.
-.
-.
-#smile #vsco #1985 #sorriso #fun #happy #happiness #sun #summer #vacanze #estate #travel
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag not found: #love
-[notice ] DiscoScene::timerCompleteHandler -> Timer completed: 
+[notice ] DmxManager::speed << 1
+[notice ] ShowcaseScene::willExit: 
 [notice ] DiscoScene::willFadeOut: 
-[notice ] ShowcaseScene::setup: 
 [notice ] ShowcaseScene::willFadeIn: 
 [notice ] DmxManager::speed << 108
 [notice ] ShowcaseScene::willDraw: 
 [notice ] DiscoScene::willExit: 
-[notice ] InstagramManager::parseJson -> happy: Sunny days👸🌞 #happy #betterdays #sunshine #student #school #study #blackgirls #blackgirlmagic #missnicolepink #pink #collegelife #curlyhead #curlyhair
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag not found: #love
-[notice ] InstagramManager::parseJson -> happy: Got some new #vinyl from friends of my parents thanks 🙏 Ans and Paul I will use them good #happy #vinyladdict #grateful
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag not found: #love
-[notice ] InstagramManager::parseJson -> happy: Mi cámara se rehúsa a hacerme una foto nítida. Still... #playa #joy #love #beach #friends #happy #feliz #perfect
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #love
 [notice ] ShowcaseScene::willFadeOut: 
-[notice ] DiscoScene::setup: 
-[notice ] EngineFont::setup-> font loaded fonts/OpenSansEmoji.ttf with size 20
 [notice ] DiscoScene::willFadeIn: 
-[notice ] DmxManager::speed << 3
-[notice ] ShowcaseScene::willExit: 
+[notice ] DmxManager::speed << 1
 [notice ] DiscoScene::willDraw: 
-[notice ] InstagramManager::parseJson -> happy: Evening walk in Šibenik 😊#me #mylife #musician #summer #summerholiday #vacation #happy #croatia #adriaticsea #sibenik #happygirl #bluesky #travel #travelphotography #athmosphere #street #piazza #polishgirl #polishwoman #polishsinger #polskadziewczyna #soprano #operasinger #followme #instagram
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag not found: #love
-[notice ] InstagramManager::parseJson -> happy: Valuable moments to capture. B Baynie. .
-.
-.#moments #memories  #appreciate #appreciation #beauty #love #believe #belief #do it #happiness #happy #me #smile #beautiful #determined #skills #goals #passion #achievement #determination #strength #aspirations #dedication #awesome #friends #nature
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #love
-[notice ] InstagramManager::parseJson -> happy: Collect moments ❤
-
-#teras #gezellig #collect #moments #zomer #happy #rotterdam #gelukkig
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag not found: #love
-[notice ] InstagramManager::parseJson -> happy: lalala.
-#clock#mavi#💙#aşktır#today#sunny#love#happy#smile#insta#newpic#follow4follow
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #love
-[notice ] InstagramManager::parseJson -> happy: Последний день отпуска 😎🍷🍫
-#нагаражах #instalike #instafoto #fotolife #funny #good #relaxing #happy #foreve #selfies #selfiee
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag not found: #love
-[notice ] InstagramManager::parseJson -> happy: #happy #love #love #flowers
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #love
-[notice ] InstagramManager::parseJson -> happy: La mode pour moi est une passion que je partage avec vous avec amour à travers mes looks. Ils peuvent être appréciés tout autant que dépréciés mais ce que j'aime c'est la joie que celle ci apporte dans mon coeur ajouté à ça mon autre amour pour les photos.  Et beeh ! J'espère que vous allez tous bien. Juste un coucou .
-.
-.
-#lifestyleblogger #bloggers #africanstyle #roots #smile #beyourself #selfconfidence #me #like4like #happy #blogueurmode #vscocamera #ankarapants #ankara #simplicity #f4f #team237
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag not found: #love
-[notice ] InstagramManager::parseJson -> happy: 😄#inshot #girls #cute #summer #blur #sun #happy #fun #dog #hair #beach #hot #cool #fashion #smile  #instamood #family #nofilter #amazing #style #love #photooftheday #lol #my #nocrop
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #love
-[notice ] InstagramManager::parseJson -> happy: SALMON & TOMATO PASTA #fita #foodintheair #pasta #amalfi #views #omnom #comfortfood #cooking #twistedfood #nomnom #makeathome #foodporn #foodphotography #dinner #instructional #yum #nom #cheese #food #foodie #foodlover #recipe #videooftheday #recipevideo #yummy #shells #cheeseislife #happy #myplace #cheflife
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag not found: #love
-[notice ] InstagramManager::parseJson -> happy: Они просто не пуганные!:)) Один даже умудрился клюнуть за палец!^.^ #pretty #naturebeauty #happy #walk
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag not found: #love
-[notice ] InstagramManager::parseJson -> happy: So happy to be back with @likeuevencare 💚 #smiles#greenqueen#lipstick#ginger#bae#happy
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag not found: #love
-[notice ] InstagramManager::parseJson -> happy: #inshot #cute #summer #sun #happy #fun #dog #beach #hot #cool #friends #smile #amazing #love #livingthedream #River  #rattlesnake  #snake #rabbitsofinstagram
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #love
-[notice ] InstagramManager::parseJson -> happy: Precious 🇬🇧🦍🐾
-#topdog #k9queen #queen #bosslady #alpha #structure #temp #intelligent #femalebeauty #presa #presacanario #canario #mastiff #mastifflove #love #joy #pleasure #beauty #beast #happy #dogwalk #dogwalker #dogtraining #dogbehaviourist #dogpsychology #thefirst #keeper #fullpackage #trendsetters
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #love
-[notice ] InstagramManager::parseJson -> happy: 비가 많이오던 여름날
-논두렁에서 비에 잔뜩젖어 오물과 함께 발견된 아기강아지 라인이는
-태어나자마자 겪어야 했던 모진 삶에 결국은 홍역으로 세상과의 작별을 고하고 있습니다.
-
-신의 영역이라는 홍역.
-어떤병원은 홍역이라는 이유만으로 
-함께 있는 다른 멍이들 위해
-공고중 안락사를 시키기도 하죠.
-
-함께 구조된 다른 형제 꼬물이들중
-가장 힘이 없고 쳐져있던 너의 눈동자를 기억하는데
-
-너를위한 마지막까지의 치료비를 모금하는 글쓰는일 밖에 할수가 없구나.. 아가야.. 힘을 내보자
-
-작디작은 라인이의 치료비를 도와주세요.. ♡ 후원계좌
-국민은행 469901-04-199087
-행동하는동물사랑 ♡ 페이팔(Paypal) 후원
-https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=G4FHJMR72E47N
-
-Email : hdsppl@naver.com
-
-라인치료, 라인힘내, 라인일어나, 라인건강
-혹은 000라인(실명+라인)
-
-#라인 #유기동물 #유기견 #길냥이 #강아지 #고양이 #봉사 #후원 #입양 #임보 #보호소 #쉼터 #animals #dog #cat #puppy #반려동물 #반려견 #멍스타그램 #냥스타그램 #행동사 #행동하는동물사랑 #love #happy #baby #파주 #신림동 #안락사 #입양뜰
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #love
-[notice ] InstagramManager::parseJson -> happy: Счастливый китаец в Испании❣️ #smile #spain #travel #summer #happy #girls #friends #walking #enjoy #power #vsco #love #beautiful #country #city #nature #art #party #ukraine #instagood #goodmood #picoftheday
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #love
-[notice ] InstagramManager::parseJson -> happy: #dress #clothes #select #woman #girl #female #awesome #perfect #epic #fantastic #inspiration #make #hair #instagram #colorful #likeforlike #happy #yummy #instagood #fashion #moda #nice #hairstyle #instagram #style #nail #follow #love #men #mensfashion #men #car
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #love
-[notice ] InstagramManager::parseJson -> happy: 👭❣️#friends #girls #sun #sunnyday #skating #sport #happy #happytime #slovakgirls #brunette #photooftheday #enjoythemoment #enjoysummerdays #loveher #onlygoodvibes #slovakia #likes #like #lb #instapic #instaphoto #instagood #likeforfollow #likeforlike #likeforlikeback #lb #likeback
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #happy
-[notice ] InstagramManager::checkAllTags -> hashtag found!!!: #love
-[notice ] DiscoScene::timerCompleteHandler -> Timer completed: 
+[notice ] DmxManager::speed << 1
+[notice ] ShowcaseScene::willExit: 
 [notice ] DiscoScene::willFadeOut: 
-[notice ] ShowcaseScene::setup: 
 [notice ] ShowcaseScene::willFadeIn: 
 [notice ] DmxManager::speed << 108
+[notice ] ShowcaseScene::willDraw: 
+[notice ] DiscoScene::willExit: 
+[notice ] ShowcaseScene::willFadeOut: 
+[notice ] DiscoScene::willFadeIn: 
+[notice ] DmxManager::speed << 1
+[notice ] DiscoScene::willDraw: 
+[notice ] DmxManager::speed << 1
+[notice ] ShowcaseScene::willExit: 
+[warning] setting channels not supported for UNKOWN format
+[warning] setting channels not supported for UNKOWN format
+[ error ] ofPixels: format doesn't support channels
+[ error ] ofPixels: format doesn't support channels
+[notice ] DiscoScene::willFadeOut: 
+[notice ] ShowcaseScene::willFadeIn: 
+[notice ] DmxManager::speed << 108
+[notice ] ShowcaseScene::willDraw: 
+[notice ] DiscoScene::willExit: 
+[notice ] ShowcaseScene::willFadeOut: 
+[notice ] DiscoScene::willFadeIn: 
+[notice ] DmxManager::speed << 1
+[notice ] DiscoScene::willDraw: 
+[notice ] DmxManager::speed << 1
+[notice ] ShowcaseScene::willExit: 
+[notice ] JimmyChooShopWindowApp::exit
+[warning] ofXml: setToParent(): current element has no parent
+[ error ] ofXml: toString(): XML Exception
+[notice ] AppManager::Destructor
+[notice ] InstagramManager::destructor
+[notice ] SerialManager::destructor
+[notice ] DmxManager::destructor
+[notice ] DmxManager::speed << 128
+[notice ] AudioManager::Destructor
+[notice ] SceneManager::Destructor
+[warning] ofXml: setToParent(): current element has no parent
+[ error ] ofXml: toString(): XML Exception
+[notice ] GuiManager::Destructor
+[notice ] KeyboardManager::destructor
+[notice ] LayoutManager::Destructor
+[notice ] VisualEffectsManager::destructor
+[notice ] ViewManager::destructor
+[notice ] ResourceManager::destructor
+[notice ] SettingsManager::Destructor
