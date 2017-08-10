@@ -11,8 +11,6 @@ echo '-> Jimmy Choo App Script'
 dir=$(dirname $0)
 cd $dir
 
-sleep 10
-
 echo '-> Starting Jimmy Choo Application'
 
 PROCESS=JimmyChooShopWi
@@ -24,10 +22,10 @@ amixer set PCM -- 100%
 while true; do
 	if pgrep $PROCESS
 		then
-			#echo '-> JimmyChooShopWi process already exit'
+			continue
 		else
 			echo '-> Starting JimmyChooShopWi process...'
 			./JimmyChooShopWindowApp &
 	fi
-	sleep 30
+	sleep 10
 done
