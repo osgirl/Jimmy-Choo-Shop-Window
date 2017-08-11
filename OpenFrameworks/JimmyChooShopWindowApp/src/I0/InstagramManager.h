@@ -58,7 +58,9 @@ private:
     
     bool checkUpdate(const string& result, const string& tag);
     
-    string parseJson(const string& result);
+    string parseJsonTag(const string& result);
+    
+    string parseJsonCode(const string& result);
     
     bool checkAllTags(const string& result);
     
