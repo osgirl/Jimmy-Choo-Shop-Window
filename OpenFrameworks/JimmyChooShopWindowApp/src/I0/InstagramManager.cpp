@@ -100,7 +100,7 @@ bool InstagramManager::checkUpdate(const string& result, const string& tag)
         return false;
     }
     
-    string codeString = this->parseJsonTag(result);
+    string codeString = this->parseJsonCode(result);
     
     if(m_tags[tag]!=codeString){
         m_tags[tag]=codeString;
