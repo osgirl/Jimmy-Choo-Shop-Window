@@ -100,13 +100,15 @@ bool InstagramManager::checkUpdate(const string& result, const string& tag)
         return false;
     }
     
-    string hashtagString = this->parseJson(result);
+    string codeString = this->parseJsonTag(result);
     
-    if(m_tags[tag]!=hashtagString){
-        m_tags[tag]=hashtagString;
+    if(m_tags[tag]!=codeString){
+        m_tags[tag]=codeString;
+        
+         string hashtagString = this->parseJsonTag(result);
         //ofLogNotice() <<"InstagramManager::parseJson -> " << tag << ": "<< m_tags[tag];
         if(this->checkAllTags(hashtagString)){
-            m_currentString = m_tags[tag];
+            m_currentString = hashtagString;
             return true;
         }
         
@@ -117,11 +119,18 @@ bool InstagramManager::checkUpdate(const string& result, const string& tag)
     // cout << json["tag"]["media"]["nodes"][0]["caption"].asString() <<endl;
 }
 
-string InstagramManager::parseJson(const string& result)
+string InstagramManager::parseJsonTag(const string& result)
 {
     m_json.parse(result);
     return m_json["tag"]["media"]["nodes"][0]["caption"].asString();
 }
+
+string InstagramManager::parseJsonCode(const string& result)
+{
+    m_json.parse(result);
+    return m_json["tag"]["media"]["nodes"][0]["code"].asString();
+}
+
 
 void InstagramManager::urlResponse(ofHttpResponse & response)
 {
