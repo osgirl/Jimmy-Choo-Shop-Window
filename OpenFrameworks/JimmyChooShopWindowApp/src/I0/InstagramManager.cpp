@@ -11,9 +11,9 @@
 
 
 const int InstagramManager::URL_TIMER_INTERVAL_MS = 1000;
-const int InstagramManager::SCENES_TIMER_INTERVAL_MS = 30000;
+const int InstagramManager::SCENES_TIMER_INTERVAL_MS = 3000;
 
-InstagramManager::InstagramManager(): Manager(), m_currentString(""), m_newTag(false)
+InstagramManager::InstagramManager(): Manager(), m_currentString(""), m_newTag(false), m_firstTag(true), m_currentCode("")
 {
     //Intentionally left empty
 }
@@ -44,12 +44,7 @@ void InstagramManager::setup()
 
 void InstagramManager::setupTags()
 {
-    auto& tags = AppManager::getInstance().getSettingsManager().getTags();
-    for(auto& tag: tags)
-    {
-        m_tags[tag] = "";
-        ofLogNotice() <<"InstagramManager::setupTags -> Added tag: " << tag;
-    }
+    m_tags = AppManager::getInstance().getSettingsManager().getTags();
 }
 
 void InstagramManager::setupTimers()
@@ -95,18 +90,21 @@ void InstagramManager::resetDiscoScene()
 
 bool InstagramManager::checkUpdate(const string& result, const string& tag)
 {
-    if(m_tags.find(tag)==m_tags.end()) //No tag found with that name
+   
+    if ( std::find(m_tags.begin(), m_tags.end(), tag) == m_tags.end() )
     {
         return false;
     }
     
+    
     string codeString = this->parseJsonCode(result);
     
-    if(m_tags[tag]!=codeString){
-        m_tags[tag]=codeString;
+    
+    if(m_currentCode!=codeString){
+        m_currentCode=codeString;
         
         string hashtagString = this->parseJsonTag(result);
-        ofLogNotice() <<"InstagramManager::parseJson -> " << tag << ": "<< m_tags[tag];
+        ofLogNotice() <<"InstagramManager::parseJson -> " << tag << ": "<< m_currentCode;
         if(this->checkAllTags(hashtagString)){
             m_currentString = hashtagString;
             return true;
@@ -136,14 +134,15 @@ void InstagramManager::urlResponse(ofHttpResponse & response)
 {
     //ofLogNotice() <<"InstagramManager::urlResponse -> " << response.request.name << ", " << response.status;
     
-    for (auto& tag : m_tags)
+    if(m_tags.empty()){
+        return;
+    }
+
+    if(response.status==200 && response.request.name == m_tags.front())
     {
-        if(response.status==200 && response.request.name == tag.first)
-        {
-            //ofLogNotice() <<"InstagramManager::urlResponse -> " << response.request.name << ", " << response.status;
-            
-            m_newTag = this->checkUpdate(response.data, tag.first);
-        }
+        //ofLogNotice() <<"InstagramManager::urlResponse -> " << response.request.name << ", " << response.status;
+        
+        m_newTag = this->checkUpdate(response.data, m_tags.front());
     }
 }
 
@@ -155,12 +154,12 @@ void InstagramManager::urlTimerCompleteHandler( int &args )
     string start = "https://www.instagram.com/explore/tags/" ;
     string end = "/?__a=1" ;
     
-    for (auto& tag : m_tags) {
-        string url = start + tag.first + end;
-        ofLoadURLAsync(url,tag.first);
-        break; //Just use the first tag as reference
-        //ofLogNotice() <<"InstagramManager::loadurl -> " << url;
+    if(m_tags.empty()){
+        return;
     }
+    
+    string url = start + m_tags.front() + end;
+    ofLoadURLAsync(url, m_tags.front());
 }
 
 
@@ -174,10 +173,10 @@ void InstagramManager::scenesTimerCompleteHandler( int &args )
 bool InstagramManager::checkAllTags(const string& result)
 {
     bool allTagsAreInResult = true;
-   
+    
     for (auto& tag : m_tags)
     {
-        string hastag = '#' + tag.first ;
+        string hastag = '#' + tag ;
         if(!ofIsStringInString(result, hastag))
         {
             ofLogNotice() <<"InstagramManager::checkAllTags -> hashtag not found: " << hastag;

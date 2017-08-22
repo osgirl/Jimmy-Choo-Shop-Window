@@ -70,13 +70,16 @@ private:
     
     
     typedef            map<string,string> TagMap; ///< Defines a map of current feeds related to a tag
+    typedef            vector<string> TagVector; ///< Defines a map of current feeds related to a tag
     
-    TagMap             m_tags;
+    TagVector          m_tags;
     ofxSimpleTimer     m_urlTimer;
     ofxSimpleTimer     m_scenesTimer;
     ofxJSONElement     m_json;
     string             m_currentString;
+    string             m_currentCode;
     bool               m_newTag;
+    bool               m_firstTag;
 
 };
 
