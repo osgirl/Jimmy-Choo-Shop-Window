@@ -12,9 +12,9 @@
 #include "Manager.h"
 #include "SettingsManager.h"
 
-//#ifdef TARGET_RASPBERRY_PI
-//    #include "ofxOMXPlayer.h"
-//#endif
+#ifdef TARGET_RASPBERRY_PI
+    #include "ofxOMXPlayer.h"
+#endif
 
 
 //========================== class AudioManager ==============================
@@ -62,9 +62,9 @@ private:
     ofSoundPlayer       m_soundPlayer;
     string              m_currentPath;
     
-//#ifdef TARGET_RASPBERRY_PI
-//    ofxOMXPlayer m_omxPlayer;
-//#endif
+#ifdef TARGET_RASPBERRY_PI
+    ofxOMXPlayer m_omxPlayer;
+#endif
 
 };
 
