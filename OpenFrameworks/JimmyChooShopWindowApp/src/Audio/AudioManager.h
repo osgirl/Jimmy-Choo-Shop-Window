@@ -60,6 +60,7 @@ private:
     ResourcesPathMap    m_sampleNames;
     ResourcesPathMap    m_videoSamples;
     ofSoundPlayer       m_soundPlayer;
+    ofVideoPlayer       m_videoPlayer;
     string              m_currentPath;
     
 #ifdef TARGET_RASPBERRY_PI
