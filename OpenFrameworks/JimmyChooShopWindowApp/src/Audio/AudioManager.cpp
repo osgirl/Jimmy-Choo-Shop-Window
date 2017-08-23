@@ -54,7 +54,7 @@ void AudioManager::setupSamples()
     #ifdef TARGET_RASPBERRY_PI
         ofxOMXPlayerSettings settings;
         //settings.videoPath = path;
-        settings.useHDMIForAudio = false;	//default true
+        settings.useHDMIForAudio = true;	//default true
         settings.enableTexture = true;		//default true
         settings.enableLooping = true;		//default true
         settings.enableAudio = true;		//default true, save resources by disabling
@@ -86,8 +86,9 @@ bool AudioManager::playSample(string name)
             ofLogNotice() <<"AudioManager::playSample -> No sample named:  " << name ;
             return false;
         }
-    
+	ofLogNotice() <<"AudioManager::playSample ->Opening  " <<m_videoSamples[name] ;    
         string path =  ofToDataPath(m_videoSamples[name],true);
+	ofLogNotice() <<"AudioManager::playSample ->Opening  " << path;
     
         if(m_currentPath == path){
             m_omxPlayer.restartMovie();
