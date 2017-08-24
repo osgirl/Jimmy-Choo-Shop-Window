@@ -11,7 +11,7 @@
 
 
 const int InstagramManager::URL_TIMER_INTERVAL_MS = 1000;
-const int InstagramManager::SCENES_TIMER_INTERVAL_MS = 3000;
+const int InstagramManager::SCENES_TIMER_INTERVAL_MS = 30000;
 
 InstagramManager::InstagramManager(): Manager(), m_currentString(""), m_newTag(false), m_firstTag(true), m_currentCode("")
 {
