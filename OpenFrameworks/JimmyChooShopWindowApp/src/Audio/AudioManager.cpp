@@ -16,7 +16,7 @@
 
 
 
-AudioManager::AudioManager(): Manager(), m_currentPath("")
+AudioManager::AudioManager(): Manager(), m_currentPath(""), m_soundPlayer(NULL)
 {
     //Intentionally left empty
 }
@@ -44,24 +44,9 @@ void AudioManager::setup()
 void AudioManager::setupSamples()
 {
     m_sampleNames = AppManager::getInstance().getSettingsManager().getAudioResourcesPath();
-    m_soundPlayer.setVolume(1.0);
     
     m_videoSamples = AppManager::getInstance().getSettingsManager().getVideoResourcesPath();
     
-    
-
-    
-//    #ifdef TARGET_RASPBERRY_PI
-//        ofxOMXPlayerSettings settings;
-//        //settings.videoPath = path;
-//        settings.useHDMIForAudio = false;	//default true
-//        settings.enableTexture = true;		//default true
-//        settings.enableLooping = true;		//default true
-//        settings.enableAudio = true;		//default true, save resources by disabling
-//    
-//        //so either pass in the settings
-//        m_omxPlayer.setup(settings);
-//    #endif
 }
 
 
@@ -71,7 +56,7 @@ void AudioManager::update()
     // update the sound playing system:
     //ofSoundUpdate();
     
-    m_videoPlayer.update();
+    //m_videoPlayer.update();
 
 }
 
@@ -83,82 +68,36 @@ void AudioManager::draw()
 
 bool AudioManager::playSample(string name)
 {
-//#ifdef TARGET_RASPBERRY_PI
-//    
-//        if(m_videoSamples.find(name)==m_videoSamples.end()){
-//            ofLogNotice() <<"AudioManager::playSample -> No sample named:  " << name ;
-//            return false;
-//        }
-//    
-//        string path =  ofToDataPath(m_videoSamples[name],true);
-//    
-//        if(m_currentPath == path){
-//            m_omxPlayer.restartMovie();
-//        }
-//        else{
-//             m_omxPlayer.loadMovie(path);
-//             m_currentPath = path;
-//        }
-//    
-//        //so either pass in the settings
-//    
-//        m_omxPlayer.setPaused(false);
-//    
-//       return true;
-//    
-//#else
-//
-//    if(m_sampleNames.find(name)==m_sampleNames.end()){
-//        ofLogNotice() <<"AudioManager::playSample -> No sample named:  " << name ;
-//        return false;
-//    }
-//    
-//    string path = m_sampleNames[name];
-//    
-//    if(m_currentPath == path){
-//        m_soundPlayer.setPosition(0);
-//    }
-//    else{
-//        
-//        if(!m_soundPlayer.load(path)){
-//            ofLogNotice() <<"AudioManager::playSample -> No sample found under path:  " << path ;
-//            return false;
-//        }
-//        
-//        m_currentPath = path;
-//    }
-//    
-//    
-//    m_soundPlayer.setLoop(true); //Sound will loop
-//    m_soundPlayer.play();
-//    return true;
-//    
-//#endif
-//
     
-    if(m_videoSamples.find(name)==m_videoSamples.end()){
+    if(m_sampleNames.find(name)==m_sampleNames.end()){
         ofLogNotice() <<"AudioManager::playSample -> No sample named:  " << name ;
         return false;
     }
     
-    m_videoPlayer.load(m_videoSamples[name]);
-    m_videoPlayer.setLoopState(OF_LOOP_NORMAL);
-    m_videoPlayer.play();
+    string path = m_sampleNames[name];
+    
+    if(!m_soundPlayer){
+        m_soundPlayer = new ofSoundPlayer();
+    }
+    if(!m_soundPlayer->load(path)){
+            ofLogNotice() <<"AudioManager::playSample -> No sample found under path:  " << path ;
+            return false;
+    }
     
     
+    m_soundPlayer->setLoop(true); //Sound will loop
+    m_soundPlayer->play();
     return true;
 }
 
 void AudioManager::stopSample()
 {
-//    #ifdef TARGET_RASPBERRY_PI
-//        m_omxPlayer.setPaused(true);
-//    #else
-//    
-//         m_soundPlayer.stop();
-//    #endif
     
-    m_videoPlayer.stop();
+    if(m_soundPlayer){
+        m_soundPlayer->stop();
+        delete m_soundPlayer;
+        m_soundPlayer = NULL;
+    }
 }
 
 
