@@ -76,6 +76,9 @@ bool AudioManager::playSample(string name)
     
     string path = m_sampleNames[name];
     
+    delete m_soundPlayer;
+    m_soundPlayer = NULL;
+    
     if(!m_soundPlayer){
         m_soundPlayer = new ofSoundPlayer();
     }
@@ -95,8 +98,6 @@ void AudioManager::stopSample()
     
     if(m_soundPlayer){
         m_soundPlayer->stop();
-        delete m_soundPlayer;
-        m_soundPlayer = NULL;
     }
 }
 
