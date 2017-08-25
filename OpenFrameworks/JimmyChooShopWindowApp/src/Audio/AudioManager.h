@@ -11,6 +11,7 @@
 
 #include "Manager.h"
 #include "SettingsManager.h"
+#include "BasicVisual.h"
 
 
 //========================== class AudioManager ==============================
@@ -59,6 +60,7 @@ private:
     ResourcesPathMap    m_videoSamples;
     ofSoundPlayer       m_soundPlayer;
     string              m_currentPath;
+    ofPtr<BasicVisual>  m_audioVolume;
 
 };
 

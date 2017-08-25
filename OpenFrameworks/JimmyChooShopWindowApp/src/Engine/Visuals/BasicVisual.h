@@ -21,10 +21,10 @@ class BasicVisual
     public:
 
         //! Constructor
-        BasicVisual():m_width(0), m_height(0), m_position(ofVec3f(0,0,0)), m_scale(ofVec3f(1,1,1)) {}
+        BasicVisual():m_width(0), m_height(0), m_position(ofVec3f(0,0,0)), m_scale(ofVec3f(1,1,1)), m_value(0.0) {}
     
         //! Constructor
-        BasicVisual(const ofVec3f& pos, float width, float height): m_position(pos), m_width(width), m_height(height), m_scale(ofVec3f(1,1,1)) {}
+        BasicVisual(const ofVec3f& pos, float width, float height): m_position(pos), m_width(width), m_height(height), m_scale(ofVec3f(1,1,1)), m_value(0.0) {}
 
         //! Destructor
         virtual ~BasicVisual(){}
@@ -35,7 +35,7 @@ class BasicVisual
         //! Changes the alpha channel.
         virtual void setAlpha(double alpha) { m_color.set(m_color.r,m_color.g,m_color.b,alpha);}
 
-        //! Changes the alpha channel.
+        //! Get the alpha channel.
         virtual double getAlpha() const{ return m_color.a;}
 
         //! Sets the color of the BasicVisual
@@ -73,6 +73,13 @@ class BasicVisual
 
         //! Set width
         virtual void setHeight(float height) {m_height = height;}
+    
+        //! Sets the value.
+        virtual float getValue() const{ return m_value;}
+    
+        //! Changes the value.
+        virtual void setValue(float value) {m_value = value;}
+    
 
     protected:
 
@@ -82,6 +89,7 @@ class BasicVisual
         ofColor         m_color;        ///< color of the BasicVisual
         ofVec3f         m_scale;        ///< saves the current scale factor
         ofVec3f         m_rotation;     ///< saves the current rotation
+        float           m_value;        ///< saves a float value for any kind of anmation
 
     };
 

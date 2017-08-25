@@ -120,6 +120,31 @@ void VisualEffectsManager::createFadeEffect(ofPtr<BasicVisual> visual, double en
     this->addVisualEffect(fadeVisual);
 }
 
+void VisualEffectsManager::createValueEffect(ofPtr<BasicVisual> visual, double start,double end, EffectSettings& settings)
+{
+    if(!visual)
+        return;
+    
+    ofPtr<ValueEffect> valueEffect = ofPtr<ValueEffect>(new ValueEffect(visual,settings.function, settings.type));
+    valueEffect->setParameters(start,end,settings.animationTime);
+    valueEffect->start(settings.startAnimation);
+    this->addVisualEffect(valueEffect);
+}
+
+
+
+void VisualEffectsManager::createValueEffect(ofPtr<BasicVisual> visual, double end, EffectSettings& settings)
+{
+    if(!visual)
+        return;
+    
+    ofPtr<ValueEffect> valueEffect = ofPtr<ValueEffect>(new ValueEffect(visual,settings.function, settings.type));
+    valueEffect->setParameters(end,settings.animationTime);
+    valueEffect->start(settings.startAnimation);
+    this->addVisualEffect(valueEffect);
+}
+
+
 void VisualEffectsManager::createScaleEffect(ofPtr<BasicVisual> visual, const ofVec2f& startScale,const ofVec2f& endScale, EffectSettings& settings)
 {
     if(!visual)

@@ -63,6 +63,12 @@ public:
     
     //! Creates a certain fading visual effect
     void createFadeEffect(ofPtr<BasicVisual> visual, double endAlpha, EffectSettings& settings);
+    
+    //! Creates a certain value animation effect
+    void createValueEffect(ofPtr<BasicVisual> visual, double start,double end, EffectSettings& settings);
+    
+    //! Creates a certain value animation effect
+    void createValueEffect(ofPtr<BasicVisual> visual, double end, EffectSettings& settings);
 
 	//! Creates a certain scaling visual effect
 	void createScaleEffect(ofPtr<BasicVisual> visual, const ofVec2f& startScale,const ofVec2f& endScale, EffectSettings& settingse);

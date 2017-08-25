@@ -47,6 +47,9 @@ void AudioManager::setupSamples()
     m_videoSamples = AppManager::getInstance().getSettingsManager().getVideoResourcesPath();
     
     this->loadSample();
+    
+    m_audioVolume = ofPtr<BasicVisual> (new BasicVisual());
+    m_audioVolume->setValue(1.0);
 }
 
 
@@ -73,11 +76,7 @@ void AudioManager::loadSample()
 
 void AudioManager::update()
 {
-    // update the sound playing system:
-    //ofSoundUpdate();
-    
-    //m_videoPlayer.update();
-
+    m_soundPlayer.setVolume(m_audioVolume->getValue());
 }
 
 
@@ -109,13 +108,20 @@ bool AudioManager::playSample(string name)
     m_soundPlayer.setPosition(0);
     m_soundPlayer.setLoop(true); //Sound will loop
     m_soundPlayer.play();
-    m_soundPlayer.setPaused(false);
+    
+    AppManager::getInstance().getVisualEffectsManager().removeAllVisualEffects(m_audioVolume);
+    m_audioVolume->setValue(1.0);
+    //m_soundPlayer.setPaused(false);
     return true;
 }
 
 void AudioManager::stopSample()
 {
-    m_soundPlayer.setPaused(true);
+    EffectSettings settings; settings.animationTime = 1.5;
+    
+    AppManager::getInstance().getVisualEffectsManager().createValueEffect(m_audioVolume, 0.0, settings);
+    
+    //m_soundPlayer.setPaused(true);
 }
 
 
