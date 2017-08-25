@@ -16,7 +16,7 @@
 
 
 
-AudioManager::AudioManager(): Manager(), m_currentPath(""), m_soundPlayer(NULL)
+AudioManager::AudioManager(): Manager(), m_currentPath("")
 {
     //Intentionally left empty
 }
@@ -44,12 +44,32 @@ void AudioManager::setup()
 void AudioManager::setupSamples()
 {
     m_sampleNames = AppManager::getInstance().getSettingsManager().getAudioResourcesPath();
-    
     m_videoSamples = AppManager::getInstance().getSettingsManager().getVideoResourcesPath();
     
+    this->loadSample();
 }
 
 
+void AudioManager::loadSample()
+{
+    string name = "NightFever";
+    if(m_sampleNames.find(name)==m_sampleNames.end()){
+        ofLogNotice() <<"AudioManager::loadSample -> No sample named:  " << name ;
+        return;
+    }
+    
+    string path = m_sampleNames[name];
+    
+    if(m_currentPath!=path){
+        m_currentPath = path;
+        if(!m_soundPlayer.load(path)){
+            ofLogNotice() <<"AudioManager::loadSample -> No sample found under path:  " << path ;
+            return;
+        }
+        
+    }
+    
+}
 
 void AudioManager::update()
 {
@@ -76,29 +96,26 @@ bool AudioManager::playSample(string name)
     
     string path = m_sampleNames[name];
     
-    delete m_soundPlayer;
-    m_soundPlayer = NULL;
-    
-    if(!m_soundPlayer){
-        m_soundPlayer = new ofSoundPlayer();
-    }
-    if(!m_soundPlayer->load(path)){
+    if(m_currentPath!=path){
+        m_currentPath = path;
+        if(!m_soundPlayer.load(path)){
             ofLogNotice() <<"AudioManager::playSample -> No sample found under path:  " << path ;
             return false;
+        }
+       
     }
     
     
-    m_soundPlayer->setLoop(true); //Sound will loop
-    m_soundPlayer->play();
+    m_soundPlayer.setPosition(0);
+    m_soundPlayer.setLoop(true); //Sound will loop
+    m_soundPlayer.play();
+    m_soundPlayer.setPaused(false);
     return true;
 }
 
 void AudioManager::stopSample()
 {
-    
-    if(m_soundPlayer){
-        m_soundPlayer->stop();
-    }
+    m_soundPlayer.setPaused(true);
 }
 
 

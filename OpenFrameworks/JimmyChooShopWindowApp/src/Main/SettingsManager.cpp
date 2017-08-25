@@ -14,7 +14,7 @@
 const string SettingsManager::APPLICATION_SETTINGS_FILE_NAME = "xmls/ApplicationSettings.xml";
 
 
-SettingsManager::SettingsManager(): Manager(), m_appHeight(0.0), m_appWidth(0.0), m_dmxPort(-1), m_serialPort(-1)
+SettingsManager::SettingsManager(): Manager(), m_appHeight(0.0), m_appWidth(0.0), m_dmxPort(-1), m_serialPort(-1), m_playbackTimeMs(3000), m_requestTimeMs(1000)
 {
     //Intentionally left empty
 }
@@ -46,6 +46,7 @@ void SettingsManager::loadAllSettings()
     this->setDebugProperties();
     this->setNetworkProperties();
     this->loadSerialSettings();
+    this->loadAppSettings();
     this->loadTextureSettings();
     this->loadSvgSettings();
     this->loadVideoSettings();
@@ -91,6 +92,11 @@ void SettingsManager::setDebugProperties()
             ofSetLogLevel(OF_LOG_NOTICE);
         }
         
+        bool logToFile = ofToBool(attributes["logToFile"]);
+        if(logToFile){
+            ofLogToFile("logs/consoleLog.txt", false);
+        }
+       
         
         ofLogNotice() <<"SettingsManager::setDebugProperties->  successfully loaded the OF general settings" ;
         return;
@@ -188,6 +194,27 @@ void SettingsManager::loadSerialSettings()
     }
     
     ofLogNotice() <<"SettingsManager::loadSerialSettings->  path not found: " << path ;
+}
+
+void SettingsManager::loadAppSettings()
+{
+    m_xml.setTo("//");
+    
+    string path = "//of_settings/app";
+    if(m_xml.exists(path)) {
+        m_xml.setTo(path);
+        typedef   std::map<string, string>   AttributesMap;
+        AttributesMap attributes = m_xml.getAttributes();
+        
+        m_requestTimeMs = ofToInt(attributes["request_time_ms"]);
+        m_playbackTimeMs = ofToInt(attributes["playback_time_ms"]);
+        
+        ofLogNotice() <<"SettingsManager::loadAppSettings->  request time = " << m_requestTimeMs << "ms, playback time = " << m_playbackTimeMs <<"ms";
+        ofLogNotice() <<"SettingsManager::loadAppSettings->  successfully loaded the app settings" ;
+        return;
+    }
+    
+    ofLogNotice() <<"SettingsManager::loadAppSettings->  path not found: " << path ;
 }
 
 void SettingsManager::loadColors()

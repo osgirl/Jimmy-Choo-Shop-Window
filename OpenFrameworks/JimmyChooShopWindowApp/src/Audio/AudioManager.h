@@ -51,11 +51,13 @@ private:
         
     void setupSamples();
     
+    void loadSample();
+    
 private:
     
     ResourcesPathMap    m_sampleNames;
     ResourcesPathMap    m_videoSamples;
-    ofSoundPlayer*       m_soundPlayer;
+    ofSoundPlayer       m_soundPlayer;
     string              m_currentPath;
 
 };

@@ -67,6 +67,10 @@ public:
     
     int getSerialPort() const {return m_serialPort;}
     
+    int getPlaybackTime() const {return m_playbackTimeMs;}
+    
+    int getRequestTime() const {return m_requestTimeMs;}
+    
 private:
     
     //! Loads the settings file
@@ -83,6 +87,9 @@ private:
     
     //! Sets all the window properties
     void setWindowProperties();
+    
+    //! Loads all the app settings
+    void loadAppSettings();
     
     //! Loads all the app colors
     void loadColors();
@@ -127,6 +134,8 @@ private:
     bool                    m_autoSerial;           ///< stores whether the serial port has to be search automatically or not
     int                     m_serialPort;           ///< stores the settings serial port
     int                     m_dmxPort;              ///< stores the settings dmx port
+    int                     m_playbackTimeMs;       ///< stores the playback time of the song
+    int                     m_requestTimeMs;        ///< stores the request time between checking new instagram feeds
     
 };
 

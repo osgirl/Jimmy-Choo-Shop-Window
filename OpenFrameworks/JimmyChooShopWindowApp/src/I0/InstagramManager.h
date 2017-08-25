@@ -23,10 +23,6 @@
 
 class InstagramManager: public Manager
 {
-    
-    static const int URL_TIMER_INTERVAL_MS;
-    static const int SCENES_TIMER_INTERVAL_MS;
-
 public:
     //! Constructor
     InstagramManager();

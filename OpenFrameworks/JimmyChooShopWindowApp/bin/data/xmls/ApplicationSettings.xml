@@ -5,9 +5,10 @@
 
       <window title="Jimmy Choo Shop Window App" x="0" y="0" width="960" height="600" fullscreen="0" showCursor="1"/>
 
-      <debug showCursor="1" setVerbose="1"/>
+      <debug showCursor="1" setVerbose="1" logToFile = "0"/>
       <network ip="127.0.0.1"  portOscSend="7890" portOscReceive="5678"/>
-      <serial auto="1"  dmxPort="2" serialPort="1"/>
+      <serial auto="0"  dmxPort="2" serialPort="1"/>
+      <app request_time_ms="1000"  playback_time_ms="3000"/>
 
   </of_settings>
 
@@ -48,10 +49,15 @@
   </colors>
 
   <tags>
-  	<tag name="jimmychoo"/>
-	<tag name="iwantchoosloane"/>
-   <!--<tag name="love"/>
-    <tag name="happy"/>--> 
+  	<tag name="love"/>
+	<tag name="happy"/>
+    <!--
+    <tag name="love"/>
+    <tag name="happy"/>
+    <tag name="love"/>
+    <tag name="happy"/>
+	--> 
+
   </tags>
 
 </settings>

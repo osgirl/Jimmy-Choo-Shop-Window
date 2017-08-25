@@ -9,10 +9,6 @@
 #include "InstagramManager.h"
 #include "AppManager.h"
 
-
-const int InstagramManager::URL_TIMER_INTERVAL_MS = 1000;
-const int InstagramManager::SCENES_TIMER_INTERVAL_MS = 30000;
-
 InstagramManager::InstagramManager(): Manager(), m_currentString(""), m_newTag(false), m_firstTag(true), m_currentCode("")
 {
     //Intentionally left empty
@@ -49,13 +45,14 @@ void InstagramManager::setupTags()
 
 void InstagramManager::setupTimers()
 {
-    m_urlTimer.setup( URL_TIMER_INTERVAL_MS );
+    auto requestTime = AppManager::getInstance().getSettingsManager().getRequestTime();
+    m_urlTimer.setup( requestTime );
     
     m_urlTimer.start( false ) ;
     ofAddListener( m_urlTimer.TIMER_COMPLETE , this, &InstagramManager::urlTimerCompleteHandler ) ;
     
-    
-    m_scenesTimer.setup( SCENES_TIMER_INTERVAL_MS );
+    auto playbackTime = AppManager::getInstance().getSettingsManager().getPlaybackTime();
+    m_scenesTimer.setup( playbackTime );
     
     m_scenesTimer.start( false ) ;
     ofAddListener( m_scenesTimer.TIMER_COMPLETE , this, &InstagramManager::scenesTimerCompleteHandler ) ;
