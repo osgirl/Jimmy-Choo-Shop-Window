@@ -9,6 +9,7 @@
 #include "InstagramManager.h"
 #include "AppManager.h"
 
+
 InstagramManager::InstagramManager(): Manager(), m_currentString(""), m_newTag(false), m_firstTag(true), m_currentCode("")
 {
     //Intentionally left empty
@@ -137,7 +138,7 @@ void InstagramManager::urlResponse(ofHttpResponse & response)
 
     if(response.status==200 && response.request.name == m_tags.front())
     {
-        //ofLogNotice() <<"InstagramManager::urlResponse -> " << response.request.name << ", " << response.status;
+//        ofLogNotice() <<"InstagramManager::urlResponse -> " << response.request.name << ", " << response.status;
         
         m_newTag = this->checkUpdate(response.data, m_tags.front());
     }
@@ -147,7 +148,7 @@ void InstagramManager::urlResponse(ofHttpResponse & response)
 void InstagramManager::urlTimerCompleteHandler( int &args )
 {
     m_urlTimer.start(false);
-    //cout<<"TIMER COMPLETED"<<endl;
+  //  cout<<"TIMER COMPLETED"<<endl;
     string start = "https://www.instagram.com/explore/tags/" ;
     string end = "/?__a=1" ;
     
