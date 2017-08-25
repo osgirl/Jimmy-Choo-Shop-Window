@@ -24,7 +24,7 @@
 
 class AudioManager: public Manager
 {
-    static const string UNICODE_FONT_PATH; //The Apps unicode font path
+    static const float    FADE_TIME_S; //< Fade time in seconds
     
 public:
     

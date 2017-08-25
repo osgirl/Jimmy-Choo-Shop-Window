@@ -14,6 +14,7 @@
 #include "AppManager.h"
 
 
+const float AudioManager::FADE_TIME_S = 2.5;
 
 
 AudioManager::AudioManager(): Manager(), m_currentPath("")
@@ -49,7 +50,7 @@ void AudioManager::setupSamples()
     this->loadSample();
     
     m_audioVolume = ofPtr<BasicVisual> (new BasicVisual());
-    m_audioVolume->setValue(1.0);
+    m_audioVolume->setValue(0.0);
 }
 
 
@@ -69,6 +70,12 @@ void AudioManager::loadSample()
             ofLogNotice() <<"AudioManager::loadSample -> No sample found under path:  " << path ;
             return;
         }
+        
+        //m_soundPlayer.setPosition(0);
+        m_soundPlayer.setLoop(true); //Sound will loop
+        m_soundPlayer.play();
+        m_soundPlayer.setVolume(0.0);
+        ofLogNotice() <<"AudioManager::playSample -> LOOPING SOUND!!:  ";
         
     }
     
@@ -101,24 +108,33 @@ bool AudioManager::playSample(string name)
             ofLogNotice() <<"AudioManager::playSample -> No sample found under path:  " << path ;
             return false;
         }
+        else{
+            
+            //m_soundPlayer.setPosition(0);
+            m_soundPlayer.setLoop(true); //Sound will loop
+            m_soundPlayer.play();
+            ofLogNotice() <<"AudioManager::playSample -> LOOPING SOUND!!:  ";
+        }
        
     }
     
     
-    m_soundPlayer.setPosition(0);
-    m_soundPlayer.setLoop(true); //Sound will loop
-    m_soundPlayer.play();
+  
     
     AppManager::getInstance().getVisualEffectsManager().removeAllVisualEffects(m_audioVolume);
-    m_audioVolume->setValue(1.0);
+    
+    EffectSettings settings; settings.animationTime = FADE_TIME_S;
+    AppManager::getInstance().getVisualEffectsManager().createValueEffect(m_audioVolume, 1.0, settings);
+   // m_audioVolume->setValue(1.0);
     //m_soundPlayer.setPaused(false);
     return true;
 }
 
 void AudioManager::stopSample()
 {
-    EffectSettings settings; settings.animationTime = 1.5;
-    
+    AppManager::getInstance().getVisualEffectsManager().removeAllVisualEffects(m_audioVolume);
+
+    EffectSettings settings; settings.animationTime = FADE_TIME_S;
     AppManager::getInstance().getVisualEffectsManager().createValueEffect(m_audioVolume, 0.0, settings);
     
     //m_soundPlayer.setPaused(true);
