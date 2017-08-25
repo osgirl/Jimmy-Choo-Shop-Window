@@ -117,12 +117,14 @@ bool InstagramManager::checkUpdate(const string& result, const string& tag)
 
 string InstagramManager::parseJsonTag(const string& result)
 {
+    m_json.clear();
     m_json.parse(result);
     return m_json["tag"]["media"]["nodes"][0]["caption"].asString();
 }
 
 string InstagramManager::parseJsonCode(const string& result)
 {
+    m_json.clear();
     m_json.parse(result);
     return m_json["tag"]["media"]["nodes"][0]["code"].asString();
 }
