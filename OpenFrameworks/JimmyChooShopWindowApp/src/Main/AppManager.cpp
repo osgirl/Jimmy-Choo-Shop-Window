@@ -53,8 +53,8 @@ void AppManager::setup()
 void AppManager::setupOF()
 {
     ofSetLogLevel(OF_LOG_NOTICE);
-    ofLogToFile("logs/consoleLog.txt", false);
-    ofSetVerticalSync(true);
+//    ofLogToFile("logs/consoleLog.txt", false);
+  //  ofSetVerticalSync(true);
     ofSetEscapeQuitsApp(true);
     ofSetBackgroundAuto(true);
     ofDisableSmoothing();
