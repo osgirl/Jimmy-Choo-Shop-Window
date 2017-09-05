@@ -134,7 +134,9 @@ void DiscoScene::setupColor()
     }
     AppManager::getInstance().getLayoutManager().setAnimationColor(color);
     
-    AppManager::getInstance().getDmxManager().onSetDmxStrobeColor(strobeColor);
+    //AppManager::getInstance().getDmxManager().onSetDmxStrobeColor(strobeColor);
+    int value = 255;
+    AppManager::getInstance().getDmxManager().onSetDmxLightWhite(value);
 }
 
 

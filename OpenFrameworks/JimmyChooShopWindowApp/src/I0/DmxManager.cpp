@@ -82,9 +82,20 @@ void DmxManager::onSetDmxMotorSpeed(int& value)
 
 void DmxManager::onSetDmxLightColor(const ofColor& color)
 {
-    m_dmx.setLevel(m_dmxLightStartChannel + 4, color.r);
-    m_dmx.setLevel(m_dmxLightStartChannel + 5, color.g);
-    m_dmx.setLevel(m_dmxLightStartChannel + 6, color.b);
+//    m_dmx.setLevel(m_dmxLightStartChannel + 4, color.r);
+//    m_dmx.setLevel(m_dmxLightStartChannel + 5, color.g);
+//    m_dmx.setLevel(m_dmxLightStartChannel + 6, color.b);
+    
+    m_dmx.setLevel(m_dmxLightStartChannel + 1, color.r);
+    m_dmx.setLevel(m_dmxLightStartChannel + 2, color.g);
+    m_dmx.setLevel(m_dmxLightStartChannel + 3, color.b);
+    m_dmx.update();
+}
+
+
+void DmxManager::onSetDmxLightWhite(int& value)
+{
+    m_dmx.setLevel(m_dmxLightStartChannel + 4, value);
     m_dmx.update();
 }
 
@@ -97,16 +108,20 @@ void DmxManager::onSetDmxStrobeColor(int value)
 
 void DmxManager::onSetDmxLightStrobe()
 {
-    m_dmx.setLevel(m_dmxLightStartChannel + 3, 0); //Set master dimming to 0
-    m_dmx.setLevel(m_dmxLightStartChannel, 201); //Set Strobe mode
-    m_dmx.setLevel(m_dmxLightStartChannel+2, 155); //Set Strobe speed
+//    m_dmx.setLevel(m_dmxLightStartChannel + 3, 0); //Set master dimming to 0
+//    m_dmx.setLevel(m_dmxLightStartChannel, 201); //Set Strobe mode
+//    m_dmx.setLevel(m_dmxLightStartChannel+2, 155); //Set Strobe speed
+    
+    m_dmx.setLevel(m_dmxLightStartChannel, 201); //Set Strobe mode and speed
     m_dmx.update();
 }
 
 void DmxManager::onSetDmxLightSolid()
 {
-    m_dmx.setLevel(m_dmxLightStartChannel, 0); //Set mode to manual
-    m_dmx.setLevel(m_dmxLightStartChannel + 3, 255); //Set master dimming to full
+//    m_dmx.setLevel(m_dmxLightStartChannel, 0); //Set mode to manual
+//    m_dmx.setLevel(m_dmxLightStartChannel + 3, 255); //Set master dimming to full
+    
+    m_dmx.setLevel(m_dmxLightStartChannel, 0); //No Effect
     m_dmx.update();
 }
 

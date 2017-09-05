@@ -68,8 +68,10 @@ void ShowcaseScene::setupDmx() {
 void ShowcaseScene::updateColors()
 {
     auto animationColor = AppManager::getInstance().getLayoutManager().getAnimationColor();
+    int brightness = animationColor.getBrightness();
     
-    AppManager::getInstance().getDmxManager().onSetDmxLightColor(animationColor);
+    //AppManager::getInstance().getDmxManager().onSetDmxLightColor(animationColor);
+    AppManager::getInstance().getDmxManager().onSetDmxLightWhite(brightness);
     AppManager::getInstance().getSerialManager().onSetColor(animationColor);
    
 }

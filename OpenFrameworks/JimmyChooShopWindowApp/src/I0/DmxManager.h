@@ -44,6 +44,8 @@ public:
     
     void onSetDmxLightColor(const ofColor& color);
     
+    void onSetDmxLightWhite(int& value);
+    
     void onSetDmxLightStrobe();
     
     void onSetDmxStrobeColor(int value);
