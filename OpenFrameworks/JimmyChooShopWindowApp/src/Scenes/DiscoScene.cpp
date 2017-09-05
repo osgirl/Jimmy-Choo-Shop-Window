@@ -65,7 +65,7 @@ void DiscoScene::draw() {
 
 void DiscoScene::willFadeIn() {
      ofLogNotice("DiscoScene::willFadeIn");
-     AppManager::getInstance().getAudioManager().playSample("NightFever");
+     AppManager::getInstance().getAudioManager().playSample("DiscoSong");
      this->setupDmx();
      this->updateText();
      this->setupColor();

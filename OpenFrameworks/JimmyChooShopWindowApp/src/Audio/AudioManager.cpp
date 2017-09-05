@@ -56,7 +56,7 @@ void AudioManager::setupSamples()
 
 void AudioManager::loadSample()
 {
-    string name = "NightFever";
+    string name = "DiscoSong";
     if(m_sampleNames.find(name)==m_sampleNames.end()){
         ofLogNotice() <<"AudioManager::loadSample -> No sample named:  " << name ;
         return;

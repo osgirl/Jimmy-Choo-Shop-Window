@@ -7,7 +7,7 @@
 
       <debug showCursor="1" setVerbose="1" logToFile = "0"/>
       <network ip="127.0.0.1"  portOscSend="7890" portOscReceive="5678"/>
-      <serial auto="1"  dmxPort="0" serialPort="2"/>
+      <serial auto="0"  dmxPort="0" serialPort="2"/>
       <app request_time_ms="1000"  playback_time_ms="30000"/>
 
   </of_settings>
@@ -21,7 +21,7 @@
 
   <audio>
 
-    <sample name="NightFever" path="sound/NightFever_BeeGees.mp3"/>
+    <sample name="DiscoSong" path="sound/GarnaVutka_Funny_Funk_Disco_Groove__Full_version_.mp3"/>
     <sample name="NightFeverShort" path="sound/NightFever_BeeGees_short.mp3"/>
     <sample name="TestSound" path="sound/TestSound.mp3"/>
 
