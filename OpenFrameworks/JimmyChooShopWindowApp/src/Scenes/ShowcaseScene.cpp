@@ -59,6 +59,8 @@ void ShowcaseScene::willExit() {
 void ShowcaseScene::setupDmx() {
     m_updateColors = true;
     AppManager::getInstance().getDmxManager().onSetDmxLightSolid();
+    int value = 255;
+    AppManager::getInstance().getDmxManager().onSetDmxLightWhite(value);
     int motorSpeed = 20;
     //AppManager::getInstance().getDmxManager().onSetDmxMotorSpeed(motorSpeed);
     AppManager::getInstance().getGuiManager().onSetMotorSpeed(motorSpeed);
@@ -68,10 +70,12 @@ void ShowcaseScene::setupDmx() {
 void ShowcaseScene::updateColors()
 {
     auto animationColor = AppManager::getInstance().getLayoutManager().getAnimationColor();
-    int brightness = animationColor.getBrightness();
+   // int brightness = animationColor.getBrightness();
+    
+    //ofLogNotice() << "ShowcaseScene::updateColors: brightness -> " <<brightness;
     
     //AppManager::getInstance().getDmxManager().onSetDmxLightColor(animationColor);
-    AppManager::getInstance().getDmxManager().onSetDmxLightWhite(brightness);
+    //AppManager::getInstance().getDmxManager().onSetDmxLightWhite(brightness);
     AppManager::getInstance().getSerialManager().onSetColor(animationColor);
    
 }
