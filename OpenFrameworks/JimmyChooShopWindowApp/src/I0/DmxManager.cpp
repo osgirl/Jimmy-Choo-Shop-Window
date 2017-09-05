@@ -121,7 +121,7 @@ void DmxManager::onSetDmxLightSolid()
 //    m_dmx.setLevel(m_dmxLightStartChannel, 0); //Set mode to manual
 //    m_dmx.setLevel(m_dmxLightStartChannel + 3, 255); //Set master dimming to full
     
-    m_dmx.setLevel(m_dmxLightStartChannel, 0); //No Effect
+    m_dmx.setLevel(m_dmxLightStartChannel, 242); //Ch2-Ch5 effect
     m_dmx.update();
 }
 
@@ -133,5 +133,5 @@ void DmxManager::exit()
     this->onSetDmxLightColor(ofColor::black);
     m_dmx.setLevel(m_dmxLightStartChannel + 3, 0); //Set master dimming to zero
     m_dmx.update();
-    ofSleepMillis(1000);
+    ofSleepMillis(300);
 }
