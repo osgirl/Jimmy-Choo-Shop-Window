@@ -7,8 +7,8 @@
 
       <debug showCursor="1" setVerbose="1" logToFile = "0"/>
       <network ip="127.0.0.1"  portOscSend="7890" portOscReceive="5678"/>
-      <serial auto="0"  dmxPort="2" serialPort="1"/>
-      <app request_time_ms="1000"  playback_time_ms="3000"/>
+      <serial auto="1"  dmxPort="0" serialPort="2"/>
+      <app request_time_ms="1000"  playback_time_ms="30000"/>
 
   </of_settings>
 

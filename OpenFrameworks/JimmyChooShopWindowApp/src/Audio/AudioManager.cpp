@@ -14,7 +14,7 @@
 #include "AppManager.h"
 
 
-const float AudioManager::FADE_TIME_S = 2.0;
+const float AudioManager::FADE_TIME_S = 1.0;
 
 
 AudioManager::AudioManager(): Manager(), m_currentPath("")

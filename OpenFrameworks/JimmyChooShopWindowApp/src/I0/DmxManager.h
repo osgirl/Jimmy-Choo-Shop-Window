@@ -58,8 +58,8 @@ private:
     
 private:
     
-	//ofxDmx4All m_dmx;
-    ofxDmx m_dmx;
+	ofxDmx4All m_dmx;
+    //ofxDmx m_dmx;
     int m_dmxLightStartChannel;
     int m_dmxMotorStartChannel;
 
